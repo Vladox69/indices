@@ -1,0 +1,30 @@
+<div style="padding-left: 20px;">
+    <table>
+        <tr>
+            <td>
+                <input type="file" name="archivosubido" (change)="onFileChange($event)"><br>
+            </td>
+            <td><button (click)="doResultados()" style="height: 37px;background-color: red;border-radius: 10px;color: aliceblue;border: 0px solid;">Resultados Finales</button></td>
+            <td><button (click)="doInforme()" style="height: 37px;background-color: brown;border-radius: 10px;color: aliceblue;border: 0px solid;">Informe Diario</button></td>
+        </tr>
+    </table><br>
+    <label>Resultados</label>
+    <br><br>
+    <div style="overflow-x:auto;width: 98%;font-size: 10px;">
+        <table id="customers">
+            <tr>
+                <th>No</th>
+                <th *ngFor="let row of titulos">{{row}}</th>
+            </tr>
+            <tr *ngFor="let row of tabla | paginate: { itemsPerPage: 6, currentPage: p } ;">
+                  <td *ngFor="let val of row" >
+                      {{val}}
+                  </td>
+              </tr> 
+          </table>
+    </div>
+    <pagination-controls style="color:red; text-align: center;" (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+
+
+</div>
+

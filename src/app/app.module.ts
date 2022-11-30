@@ -16,6 +16,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import { AddAlimentadorComponent } from './componentes/add-alimentador/add-alimentador.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { AddAlimentadorComponent } from './componentes/add-alimentador/add-alime
     NgxPaginationModule,
     MatSidenavModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

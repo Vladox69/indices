@@ -7,6 +7,7 @@ import {FormControl, Validators} from '@angular/forms';
   styleUrls: ['./add-alimentador.component.css']
 })
 export class AddAlimentadorComponent implements OnInit {
+  constructor() { }
   email = new FormControl('', [Validators.required, Validators.email]);
 
   getErrorMessage() {
@@ -17,20 +18,7 @@ export class AddAlimentadorComponent implements OnInit {
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
-  constructor() { }
-
   ngOnInit(): void {
-  }
-
-  openModalFormProceso() {
-    // this.modalService.open(ModalProcesosComponent,
-    //   {
-    //     centered: true,
-    //     size: 'lg',
-    //     backdrop: "static",
-    //     keyboard: false
-    //   }
-    // )
   }
 
 

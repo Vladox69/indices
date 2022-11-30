@@ -21,6 +21,8 @@ export class PrincipalComponent implements OnInit {
   resultados:any;
   participantes:any;
   ganadores:any=[];
+  incidencias:any=[];
+  informeIncidencias:any=[]
 
   ngOnInit(): void {
 
@@ -36,7 +38,7 @@ export class PrincipalComponent implements OnInit {
       horas.push('00');
     }
     var resminutos = Number('0.'+horas[1])*60;
-    console.log(totalminutos,'resmin');
+    //console.log(totalminutos,'resmin');
     var minutos = resminutos.toString().split('.');
     if(minutos[1]==undefined){
       minutos.push('00');
@@ -44,7 +46,7 @@ export class PrincipalComponent implements OnInit {
     var ressegundos = Number('0.'+minutos[1])*60;
     var segundos = Math.round(ressegundos);
     let tiempo = horas[0]+':'+minutos[0]+':'+segundos;
-    console.log(tiempo);
+    //console.log(tiempo);
 
 
     this.iService.listarCausasCambio().subscribe(res=>{
@@ -52,7 +54,7 @@ export class PrincipalComponent implements OnInit {
     });
     this.iService.listarCatInterrupciones().subscribe(res=>{
       this.listaCatInterrupciones = res;
-      console.log(this.listaCatInterrupciones);
+      //console.log(this.listaCatInterrupciones);
     });
     this.obtenerAlimentadores();
 
@@ -103,7 +105,7 @@ export class PrincipalComponent implements OnInit {
           this.data.splice(index,1);
         }
       });
-      console.log('datosprimeros',this.data);
+      //console.log('datosprimeros',this.data);
 
 
       ///
@@ -172,7 +174,7 @@ export class PrincipalComponent implements OnInit {
         this.copiaenMasa.push(fila);
       });
 
-      console.log(this.copiaenMasa);
+      //console.log(this.copiaenMasa);
 
     };
     reader.readAsBinaryString(target.files[0]);
@@ -332,7 +334,7 @@ export class PrincipalComponent implements OnInit {
             }
           }
         });
-    console.log('aqui',this.calculosAutomaticos);
+    //console.log('aqui',this.calculosAutomaticos);
     //elimino las ultimas columnas
     this.calculosAutomaticos.forEach((fila,index) => {
       fila.length = fila.length - 17;
@@ -357,7 +359,7 @@ export class PrincipalComponent implements OnInit {
 
   doResultados(){
     this.doCalculosAuto();
-    console.log(this.resultado);
+    //console.log(this.resultado);
     this.resultado.forEach((fila,index) => {
       if(index!=0){
       }else{
@@ -474,7 +476,7 @@ export class PrincipalComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, 'Resultados');
 
     /* save to file */
-    XLSX.writeFile(wb, 'resultadoFinal.xlsx');
+    //XLSX.writeFile(wb, 'resultadoFinal.xlsx');
   }
 
   doInforme(){
@@ -525,7 +527,6 @@ export class PrincipalComponent implements OnInit {
         fila[37]='Duración de Interrupción Horas';
         fila[38]='FMIK';
         fila[39]='TTIK';
-
       }
     });
     let informeAux=this.informe;
@@ -656,23 +657,28 @@ export class PrincipalComponent implements OnInit {
       }
 
     });
-    
     console.log('resultado',this.informe);
     this.exportInforme();
   }
   exportInforme(): void {
     const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(this.informe);
 
-    this.tabla=this.informe;
-
+    this.tabla=[...this.informe];
     this.titulos=this.tabla[0];
+    this.titulos=['Quitar',...this.titulos];
     this.tabla.forEach((element,index) => {
       if(index!=0){
         element.splice(0,0,index);
       }
     });
+
+    this.tabla.forEach((element,index) => {
+      if(index!=0){
+        element.splice(1,0,'false');
+      }
+    });
     this.tabla.shift();
-    console.log(this.tabla);
+    //console.log(this.tabla);
     /* generate worksheet */
 
     /* generate workbook and add the worksheet */
@@ -680,12 +686,57 @@ export class PrincipalComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, 'Resultados');
 
     /* save to file */
-    XLSX.writeFile(wb, 'informe.xlsx');
+    //XLSX.writeFile(wb, 'informe.xlsx');
   }
+
+
+
+  onChangeCheckbox(indice:any){
+
+    if(this.tabla[indice-1][1]=='false'){
+      this.tabla[indice-1][1]='true'  
+    }else{
+      this.tabla[indice-1][1]='false'
+    }
+    
+    
+    let buscar=true;
+    if(this.incidencias.length<1){
+      this.incidencias=[...this.incidencias,this.tabla[indice-1]]
+    }else{
+      this.incidencias.forEach((row:any,i:any) => {
+        if(row[0]==indice){
+          this.incidencias.splice(i,1);
+          buscar=false;
+        }
+      });
+      if(buscar){
+        this.incidencias=[...this.incidencias,this.tabla[indice-1]]
+      }
+    }
+
+    console.log(this.incidencias);
+  }
+
+  onIncidencias(){
+    this.incidencias.forEach((row:any) => {
+      let aux=[...row];
+      this.informeIncidencias=[...this.informeIncidencias,aux];
+    });
+    this.informeIncidencias.forEach( (row:any) =>{
+      row.splice(0,2);
+    })
+    const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(this.informeIncidencias);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Incidencias');
+    XLSX.writeFile(wb, 'incidencias.xlsx');
+    this.informeIncidencias=[];
+  }
+
   obtenerAlimentadores(){
     this.iService.listarAlimentadores().subscribe(res=>{
      this.listaAlimentadores=res;
-     console.log(res);
+     //console.log(res);
     });
   }
 

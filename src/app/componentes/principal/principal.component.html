@@ -9,6 +9,7 @@
         </tr>
     </table><br>
     <label>Resultados</label>
+    <button (click)="onIncidencias()" style="height: 37px;background-color: green;border-radius: 10px;color: aliceblue;border: 0px solid;">Exportar Excel</button>
     <br><br>
     <div style="overflow-x:auto;width: 98%;font-size: 10px;">
         <table id="customers">
@@ -17,8 +18,14 @@
                 <th *ngFor="let row of titulos">{{row}}</th>
             </tr>
             <tr *ngFor="let row of tabla | paginate: { itemsPerPage: 6, currentPage: p } ;">
-                  <td *ngFor="let val of row" >
-                      {{val}}
+                  <td *ngFor="let val of row;let indice=index" >
+                    <div *ngIf="row[indice]==='false' || row[indice]==='true' ;then checkbox else texto"></div>  
+                    <ng-template #checkbox>  
+                        <input type="checkbox" (change)="onChangeCheckbox(row[0])" [checked]="row[indice]==='true'">
+                    </ng-template>
+                    <ng-template #texto>
+                        {{val}}
+                    </ng-template>
                   </td>
               </tr> 
           </table>

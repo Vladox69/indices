@@ -4,6 +4,8 @@ import * as XLSX from 'xlsx';
 import { Alimentador } from 'src/app/modelos/alimentador.interface';
 import { CausaCambio } from 'src/app/modelos/causacambio.interface';
 import { catInterrupciones } from 'src/app/modelos/catinterrupciones.interface';
+import { Router } from '@angular/router';
+
 type AOA = any[][];
 
 
@@ -14,7 +16,7 @@ type AOA = any[][];
 })
 export class PrincipalComponent implements OnInit {
 
-  constructor(private iService:IndicesService) { }
+  constructor(private iService:IndicesService,private router:Router) { }
 
   predicciones:any=[];
   listadoPredicciones:any=[];
@@ -689,4 +691,7 @@ export class PrincipalComponent implements OnInit {
     });
   }
 
+  irAAlimentadores(){
+    this.router.navigate(['/alimentador']);
+  }
 }

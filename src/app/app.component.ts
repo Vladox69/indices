@@ -9,10 +9,5 @@ const { read, write, utils } = XLSX;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(public router:Router) { }
-  title = 'indices2';
-  iraPrincipal(){
-    console.log('iraPrincipal');
-    this.router.navigate(['principal'])
-  }
+  title = 'Indices';
 }

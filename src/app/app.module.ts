@@ -17,6 +17,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import { AddAlimentadorComponent } from './componentes/add-alimentador/add-alimentador.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +41,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatSidenavModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatInputModule,
+    MatButtonModule,
     NgbModule
   ],
   providers: [],

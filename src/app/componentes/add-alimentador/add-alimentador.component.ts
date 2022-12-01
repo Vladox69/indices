@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add-alimentador',
@@ -7,15 +8,29 @@ import {FormControl, Validators} from '@angular/forms';
   styleUrls: ['./add-alimentador.component.css']
 })
 export class AddAlimentadorComponent implements OnInit {
-  constructor() { }
-  email = new FormControl('', [Validators.required, Validators.email]);
+  constructor(private modalService:NgbModal) { }
+  provincia= new FormControl('', [Validators.required]);
+  canton= new FormControl('', [Validators.required]);
+  nombre= new FormControl('', [Validators.required]);
+  linea= new FormControl('', [Validators.required]);
+  observacion= new FormControl('', [Validators.required]);
+  referencia= new FormControl('', [Validators.required]);
+  subadms= new FormControl('', [Validators.required]);
+  subestacion= new FormControl('', [Validators.required]);
+  kva= new FormControl('', [Validators.required]);
+  tipo= new FormControl('', [Validators.required]);
+  opcion= new FormControl('', [Validators.required]);
 
   getErrorMessage() {
-    if (this.email.hasError('required')) {
+    if (this.provincia.hasError('required')) {
       return 'You must enter a value';
     }
 
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+    return this.provincia.hasError('provincia') ? 'Not a valid provincia' : '';
+  }
+
+  onClose(){
+    this.modalService.dismissAll(AddAlimentadorComponent)
   }
 
   ngOnInit(): void {

@@ -745,4 +745,10 @@ export class PrincipalComponent implements OnInit {
   irAAlimentadores(){
     this.router.navigate(['/alimentador']);
   }
+  irACausas(){
+    this.router.navigate(['/causas']);
+  }
+  irACatalogo(){
+    this.router.navigate(['/catalogo']);
+  }
 }

@@ -1,0 +1,33 @@
+<button routerLink="/principal">Regresar</button>
+<div style="padding: 1%;">
+    <p>Listado Causas Fallos</p>
+    <button >Agregar</button>
+    <table id="customers">
+        <tr>
+            <th>No</th>
+            <th>Nombre</th>
+            <th>Referencia</th>
+            <th>Observacion</th>
+            <th>Fecha</th>
+            <th>Opción</th>
+        </tr>
+        <tr *ngFor="let cau of listaCausas | paginate: { itemsPerPage: 10, currentPage: p }; let i = index" style="font-size: 12px;">
+            <td>{{i+1}}</td>
+            <td>{{cau.SCAU_NOMBRE}}</td>
+            <td>{{cau.SCAU_REFERENCIA}}</td>
+            <td>{{cau.SCAU_OBSERVACION}}</td>
+            <td>{{cau.SCAU_FECHA}}</td>
+            <td style="text-align: center;">
+                <button mat-icon-button color="primary">
+                  <mat-icon style="color: #052d6c;">edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" style="color: #AD1212;">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+        </tr>
+    </table>
+    <pagination-controls style="color:red; text-align: center;" (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+
+</div>
+

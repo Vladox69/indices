@@ -10,10 +10,20 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { AlimentadorComponent } from './componentes/alimentador/alimentador.component';
+import { NavComponent } from './componentes/nav/nav.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
+import { AddAlimentadorComponent } from './componentes/add-alimentador/add-alimentador.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
-    PrincipalComponent
+    PrincipalComponent,
+    AlimentadorComponent,
+    NavComponent,
+    AddAlimentadorComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +34,11 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MatFormFieldModule,
     MatPaginatorModule,
     MatTableModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatSidenavModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

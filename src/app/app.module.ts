@@ -19,6 +19,8 @@ import { AddAlimentadorComponent } from './componentes/add-alimentador/add-alime
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import { CausasfallosComponent } from './componentes/causasfallos/causasfallos.component';
+import { CatinterrupcionesComponent } from './componentes/catinterrupciones/catinterrupciones.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import {MatButtonModule} from '@angular/material/button';
     PrincipalComponent,
     AlimentadorComponent,
     NavComponent,
-    AddAlimentadorComponent
+    AddAlimentadorComponent,
+    CausasfallosComponent,
+    CatinterrupcionesComponent
   ],
   imports: [
     BrowserModule,

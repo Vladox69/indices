@@ -2,6 +2,9 @@
 <div style="padding: 1%;">
     <p>Catalogo de Interrupciones</p>
     <button >Agregar</button>
+    <div>
+      <input type="text" placeholder="Buscar ..." class="form-control" id="rol" [(ngModel)]="term" />
+  </div>
     <table id="customers">
         <tr>
             <th>No</th>
@@ -13,7 +16,7 @@
             <th>Fecha</th>
             <th>Opción</th>
         </tr>
-        <tr *ngFor="let inte of listaInterrupciones | paginate: { itemsPerPage: 10, currentPage: p }; let i = index" style="font-size: 12px;">
+        <tr *ngFor="let inte of listaInterrupciones |filter:term| paginate: { itemsPerPage: 10, currentPage: p }; let i = index" style="font-size: 12px;">
             <td>{{i+1}}</td>
             <td>{{inte.SCAT_NOMBRE}}</td>
             <td>{{inte.SCAT_ORIGEN}}</td>

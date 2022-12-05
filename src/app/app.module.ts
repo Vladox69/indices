@@ -21,6 +21,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { CausasfallosComponent } from './componentes/causasfallos/causasfallos.component';
 import { CatinterrupcionesComponent } from './componentes/catinterrupciones/catinterrupciones.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { CatinterrupcionesComponent } from './componentes/catinterrupciones/cati
     MatIconModule,
     MatInputModule,
     MatButtonModule,
-    NgbModule
+    NgbModule,
+    Ng2SearchPipeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

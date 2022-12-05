@@ -18,6 +18,7 @@ export class AlimentadorComponent implements OnInit {
   //variables
   listaAlimentadores:Alimentador[]=[];
   p:any=1;
+  term:any;
   
   obtenerAlimentadores(){
     this.iService.listarAlimentadores().subscribe(res=>{

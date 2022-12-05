@@ -17,12 +17,8 @@ type AOA = any[][];
 export class PrincipalComponent implements OnInit {
 
   constructor(private iService:IndicesService,private router:Router) { }
-
-  predicciones:any=[];
-  listadoPredicciones:any=[];
+  term:any;
   resultados:any;
-  participantes:any;
-  ganadores:any=[];
   incidencias:any=[];
   informeIncidencias:any=[]
 

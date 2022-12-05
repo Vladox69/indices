@@ -19,6 +19,7 @@ export class CausasfallosComponent implements OnInit {
   //variables
   listaCausas:CausaCambio[]=[];
   p:any=1;
+  term:any;
   
   obtenerAlimentadores(){
     this.iService.listarCausasCambio().subscribe(res=>{

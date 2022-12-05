@@ -2,19 +2,23 @@
 <div style="padding: 1%;">
     <p>Catalogo de Interrupciones</p>
     <button (click)="openModal()" >Agregar</button>
+    <button >Agregar</button>
+    <div>
+      <input type="text" placeholder="Buscar ..." class="form-control" id="rol" [(ngModel)]="term" />
+  </div>
     <table id="customers">
         <tr>
-            <th>No</th>
-            <th>Nombre</th>
-            <th>Origen</th>
-            <th>Causa</th>
-            <th>Linea</th>
-            <th>Observación</th>
-            <th>Fecha</th>
-            <th>Opción</th>
+            <th style="width: 5%;text-align: center;">No</th>
+            <th style="width: 35%;" >Nombre</th>
+            <th style="width: 10%;">Origen</th>
+            <th style="width: 15%;">Causa</th>
+            <th style="width: 10%;">Linea</th>
+            <th style="width: 10%;">Observación</th>
+            <th style="width: 5%;">Fecha</th>
+            <th style="width: 10%;">Opción</th>
         </tr>
-        <tr *ngFor="let inte of listaInterrupciones | paginate: { itemsPerPage: 10, currentPage: p }; let i = index" style="font-size: 12px;">
-            <td>{{i+1}}</td>
+        <tr *ngFor="let inte of listaInterrupciones |filter:term| paginate: { itemsPerPage: 10, currentPage: p }; let i = index" style="font-size: 12px;">
+            <td style="text-align: center;">{{i+1}}</td>
             <td>{{inte.SCAT_NOMBRE}}</td>
             <td>{{inte.SCAT_ORIGEN}}</td>
             <td>{{inte.SCAT_CAUSA}}</td>

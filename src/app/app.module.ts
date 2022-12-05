@@ -25,6 +25,8 @@ import { AddCausafallosComponent } from './componentes/add-causafallos/add-causa
 import { AddCatinterrupcionesComponent } from './componentes/add-catinterrupciones/add-catinterrupciones.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule } from '@angular/material/core';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import {MatNativeDateModule } from '@angular/material/core';
     NgbModule,
     MatDatepickerModule,
     MatNativeDateModule
+    Ng2SearchPipeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

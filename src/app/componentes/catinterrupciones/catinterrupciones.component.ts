@@ -18,7 +18,7 @@ export class CatinterrupcionesComponent implements OnInit {
   //variables
   listaInterrupciones:catInterrupciones[]=[];
   p:any=1;
-  
+  term:any;
   obtenerAlimentadores(){
     this.iService.listarCatInterrupciones().subscribe(res=>{
      this.listaInterrupciones=res;

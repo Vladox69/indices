@@ -7,21 +7,21 @@
   </div>
     <table id="customers">
         <tr>
-            <th>No</th>
-            <th>Provincia</th>
-            <th>Cantón</th>
-            <th>Linea</th>
-            <th>Nombre</th>
-            <th>Observación</th>
-            <th>Referencia</th>
-            <th>SubAdms</th>
-            <th>Subestación</th>
-            <th>KVA</th>
-            <th>Tipo</th>
-            <th>Opción</th>
+            <th style="width: 5%;" style="text-align: center;">No</th>
+            <th style="width:8%;">Provincia</th>
+            <th style="width:8%;">Cantón</th>
+            <th style="width:13%;">Linea</th>
+            <th style="width:10%;">Nombre</th>
+            <th style="width:12%;">Observación</th>
+            <th style="width:10%;">Referencia</th>
+            <th style="width:5%;">SubAdms</th>
+            <th style="width:12%;">Subestación</th>
+            <th style="width:5%;">KVA</th>
+            <th style="width:5%;">Tipo</th>
+            <th style="width:7%;">Opción</th>
         </tr>
-        <tr *ngFor="let ali of listaAlimentadores | filter:term| paginate: { itemsPerPage: 10, currentPage: p }; let i = index" style="font-size: 12px;">
-            <td>{{i+1}}</td>
+        <tr *ngFor="let ali of listaAlimentadores | filter:term| paginate: { itemsPerPage: 10, currentPage: p }; let i = index" style="font-size: 11px;">
+            <td style="text-align: center;">{{i+1}}</td>
             <td>{{ali.SALIM_PROVINCIA}}</td>
             <td>{{ali.SALIM_CANTON}}</td>
             <td>{{ali.SALIM_LINEA}}</td>

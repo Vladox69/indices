@@ -7,19 +7,19 @@
   </div>
     <table id="customers">
         <tr>
-            <th>No</th>
-            <th>Nombre</th>
-            <th>Referencia</th>
-            <th>Observacion</th>
-            <th>Fecha</th>
-            <th>Opción</th>
+            <th style="width:5%;text-align: center;" >No</th>
+            <th style="width:30%;text-align: center;" >Nombre</th>
+            <th style="width:30%;text-align: center;" >Referencia</th>
+            <th style="width:15%;text-align: center;" >Observacion</th>
+            <th style="width:10%;text-align: center;" >Fecha</th>
+            <th style="width:10%;text-align: center;" >Opción</th>
         </tr>
         <tr *ngFor="let cau of listaCausas |filter:term| paginate: { itemsPerPage: 10, currentPage: p }; let i = index" style="font-size: 12px;">
-            <td>{{i+1}}</td>
+            <td style="text-align: center;">{{i+1}}</td>
             <td>{{cau.SCAU_NOMBRE}}</td>
             <td>{{cau.SCAU_REFERENCIA}}</td>
             <td>{{cau.SCAU_OBSERVACION}}</td>
-            <td>{{cau.SCAU_FECHA}}</td>
+            <td style="text-align: center;">{{cau.SCAU_FECHA}}</td>
             <td style="text-align: center;">
                 <button mat-icon-button color="primary">
                   <mat-icon style="color: #052d6c;">edit</mat-icon>

@@ -21,6 +21,10 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { CausasfallosComponent } from './componentes/causasfallos/causasfallos.component';
 import { CatinterrupcionesComponent } from './componentes/catinterrupciones/catinterrupciones.component';
+import { AddCausafallosComponent } from './componentes/add-causafallos/add-causafallos.component';
+import { AddCatinterrupcionesComponent } from './componentes/add-catinterrupciones/add-catinterrupciones.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,9 @@ import { CatinterrupcionesComponent } from './componentes/catinterrupciones/cati
     NavComponent,
     AddAlimentadorComponent,
     CausasfallosComponent,
-    CatinterrupcionesComponent
+    CatinterrupcionesComponent,
+    AddCausafallosComponent,
+    AddCatinterrupcionesComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +53,9 @@ import { CatinterrupcionesComponent } from './componentes/catinterrupciones/cati
     MatIconModule,
     MatInputModule,
     MatButtonModule,
-    NgbModule
+    NgbModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

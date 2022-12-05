@@ -1,0 +1,39 @@
+<form action="" class="example-form d-flex flex-column align-items-center">
+  <button mat-fab color="warn" (click)="ngbActiveModal.close('Close click')">
+    <mat-icon>close</mat-icon>
+  </button>
+  <!--Nombre-->
+  <mat-form-field class="w-75" appearance="outline">
+    <mat-label>Nombre</mat-label>
+    <input matInput placeholder="Nombre" [formControl]="nombre" required />
+    <mat-error *ngIf="nombre.invalid">{{ getErrorMessage() }}</mat-error>
+  </mat-form-field>
+  <!--Referencia-->
+  <mat-form-field class="w-75" appearance="outline">
+    <mat-label>Referencia</mat-label>
+    <input
+      matInput
+      placeholder="Referencia"
+      [formControl]="referencia"
+      required
+    />
+    <mat-error *ngIf="referencia.invalid">{{ getErrorMessage() }}</mat-error>
+  </mat-form-field>
+  <!--Observación-->
+  <mat-form-field class="w-75" appearance="outline">
+    <mat-label>Observación</mat-label>
+    <input
+      matInput
+      placeholder="Observación"
+      [formControl]="observacion"
+      required
+    />
+    <mat-error *ngIf="observacion.invalid">{{ getErrorMessage() }}</mat-error>
+  </mat-form-field>
+  <!--Fecha-->
+  <mat-form-field class="w-75" appearance="outline">
+    <mat-label>Fecha</mat-label>
+    <input matInput placeholder="Fecha" [formControl]="fecha" required />
+    <mat-error *ngIf="fecha.invalid">{{ getErrorMessage() }}</mat-error>
+  </mat-form-field>
+</form>

@@ -3,6 +3,7 @@ import { Alimentador } from 'src/app/modelos/alimentador.interface';
 import { IndicesService } from 'src/app/servicios/indices.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CausaCambio } from 'src/app/modelos/causacambio.interface';
+import { AddCausafallosComponent } from '../add-causafallos/add-causafallos.component';
 
 @Component({
   selector: 'app-causasfallos',
@@ -27,6 +28,13 @@ export class CausasfallosComponent implements OnInit {
   }
   
   openModal() {
-
+    this.modalService.open(AddCausafallosComponent,
+      {
+        centered: true,
+        size: 'lg',
+        backdrop: "static",
+        keyboard: false
+      }
+    )
   }
 }

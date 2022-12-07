@@ -23,4 +23,9 @@ export class IndicesService {
     return this.httpClient.get<any>(this.url + 'listarCatInterrupciones');
   }
 
+  async addAlimentador(alimentador:any): Promise<Observable<any>> {
+    const headers = { 'content-type': 'application/json'}
+    return this.httpClient.post("addAlimentador", alimentador, {'headers':headers});
+  }
+
 }

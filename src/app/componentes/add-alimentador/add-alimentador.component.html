@@ -1,71 +1,76 @@
 <p>Agregar Alimentador</p>
-<form class="example-form d-flex flex-column  align-items-center">
-  <button mat-fab color="warn" (click)="onClose()">
+<form class="example-form d-flex flex-column  align-items-center" [formGroup]="formAlimentador">
+  <button mat-fab color="warn" (click)="ngbActiveModal.close('Close click')">
     <mat-icon>close</mat-icon>
   </button>
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>Provincia</mat-label>
-      <input  matInput placeholder="Provincia" [formControl]="provincia" required >
-      <mat-error *ngIf="provincia.invalid">{{getErrorMessage()}}</mat-error>
+      <input  matInput placeholder="Provincia" formControlName="provincia" required >
+      <!-- <mat-error *ngIf="provincia.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
      <!--Cantón-->
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>Cantón</mat-label>
-      <input matInput placeholder="Cantón" [formControl]="canton" required >
-      <mat-error *ngIf="canton.invalid">{{getErrorMessage()}}</mat-error>
+      <input matInput placeholder="Cantón" formControlName="canton" required >
+      <!-- <mat-error *ngIf="canton.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
     <!--Nombre-->
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>Nombre</mat-label>
-      <input matInput placeholder="Nombre" [formControl]="nombre" required >
-      <mat-error *ngIf="nombre.invalid">{{getErrorMessage()}}</mat-error>
+      <input matInput placeholder="Nombre" formControlName="nombre" required >
+      <!-- <mat-error *ngIf="nombre.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
      <!--Línea-->
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>Línea</mat-label>
-      <input matInput placeholder="Línea" [formControl]="linea" required >
-      <mat-error *ngIf="linea.invalid">{{getErrorMessage()}}</mat-error>
+      <input matInput placeholder="Línea" formControlName="linea" required >
+      <!-- <mat-error *ngIf="linea.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
      <!--Observación-->
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>Observación</mat-label>
-      <input matInput placeholder="Observación" [formControl]="observacion" required >
-      <mat-error *ngIf="observacion.invalid">{{getErrorMessage()}}</mat-error>
+      <input matInput placeholder="Observación" formControlName="observacion" required >
+      <!-- <mat-error *ngIf="observacion.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
      <!--Referencia-->
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>Referencia</mat-label>
-      <input matInput placeholder="Referencia" [formControl]="referencia" required >
-      <mat-error *ngIf="referencia.invalid">{{getErrorMessage()}}</mat-error>
+      <input matInput placeholder="Referencia" formControlName="referencia" required >
+      <!-- <mat-error *ngIf="referencia.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
      <!--SubAdms-->
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>SubAdms</mat-label>
-      <input matInput placeholder="SubAdms" [formControl]="subadms" required >
-      <mat-error *ngIf="subadms.invalid">{{getErrorMessage()}}</mat-error>
+      <input matInput placeholder="SubAdms" formControlName="subadms" required >
+      <!-- <mat-error *ngIf="subadms.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
      <!--Subestación-->
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>Subestación</mat-label>
-      <input matInput placeholder="Subestación" [formControl]="subestacion" required >
-      <mat-error *ngIf="subestacion.invalid">{{getErrorMessage()}}</mat-error>
+      <input matInput placeholder="Subestación" formControlName="subestacion" required >
+      <!-- <mat-error *ngIf="subestacion.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
      <!--KVA-->
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>KVA</mat-label>
-      <input matInput placeholder="KVA" [formControl]="kva" required >
-      <mat-error *ngIf="kva.invalid">{{getErrorMessage()}}</mat-error>
+      <input matInput placeholder="KVA" formControlName="kva" required >
+      <!-- <mat-error *ngIf="kva.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
      <!--Tipo-->
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>Tipo</mat-label>
-      <input matInput placeholder="Tipo" [formControl]="tipo" required >
-      <mat-error *ngIf="tipo.invalid">{{getErrorMessage()}}</mat-error>
+      <input matInput placeholder="Tipo" formControlName="tipo" required >
+      <!-- <mat-error *ngIf="tipo.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
     <!--Opción-->
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>Opción</mat-label>
-      <input matInput placeholder="Opción" [formControl]="opcion" required >
-      <mat-error *ngIf="opcion.invalid">{{getErrorMessage()}}</mat-error>
+      <input matInput placeholder="Opción" formControlName="opcion" required >
+      <!-- <mat-error *ngIf="opcion.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
+    <mat-form-field class="w-75" appearance="outline">
+      <mat-label>Elige fecha</mat-label>
+      <input matInput type="date" formControlName="fecha">
+    </mat-form-field>
+    <button mat-raised-button color="primary" [disabled]="!formAlimentador.valid" (click)="onAddAlimentador()" >Agregar</button>
 </form>

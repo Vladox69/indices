@@ -1,16 +1,40 @@
-<mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="side">
-      <p>Auto-resizing sidenav</p>
-      <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-      <button (click)="showFiller = !showFiller" mat-raised-button>
-        Toggle extra text
-      </button>
+<mat-drawer-container style="height: 100%;width: 100%;"  autosize>
+    <mat-drawer #drawer  mode="side" style="width: 230px;">
+  <!-- Toolbar -->
+  <div style="background-color: #3e7ce0;height: 12%;text-align: center;">
+
+  <img
+    width="80"
+    alt="Angular Logo"
+    src="../assets/img/logotipo.png"
+    style="padding-top: 10px;"
+  />
+  <span style="font-weight: bold;font-size: 20px;text-align: center;color:white">INDICEST</span>
+    <div class="spacer"></div>
+  </div>
+  <a mat-button style="width: 100%;text-align: left;border-radius: 10px;" [routerLink]="['principal']" routerLinkActive="activebutton">
+    <mat-icon >home</mat-icon>
+    <span style="padding-left: 10px;">Inicio</span>
+    </a>
+    <a mat-button style="width: 100%;text-align: left;;border-radius: 10px;" [routerLink]="['alimentador']" routerLinkActive="activebutton">
+    <mat-icon >calendar_today</mat-icon>
+    <span style="padding-left: 10px;">Alimentadores</span>
+    </a>
+    <a mat-button style="width: 100%;text-align: left;;border-radius: 10px;" [routerLink]="['causas']" routerLinkActive="activebutton">
+    <mat-icon >offline_bolt</mat-icon>
+    <span style="padding-left: 10px;">Causas Fallos</span>
+    </a>
+    <a mat-button style="width: 100%;text-align: left;border-radius: 10px;" [routerLink]="['catalogo']" routerLinkActive="activebutton">
+    <mat-icon >home</mat-icon>
+    <span style="padding-left: 10px;">Catalogo Interrupciones</span>
+    </a>
     </mat-drawer>
-  
-    <div class="example-sidenav-content">
-      <button type="button" mat-button (click)="drawer.toggle()">
-        Toggle sidenav
-      </button>
-    </div>
+
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      <span style="font-size: 20px;">Principal</span>
+    </button>
+        <!-- Contenido  -->
+      <router-outlet></router-outlet>
   
   </mat-drawer-container>

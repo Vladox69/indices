@@ -21,6 +21,8 @@ export class PrincipalComponent implements OnInit {
   resultados:any;
   incidencias:any=[];
   informeIncidencias:any=[]
+  informeTotalIncidencias:any=[];
+  auxIncidencias:any=[];
 
   ngOnInit(): void {
 
@@ -655,9 +657,10 @@ export class PrincipalComponent implements OnInit {
       }
 
     });
-    console.log('resultado',this.informe);
+    
     this.exportInforme();
   }
+  
   exportInforme(): void {
     const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(this.informe);
 
@@ -676,7 +679,12 @@ export class PrincipalComponent implements OnInit {
       }
     });
     this.tabla.shift();
-    //console.log(this.tabla);
+
+    this.tabla.forEach((row:any) => {
+      let aux=[...row];
+      this.auxIncidencias=[...this.auxIncidencias,aux];
+    });
+
     /* generate worksheet */
 
     /* generate workbook and add the worksheet */
@@ -712,8 +720,6 @@ export class PrincipalComponent implements OnInit {
         this.incidencias=[...this.incidencias,this.tabla[indice-1]]
       }
     }
-
-    console.log(this.incidencias);
   }
 
   onIncidencias(){
@@ -729,6 +735,37 @@ export class PrincipalComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, 'Incidencias');
     XLSX.writeFile(wb, 'incidencias.xlsx');
     this.informeIncidencias=[];
+  }
+
+  onReporteTotal(){
+    this.informeTotalIncidencias=[];
+    this.tabla.forEach((row:any) => {
+      let aux;
+      if(row[1]==='true'){
+        aux=[row[0],row[1],row[2]]
+      }else{
+        aux=[...row]
+      }
+     this.informeTotalIncidencias=[...this.informeTotalIncidencias,aux];
+      
+    });
+
+    this.informeTotalIncidencias.forEach( (row:any) =>{
+      row.splice(0,2);
+    });
+
+    const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(this.informeTotalIncidencias);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'IncidenciasTotales');
+    XLSX.writeFile(wb, 'incidenciasTotales.xlsx');
+    this.informeTotalIncidencias=[];
+
+  }
+
+  onIncidenciasMayoresOnce(){
+    this.tabla.forEach((row:any) => {
+      
+    });
   }
 
   obtenerAlimentadores(){

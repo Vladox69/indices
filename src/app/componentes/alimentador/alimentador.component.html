@@ -33,10 +33,10 @@
             <td>{{ali.SALIM_KVA}}</td>
             <td>{{ali.SALIM_TIPO}}</td>
             <td style="text-align: center;">
-                <button mat-icon-button color="primary">
+                <button mat-icon-button color="primary" (click)="onEditAlimentador()" >
                   <mat-icon style="color: #052d6c;">edit</mat-icon>
                 </button>
-                <button mat-icon-button color="warn" style="color: #AD1212;">
+                <button mat-icon-button color="warn" style="color: #AD1212;" (click)="onDeleteAlimentador(ali)">
                   <mat-icon>delete</mat-icon>
                 </button>
               </td>

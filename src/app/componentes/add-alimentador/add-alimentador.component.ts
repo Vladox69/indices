@@ -11,21 +11,22 @@ import { IndicesService } from 'src/app/servicios/indices.service';
 export class AddAlimentadorComponent implements OnInit {
   constructor(private modalService:NgbModal,public ngbActiveModal:NgbActiveModal,private indicesServices:IndicesService) { }
   
+  
+
 
   formAlimentador:FormGroup=new FormGroup({
-    codigo:new FormControl(null),
-  provincia: new FormControl('', [Validators.required]),
-  canton: new FormControl('', [Validators.required]),
-  nombre: new FormControl('', [Validators.required]),
-  linea: new FormControl('', [Validators.required]),
-  observacion: new FormControl('', [Validators.required]),
-  referencia: new FormControl('', [Validators.required]),
-  subadms: new FormControl('', [Validators.required]),
-  subestacion: new FormControl('', [Validators.required]),
-  kva: new FormControl('', [Validators.required]),
-  tipo: new FormControl('', [Validators.required]),
-  opcion: new FormControl('', [Validators.required]),
-  fecha:new FormControl('',[Validators.required])
+    SALIM_CODIGO:new FormControl(null),
+    SALIM_PROVINCIA: new FormControl('', [Validators.required]),
+    SALIM_CANTON: new FormControl('', [Validators.required]),
+    SALIM_NOMBRE: new FormControl('', [Validators.required]),
+    SALIM_LINEA: new FormControl('', [Validators.required]),
+    SALIM_OBSERVACION: new FormControl('', [Validators.required]),
+    SALIM_REFERENCIA: new FormControl('', [Validators.required]),
+    SALIM_SUBADMS: new FormControl('', [Validators.required]),
+    SALIM_SUBESTACION: new FormControl('', [Validators.required]),
+    SALIM_KVA: new FormControl('', [Validators.required]),
+    SALIM_TIPO: new FormControl('', [Validators.required]),
+    SALIM_FECHA:new FormControl('',[Validators.required])
   }) 
 
   // getErrorMessage() {
@@ -44,24 +45,16 @@ export class AddAlimentadorComponent implements OnInit {
   }
 
   async onAddAlimentador(){
-    let alimentador:any={
-      "SALIM_SUBESTACION": "",
-    "SALIM_CANTON": "",
-    "SALIM_CODIGO": "",
-    "SALIM_PROVINCIA": "",
-    "SALIM_REFERENCIA": "",
-    "SALIM_TIPO": "",
-    "SALIM_KVA": "",
-    "SALIM_FECHA": "",
-    "SALIM_NOMBRE": "",
-    "SALIM_OBSERVACION": "",
-    "SALIM_SUBADMS": "",
-    "SALIM_LINEA": ""
-    }
-    alimentador
-    // const resp= await this.indicesServices.addAlimentador(this.formAlimentador.value);    
-    console.log(this.formAlimentador.value);
-    // this.modalService.dismissAll(AddAlimentadorComponent);
+    let alimentador:any=[this.formAlimentador.value];
+    let fecha=alimentador[0]["SALIM_FECHA"]
+    fecha=fecha.replace(/-/g,"/")
+    alimentador[0]["SALIM_FECHA"]=fecha
+
+    const resp= await this.indicesServices.addAlimentador(alimentador);    
+    resp.subscribe((res)=>{
+      console.log(res);
+    })
+    this.modalService.dismissAll(AddAlimentadorComponent);
   }
 
 

@@ -1,4 +1,4 @@
-<div style="padding-left: 20px;">
+<div style="padding-left: 20px;padding-top: 10px;">
     <table>
         <tr>
             <td>
@@ -19,7 +19,7 @@
                 <th >No</th>
                 <th *ngFor="let row of titulos">{{row}}</th>
             </tr>
-            <tr *ngFor="let row of tabla | filter:term| paginate: { itemsPerPage: 6, currentPage: p } ;">
+            <tr *ngFor="let row of tabla | filter:term| paginate: { itemsPerPage: 10, currentPage: p } ;">
                   <td *ngFor="let val of row ;let indice=index" >
                     <div *ngIf="row[indice]==='false' || row[indice]==='true' ;then checkbox else texto"></div>  
                     <ng-template #checkbox>  

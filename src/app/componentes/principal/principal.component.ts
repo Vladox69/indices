@@ -690,7 +690,7 @@ export class PrincipalComponent implements OnInit {
     /* generate workbook and add the worksheet */
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Resultados');
-
+    // console.log(this.tabla);
     /* save to file */
     //XLSX.writeFile(wb, 'informe.xlsx');
   }
@@ -763,8 +763,16 @@ export class PrincipalComponent implements OnInit {
   }
 
   onIncidenciasMayoresOnce(){
-    this.tabla.forEach((row:any) => {
-      
+    this.tabla=this.tabla.filter((row:any)=>{
+      return row[39]>=11;
+    });
+  }
+
+  onRefrescar(){
+    this.tabla=[];
+    this.auxIncidencias.forEach((row:any) => {
+      let aux=[...row];
+      this.tabla=[...this.tabla,aux];
     });
   }
 

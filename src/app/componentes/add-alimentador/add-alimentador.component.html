@@ -1,4 +1,4 @@
-<p>Agregar Alimentador</p>
+<p>Formulario de Alimentador</p>
 <form class="example-form d-flex flex-column  align-items-center" [formGroup]="formAlimentador">
   <button mat-fab color="warn" (click)="ngbActiveModal.close('Close click')">
     <mat-icon>close</mat-icon>
@@ -66,5 +66,5 @@
       <mat-label>Elige fecha</mat-label>
       <input matInput type="date" formControlName="SALIM_FECHA">
     </mat-form-field>
-    <button mat-raised-button color="primary" [disabled]="!formAlimentador.valid" (click)="onAddAlimentador()" >Agregar</button>
+    <button mat-raised-button color="primary" [disabled]="!formAlimentador.valid" (click)="onGuardarAlimentador()" >Agregar</button>
 </form>

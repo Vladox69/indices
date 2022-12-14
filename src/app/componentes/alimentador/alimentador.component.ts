@@ -73,7 +73,14 @@ export class AlimentadorComponent implements OnInit {
       });
   }
 
-  onEditAlimentador() {
-    console.log('edit');
+  onEditAlimentador(alimentador:any) {
+    const activeModal =this.modalService.open(AddAlimentadorComponent, {
+      centered: true,
+      size: 'lg',
+      backdrop: 'static',
+      keyboard: false,
+    });
+    activeModal.componentInstance.alimentador = alimentador;
+
   }
 }

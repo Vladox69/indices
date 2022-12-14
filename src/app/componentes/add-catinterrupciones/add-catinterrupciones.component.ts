@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   NgbActiveModal,
@@ -15,6 +15,9 @@ import { IndicesService } from 'src/app/servicios/indices.service';
   styleUrls: ['./add-catinterrupciones.component.css'],
 })
 export class AddCatinterrupcionesComponent implements OnInit {
+  
+  @Input() catInterrupcion:any=null;
+  
   constructor(public indicesServices:IndicesService,public ngbActiveModal: NgbActiveModal,private modalService:NgbModal) {}
 
   formCatInterrupcion: FormGroup = new FormGroup({
@@ -27,7 +30,11 @@ export class AddCatinterrupcionesComponent implements OnInit {
     SCAT_FECHA: new FormControl('', [Validators.required]),
   });
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if(this.catInterrupcion!=null){
+      this.setFormCatInterrupcion();
+    }
+  }
 
   // getErrorMessage() {
   //   if (this.nombre.hasError('required')) {
@@ -36,12 +43,8 @@ export class AddCatinterrupcionesComponent implements OnInit {
 
   //   return this.nombre.hasError('nombre') ? 'Not a valid nombre' : '';
   // }
-  async onAddCatInterrupcion() {
-  
+  async addCatInterrupcion() {
     let catIterrupciones:any=[this.formCatInterrupcion.value];
-    let fecha=catIterrupciones[0]["SCAT_FECHA"]
-    fecha=fecha.replace(/-/g,"/")
-    catIterrupciones[0]["SCAT_FECHA"]=fecha
     
     const resp= await this.indicesServices.addCatInterrupcion(catIterrupciones);    
     resp.subscribe((res)=>{
@@ -49,4 +52,25 @@ export class AddCatinterrupcionesComponent implements OnInit {
     })
     this.modalService.dismissAll(AddCatinterrupcionesComponent);
   }
+
+  setFormCatInterrupcion(){
+    this.formCatInterrupcion.get("SCAT_CODIGO")?.setValue(this.catInterrupcion["SCAT_CODIGO"]);
+    this.formCatInterrupcion.get("SCAT_NOMBRE")?.setValue(this.catInterrupcion["SCAT_NOMBRE"]);
+    this.formCatInterrupcion.get("SCAT_ORIGEN")?.setValue(this.catInterrupcion["SCAT_ORIGEN"]);
+    this.formCatInterrupcion.get("SCAT_CAUSA")?.setValue(this.catInterrupcion["SCAT_CAUSA"]);
+    this.formCatInterrupcion.get("SCAT_LINEA")?.setValue(this.catInterrupcion["SCAT_LINEA"]);
+    this.formCatInterrupcion.get("SCAT_OBSERVACION")?.setValue(this.catInterrupcion["SCAT_OBSERVACION"]);
+    this.formCatInterrupcion.get("SCAT_FECHA")?.setValue(this.catInterrupcion["SCAT_FECHA"]);
+  }
+
+  onGuardarCatInterrupcion(){
+    if(this.catInterrupcion==null){
+      this.addCatInterrupcion();
+    }else{
+      console.log('editar');
+    }
+  }
+
+
+
 }

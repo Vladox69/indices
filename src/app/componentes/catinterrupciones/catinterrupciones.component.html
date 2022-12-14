@@ -1,7 +1,6 @@
 <div style="padding: 1%;">
     <p>Catalogo de Interrupciones</p>
-    <button (click)="openModal()" >Agregar</button>
-    <button >Agregar</button>
+    <button (click)="openModal()" style="height: 37px;background-color: green;border-radius: 10px;color: aliceblue;border: 0px solid;" >Agregar</button>
     <div>
       <input type="text" placeholder="Buscar ..." class="form-control" id="rol" [(ngModel)]="term" />
   </div>
@@ -25,8 +24,8 @@
             <td>{{inte.SCAT_OBSERVACION}}</td>
             <td>{{inte.SCAT_FECHA}}</td>
             <td style="text-align: center;">
-                <button mat-icon-button color="primary" >
-                  <mat-icon style="color: #052d6c;">edit</mat-icon>
+                <button mat-icon-button color="primary" (click)="onEditCatInterrupcion(inte)" >
+                  <mat-icon style="color: #052d6c;" >edit</mat-icon>
                 </button>
                 <button mat-icon-button color="warn" style="color: #AD1212;" (click)="onDeleteCatInterrupcion(inte)">
                   <mat-icon>delete</mat-icon>

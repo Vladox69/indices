@@ -2,6 +2,7 @@
   <button mat-fab color="warn" (click)="ngbActiveModal.close('Close click')">
     <mat-icon>close</mat-icon>
   </button>
+  <p>Formulario de causa de fallo</p>
   <!--Nombre-->
   <mat-form-field class="w-75" appearance="outline">
     <mat-label>Nombre</mat-label>
@@ -36,6 +37,6 @@
     <input type="date" matInput placeholder="Fecha" formControlName="SCAU_FECHA" required />
     <!-- <mat-error *ngIf="fecha.invalid">{{ getErrorMessage() }}</mat-error> -->
   </mat-form-field>
-  <button mat-raised-button color="primary" [disabled]="!formCausas.valid" (click)="onAddCausaFallo()" >Agregar</button>
+  <button mat-raised-button color="primary" [disabled]="!formCausas.valid" (click)="onGuardarCausaFallo()" >Agregar</button>
 
 </form>

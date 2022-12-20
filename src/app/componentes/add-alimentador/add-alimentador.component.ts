@@ -49,11 +49,13 @@ export class AddAlimentadorComponent implements OnInit {
   async addAlimentador(){
     
     let alimentador:any=[this.formAlimentador.value];
-    const resp= await this.indicesServices.addAlimentador(alimentador);    
-    resp.subscribe((res)=>{
-      console.log(res);
-    })
-    this.modalService.dismissAll(AddAlimentadorComponent);
+    console.log(alimentador);
+    
+    // const resp= await this.indicesServices.addAlimentador(alimentador);    
+    // resp.subscribe((res)=>{
+    //   console.log(res);
+    // })
+    // this.modalService.dismissAll(AddAlimentadorComponent);
   }
 
   editarAlimentador(){

@@ -776,6 +776,14 @@ export class PrincipalComponent implements OnInit {
     });
   }
 
+  onCabecera(){
+    const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet([]);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Incidencias');
+    
+    XLSX.writeFile(wb, 'incidencias.xlsx');
+  }
+
   obtenerAlimentadores(){
     this.iService.listarAlimentadores().subscribe(res=>{
      this.listaAlimentadores=res;

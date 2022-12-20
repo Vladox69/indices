@@ -1,9 +1,9 @@
-<p>Formulario de Alimentador</p>
 <form class="example-form d-flex flex-column  align-items-center" [formGroup]="formAlimentador">
-  <button mat-fab color="warn" (click)="ngbActiveModal.close('Close click')">
+  <button mat-fab class="position-absolute top-0 start-100 translate-middle" color="warn" (click)="ngbActiveModal.close('Close click')">
     <mat-icon>close</mat-icon>
   </button>
-    <mat-form-field class="w-75" appearance="outline">
+  <p class="p-2 m-2 text-white w-75 rounded text-center" style="background-color: #20315f;">Formulario de Alimentador</p>
+  <mat-form-field class="w-75" appearance="outline">
       <mat-label>Provincia</mat-label>
       <input  matInput placeholder="Provincia" formControlName="SALIM_PROVINCIA" required >
       <!-- <mat-error *ngIf="provincia.invalid">{{getErrorMessage()}}</mat-error> -->
@@ -66,5 +66,5 @@
       <mat-label>Elige fecha</mat-label>
       <input matInput type="date" formControlName="SALIM_FECHA">
     </mat-form-field>
-    <button mat-raised-button color="primary" [disabled]="!formAlimentador.valid" (click)="onGuardarAlimentador()" >Agregar</button>
+    <button class="m-2 b-2" mat-raised-button color="primary" [disabled]="!formAlimentador.valid" (click)="onGuardarAlimentador()" >Agregar</button>
 </form>

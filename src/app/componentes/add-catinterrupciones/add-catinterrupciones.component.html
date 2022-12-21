@@ -1,8 +1,8 @@
 <form [formGroup]="formCatInterrupcion" class="example-form d-flex flex-column align-items-center"  >
-  <button mat-fab color="warn" (click)="ngbActiveModal.close('Close click')">
+  <button class="position-absolute top-0 start-100 translate-middle" mat-fab color="warn" (click)="ngbActiveModal.close('Close click')">
     <mat-icon>close</mat-icon>
   </button>
-  <p>Agregar catinterrupción</p>
+  <p class="p-2 m-2 text-white w-75 rounded text-center" style="background-color: #20315f;">Formulario de  catálogo de interrupción</p>
   <!--Nombre-->
   <mat-form-field class="w-75" appearance="outline">
     <mat-label>Nombre</mat-label>
@@ -12,25 +12,21 @@
       formControlName="SCAT_NOMBRE"
       required
     />
-    <!-- <mat-error *ngIf="nombre.invalid">{{ getErrorMessage() }}</mat-error> -->
   </mat-form-field>
   <!--Origen-->
   <mat-form-field class="w-75" appearance="outline">
     <mat-label>Origen</mat-label>
     <input matInput placeholder="Origen" formControlName="SCAT_ORIGEN" required />
-    <!-- <mat-error *ngIf="origen.invalid">{{ getErrorMessage() }}</mat-error> -->
   </mat-form-field>
   <!--Causa-->
   <mat-form-field class="w-75" appearance="outline">
     <mat-label>Causa</mat-label>
     <input matInput placeholder="Causa" formControlName="SCAT_CAUSA" required />
-    <!-- <mat-error *ngIf="causa.invalid">{{ getErrorMessage() }}</mat-error> -->
   </mat-form-field>
   <!--Línea-->
   <mat-form-field class="w-75" appearance="outline">
     <mat-label>Línea</mat-label>
     <input matInput placeholder="Línea" formControlName="SCAT_LINEA" required />
-    <!-- <mat-error *ngIf="linea.invalid">{{ getErrorMessage() }}</mat-error> -->
   </mat-form-field>
   <!--Observación-->
   <mat-form-field class="w-75" appearance="outline">
@@ -41,7 +37,6 @@
       formControlName="SCAT_OBSERVACION"
       required
     />
-    <!-- <mat-error *ngIf="observacion.invalid">{{ getErrorMessage() }}</mat-error> -->
   </mat-form-field>
   <!--Fecha-->
   <mat-form-field class="w-75" appearance="outline">
@@ -53,7 +48,6 @@
       formControlName="SCAT_FECHA"
       required
     />
-    <!-- <mat-error *ngIf="fecha.invalid">{{ getErrorMessage() }}</mat-error> -->
   </mat-form-field>
-  <button mat-raised-button color="primary" [disabled]="!formCatInterrupcion.valid" (click)="onAddCatInterrupcion()" >Agregar</button>
+  <button class="b-2 m-2" mat-raised-button color="primary" [disabled]="!formCatInterrupcion.valid" (click)="onGuardarCatInterrupcion()" >Guardar</button>
 </form>

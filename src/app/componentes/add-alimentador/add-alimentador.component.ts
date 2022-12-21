@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { NgbActiveModal, NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IndicesService } from 'src/app/servicios/indices.service';
@@ -11,8 +11,7 @@ import { IndicesService } from 'src/app/servicios/indices.service';
 export class AddAlimentadorComponent implements OnInit {
   constructor(private modalService:NgbModal,public ngbActiveModal:NgbActiveModal,private indicesServices:IndicesService) { }
   
-  
-
+  @Input() alimentador:any=null;
 
   formAlimentador:FormGroup=new FormGroup({
     SALIM_CODIGO:new FormControl(null),
@@ -42,20 +41,48 @@ export class AddAlimentadorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.alimentador!=null){
+      this.setFormAlimentador();
+    }
   }
 
-  async onAddAlimentador(){
+  async addAlimentador(){
+    
     let alimentador:any=[this.formAlimentador.value];
-    let fecha=alimentador[0]["SALIM_FECHA"]
-    fecha=fecha.replace(/-/g,"/")
-    alimentador[0]["SALIM_FECHA"]=fecha
-
-    const resp= await this.indicesServices.addAlimentador(alimentador);    
-    resp.subscribe((res)=>{
-      console.log(res);
-    })
-    this.modalService.dismissAll(AddAlimentadorComponent);
+    console.log(alimentador);
+    
+    // const resp= await this.indicesServices.addAlimentador(alimentador);    
+    // resp.subscribe((res)=>{
+    //   console.log(res);
+    // })
+    // this.modalService.dismissAll(AddAlimentadorComponent);
   }
 
+  editarAlimentador(){
+
+  }
+
+  setFormAlimentador(){
+    this.formAlimentador.get("SALIM_CODIGO")?.setValue(this.alimentador["SALIM_CODIGO"]);
+    this.formAlimentador.get("SALIM_PROVINCIA")?.setValue(this.alimentador["SALIM_PROVINCIA"]);
+    this.formAlimentador.get("SALIM_CANTON")?.setValue(this.alimentador["SALIM_CANTON"]);
+    this.formAlimentador.get("SALIM_NOMBRE")?.setValue(this.alimentador["SALIM_NOMBRE"]);
+    this.formAlimentador.get("SALIM_LINEA")?.setValue(this.alimentador["SALIM_LINEA"]);
+    this.formAlimentador.get("SALIM_OBSERVACION")?.setValue(this.alimentador["SALIM_OBSERVACION"]);
+    this.formAlimentador.get("SALIM_REFERENCIA")?.setValue(this.alimentador["SALIM_REFERENCIA"]);
+    this.formAlimentador.get("SALIM_SUBADMS")?.setValue(this.alimentador["SALIM_SUBADMS"]);
+    this.formAlimentador.get("SALIM_SUBESTACION")?.setValue(this.alimentador["SALIM_SUBESTACION"]);
+    this.formAlimentador.get("SALIM_KVA")?.setValue(this.alimentador["SALIM_KVA"]);
+    this.formAlimentador.get("SALIM_TIPO")?.setValue(this.alimentador["SALIM_TIPO"]);
+    this.formAlimentador.get("SALIM_FECHA")?.setValue(this.alimentador["SALIM_FECHA"]);
+  }
+
+  onGuardarAlimentador(){
+    if(this.alimentador==null){
+      this.addAlimentador();
+    }else{
+      this.editarAlimentador();
+    }
+  }
 
 }

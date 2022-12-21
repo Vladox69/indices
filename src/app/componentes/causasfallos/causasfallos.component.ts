@@ -75,7 +75,12 @@ export class CausasfallosComponent implements OnInit {
   }
 
   onEditCausaFallo(causaFallo: any) {
-    console.log('editar');
-    console.log(causaFallo);
+    const activeModal =this.modalService.open(AddCausafallosComponent, {
+      centered: true,
+      size: 'lg',
+      backdrop: 'static',
+      keyboard: false,
+    });
+    activeModal.componentInstance.causaFallo = causaFallo;
   }
 }

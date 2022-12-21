@@ -74,8 +74,13 @@ export class CatinterrupcionesComponent implements OnInit {
   }
 
   onEditCatInterrupcion(catInterrupcion:any){
-    console.log('Editar');
-    console.log(catInterrupcion);
+    const activeModal =this.modalService.open(AddCatinterrupcionesComponent, {
+      centered: true,
+      size: 'lg',
+      backdrop: 'static',
+      keyboard: false,
+    });
+    activeModal.componentInstance.catInterrupcion = catInterrupcion;
     
   }
 

@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { NgbActiveModal, NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Canton } from 'src/app/modelos/canton.interface';
+import { Provincia } from 'src/app/modelos/provincia.interface';
 import { IndicesService } from 'src/app/servicios/indices.service';
 
 @Component({
@@ -27,6 +29,11 @@ export class AddAlimentadorComponent implements OnInit {
     SALIM_TIPO: new FormControl('', [Validators.required]),
     SALIM_FECHA:new FormControl('',[Validators.required])
   }) 
+  //Variables
+  listaProvincias:Provincia[]=[];
+  listaCantones:Canton[]=[];
+  listaCantonesFiltro:any;
+  provincia:any;
 
   // getErrorMessage() {
   //   if (this.provincia.hasError('required')) {
@@ -41,9 +48,17 @@ export class AddAlimentadorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     if(this.alimentador!=null){
       this.setFormAlimentador();
     }
+    this.indicesServices.listarProvincias().subscribe(res=>{
+      this.listaProvincias = res;
+      console.log(res);
+    });
+    this.indicesServices.listarCantones().subscribe(res=>{
+      this.listaCantones = res;
+    });
   }
 
   async addAlimentador(){
@@ -75,7 +90,7 @@ export class AddAlimentadorComponent implements OnInit {
     this.formAlimentador.get("SALIM_KVA")?.setValue(this.alimentador["SALIM_KVA"]);
     this.formAlimentador.get("SALIM_TIPO")?.setValue(this.alimentador["SALIM_TIPO"]);
     this.formAlimentador.get("SALIM_FECHA")?.setValue(this.alimentador["SALIM_FECHA"]);
-  }
+  } 
 
   onGuardarAlimentador(){
     if(this.alimentador==null){
@@ -85,4 +100,23 @@ export class AddAlimentadorComponent implements OnInit {
     }
   }
 
+  changeProvincia(event:any){
+    console.log(event);
+    this.listaCantonesFiltro=[];
+    //busco la provincia con ese nombre para ver el codigo
+    let codigoProv='';
+    this.listaProvincias.forEach(element => {
+      if(element.VALUE==event){
+        codigoProv=element.CODE;
+        console.log(codigoProv);
+      }
+    });
+
+    this.listaCantones.forEach(element => {
+      let codigo = element.CODE.substring(0,2);
+      if(codigo==codigoProv){
+        this.listaCantonesFiltro.push(element);
+      }
+    });
+  }
 }

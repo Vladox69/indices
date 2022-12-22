@@ -67,7 +67,7 @@ export class PrincipalComponent implements OnInit {
   calculosAutomaticos: AOA = [[1, 2], [3, 4]];
   resultado: AOA = [];
   tabla: AOA = [];
-  informe: AOA = [[1, 2], [3, 4]];
+  informe: AOA = [];
   titulos:any=[];
   p:any=1;
 
@@ -530,6 +530,7 @@ export class PrincipalComponent implements OnInit {
       }
     });
     let informeAux=this.informe;
+    console.log(this.informe);
     this.informe.forEach((fila,index1) => {
       if(index1>0){
         fila.splice(0,0,fila[7]);
@@ -590,8 +591,8 @@ export class PrincipalComponent implements OnInit {
         fila.splice(35,0,fila[45]);
 
         ///para el calculo del tiempo de desconexion
-        let fechaInicio = fila[32].split('/');
-        let fechaFin = fila[34].split('/');
+        let fechaInicio = fila[32].toString().split('/');
+        let fechaFin = fila[34].toString().split('/');
         var date_1 = new Date(fechaInicio[1]+'/'+fechaInicio[0]+'/'+fechaInicio[2]+' '+fila[33]).getTime();
         var date_2 = new Date(fechaFin[1]+'/'+fechaFin[0]+'/'+fechaFin[2]+' '+fila[35]).getTime();
         //var date_2 = new Date('07/01/2021 16:10:51').getTime();

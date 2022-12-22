@@ -11,6 +11,14 @@ export class IndicesService {
 
   url: string = 'http://172.20.35.10:7001/WSIServices/rest/api_rest/';
 
+  listarProvincias(): Observable<any[]> {
+    return this.httpClient.get<[]>(this.url+ 'listarProvincias');
+  }
+
+  listarCantones(): Observable<any[]> {
+    return this.httpClient.get<[]>(this.url+ 'listarCantones');
+  }
+
   listarAlimentadores(): Observable<Alimentador[]> {
     return this.httpClient.get<Alimentador[]>(this.url+ 'listarAlimentadores');
   }

@@ -1,45 +1,42 @@
 <mat-drawer-container style="height: 100%;width: 100%;"  autosize>
-    <mat-drawer #drawer  mode="side" style="width: 230px;">
-  <!-- Toolbar -->
-  <div style="background-color: #3e7ce0;height: 90px;text-align: center;">
 
-  <img
-    width="80"
-    alt="Angular Logo"
-    src="./assets/img/logotipo.png"
-    style="padding-top: 10px;"
-  />
-  <span style="font-weight: bold;font-size: 20px;text-align: center;color:white">INDICEST</span>
-    <div class="spacer"></div>
-  </div>
-  <div style="font-weight: bold;padding-top: 10px;">
-    <a mat-button style="width: 100%;text-align: left;border-radius: 10px;" [routerLink]="['principal']" routerLinkActive="activebutton">
-      <mat-icon >home</mat-icon>
-      <span style="padding-left: 10px;">Inicio</span>
-      </a>
-      <a mat-button style="width: 100%;text-align: left;;border-radius: 10px;" [routerLink]="['alimentador']" routerLinkActive="activebutton">
-      <mat-icon >calendar_today</mat-icon>
-      <span style="padding-left: 10px;">Alimentadores</span>
-      </a>
-      <a mat-button style="width: 100%;text-align: left;;border-radius: 10px;" [routerLink]="['causas']" routerLinkActive="activebutton">
-      <mat-icon >offline_bolt</mat-icon>
-      <span style="padding-left: 10px;">Causas Fallos</span>
-      </a>
-      <a mat-button style="width: 100%;text-align: left;border-radius: 10px;" [routerLink]="['catalogo']" routerLinkActive="activebutton">
-      <mat-icon >chrome_reader_mode</mat-icon>
-      <span style="padding-left: 10px;">Catalogo Interrupciones</span>
-      </a>
-  </div>
+<div style="background-color: #CFE1EC;border-style: outset;">
+  <table style="width: 100%;">
+    <tr>
+      <td>
+        <button mat-button [matMenuTriggerFor]="menuArch">Archivos <mat-icon>arrow_drop_down</mat-icon></button>
+        <mat-menu #menuArch="matMenu" class="myMenu">
+        <button mat-menu-item [routerLink]="['principal']" class="myMenuItem">TTIK-FMIK</button>
+      </mat-menu>
+      
+      <button mat-button [matMenuTriggerFor]="menuAli">Alimentadores <mat-icon>arrow_drop_down</mat-icon></button>
+      <mat-menu #menuAli="matMenu" >
+        <button mat-menu-item [routerLink]="['alimentador']">Listado</button>
+      </mat-menu>
+      
+      <button mat-button  [matMenuTriggerFor]="menuCau">Causas<mat-icon>arrow_drop_down</mat-icon></button>
+      <mat-menu #menuCau="matMenu" >
+        <button mat-menu-item [routerLink]="['causas']">Listado</button>
+      </mat-menu>
+      
+      <button mat-button [matMenuTriggerFor]="menuCat">Catalogo Int.<mat-icon>arrow_drop_down</mat-icon></button>
+      <mat-menu #menuCat="matMenu" >
+        <button mat-menu-item [routerLink]="['catalogo']">Listado</button>
+      </mat-menu>
+      <button mat-button [routerLink]="['inicio']" >Inicio<mat-icon>arrow_drop_down</mat-icon></button>
+      </td>
+      <td style="text-align: right;">
+        <label >Usuario : jtisalema</label>
+        <button mat-button><mat-icon>output</mat-icon></button>
+      </td>
+    </tr>
+  </table>
 
-    </mat-drawer>
-    <div style="background-color: #3e7ce0;font-weight: bold;color:white;padding-left: 20px;">
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" >
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-          <span style="font-size: 20px;padding-left: 10px;">Principal</span>
-      </button>    
-    </div>
+</div>
 
-        <!-- Contenido  -->
-      <router-outlet ></router-outlet>
-  
-  </mat-drawer-container>
+    <!-- Contenido  -->
+  <router-outlet >
+<span style="left: 89%;position: absolute;top:5%;font-weight: bold;color: white;;font-size: 20px;">EEASA INDICEST</span>
+  </router-outlet>
+</mat-drawer-container>
+

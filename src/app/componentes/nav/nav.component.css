@@ -1,6 +1,29 @@
 .buttonMenu{
     background-color: #3e7ce0;
     border: 0px solid;
-    width: 100%;
+    width: 100%;    
     border-radius: 8px;
 }
+mat-drawer-container { flex: 1 1 auto;  background: url("../../../assets/img/logotipo.png") left bottom,url("../../../assets/img/fondoIndices2.png");background-size: 15%,100%;   background-repeat: no-repeat,no-repeat;}
+::ng-deep .myMenu {
+    background: #CFE1EC;
+  }
+
+.myMenu { 
+  color : black;  
+  padding: 0px ;
+  margin : 0px; 
+  height: auto; 
+
+} 
+.myMenuItem { 
+  display:  flex;
+  color : black;  
+  font-size: 12px; 
+  padding: auto ;
+  margin : auto; 
+  height: 30px; 
+ align-content: center ; 
+     align-items:  center ; 
+     align-self: center ; 
+} 

@@ -28,7 +28,10 @@ import {MatNativeDateModule } from '@angular/material/core';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
-
+import {MatMenuModule} from '@angular/material/menu';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { InicioComponent } from './inicio/inicio.component';
+  
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +42,8 @@ import {MatSelectModule} from '@angular/material/select';
     CausasfallosComponent,
     CatinterrupcionesComponent,
     AddCausafallosComponent,
-    AddCatinterrupcionesComponent
+    AddCatinterrupcionesComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatNativeDateModule,
     Ng2SearchPipeModule,
     FormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

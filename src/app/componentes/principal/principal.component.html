@@ -1,19 +1,19 @@
-<div style="padding:1%" >
-    <p style="font-size: 20px;color: white;font-weight: bold;">Ingreso Nuevo Informe</p>
+<div class="container shadow-lg p-3 pb-1 mt-2 mb-2 rounded bg-container" style="padding:1%" >
+    <p class="text-center bg-title p-2 mb-2" style="font-size: 20px;color: white;font-weight: bold;">Ingreso Nuevo Informe</p>
     <table>
         <tr>
             <td>
                 <input type="file" name="archivosubido" (change)="onFileChange($event)"><br>
             </td>
-            <td><button (click)="doInforme()" style="height: 37px;background-color: brown;border-radius: 10px;color: aliceblue;border: 0px solid;">Informe Diario</button></td>
+            <td><button mat-raised-button (click)="doInforme()" style="background-color: brown;color: aliceblue;">Informe Diario</button></td>
         </tr>
     </table><br>
     <br>
-    <button (click)="onIncidencias()" style="height: 37px;background-color: rgb(42, 30, 93);border-radius: 10px;color: aliceblue;border: 0px solid;">Reporte incidencias</button>
-    <button (click)="onReporteTotal()" style="height: 37px;background-color: rgb(45, 50, 122);border-radius: 10px;color: aliceblue;border: 0px solid;">Reporte total</button>
-    <button (click)="onIncidenciasMayoresOnce()" style="height: 37px;background-color: rgb(248, 87, 0);border-radius: 10px;color: aliceblue;border: 0px solid;">Mayores a 11</button>
-    <button (click)="onRefrescar()" style="height: 37px;background-color: green;border-radius: 10px;color: aliceblue;border: 0px solid;">Refrescar</button>
-    <button (click)="onCabecera()">cabecera</button>
+    <button mat-raised-button class="mx-1" (click)="onIncidencias()" style="background-color: rgb(42, 30, 93);color: aliceblue;">Reporte incidencias</button>
+    <button mat-raised-button class="mx-1" (click)="onReporteTotal()" style="background-color: rgb(45, 50, 122);color: aliceblue;">Reporte total</button>
+    <button mat-raised-button class="mx-1" (click)="onIncidenciasMayoresOnce()" style="background-color: rgb(248, 87, 0);color: aliceblue;">Mayores a 11</button>
+    <button mat-raised-button class="mx-1" (click)="onRefrescar()" style="background-color: green;color: aliceblue;">Refrescar</button>
+    <button mat-raised-button class="mx-1" (click)="onGuardarArchivo()" style="background-color: green;color: aliceblue;">guardar archivo</button>
     <br><br>
     <div style="width: 30%;padding-bottom: 5px;">
         <input type="text" placeholder="Buscar ..." class="form-control" id="rol" [(ngModel)]="term" />

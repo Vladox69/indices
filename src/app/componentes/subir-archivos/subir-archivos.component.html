@@ -1,0 +1,56 @@
+<div class="container shadow-lg p-3 pb-0 mt-2 mb-2 rounded bg-container" style="overflow-x: auto; font-size: 12px">
+  <p class="text-center bg-title p-2 mb-2" style="font-size: 20px; color: rgb(255, 255, 255); font-weight: bold">
+    Registro de Archivos
+  </p>
+  <table >
+    <tr>
+      <td>
+        <button
+          (click)="onSubirArchivo()"
+          mat-raised-button color="warn"
+        >
+          Subir archivo
+        </button>
+      </td>
+    </tr>
+  </table>
+  <br />
+  <table id="customers">
+    <tr>
+      <th>No</th>
+      <th *ngFor="let row of titulos">{{ row }}</th>
+    </tr>
+    <tr
+      *ngFor="
+        let row of registroArchivos
+          | filter : term
+          | paginate : { itemsPerPage: 10, currentPage: p };
+        let i = index
+      "
+    >
+      <td style="text-align: center">{{ i + 1 }}</td>
+      <td>{{ row.SRAR_FECHA }}</td>
+      <td>{{ row.SRAR_ESTADO }}</td>
+      <td>{{ row.SRAR_NOMBRE_ARCHIVO }}</td>
+      <td>{{ row.SRAR_USUARIO }}</td>
+      <td>{{ row.SRAR_TIPO_ARCHIVO }}</td>
+      <td style="text-align: center">
+        <button mat-icon-button (click)="onDownload(row)">
+          <mat-icon style="color: #ed4305">download</mat-icon>
+        </button>
+        <button (click)="onFileOpen(row)" mat-icon-button>
+          <mat-icon style="color: #052d6c">file_open</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon style="color: #056c0f">done</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </table>
+  <pagination-controls 
+    style="text-align: center"
+    (pageChange)="p = $event"
+    previousLabel="Anterior"
+    nextLabel="Siguiente"
+  ></pagination-controls>
+</div>

@@ -5,6 +5,7 @@ import { Alimentador } from 'src/app/modelos/alimentador.interface';
 import { CausaCambio } from 'src/app/modelos/causacambio.interface';
 import { catInterrupciones } from 'src/app/modelos/catinterrupciones.interface';
 import { Router } from '@angular/router';
+import { ExcelService } from 'src/app/servicios/excel.service';
 
 type AOA = any[][];
 
@@ -16,13 +17,14 @@ type AOA = any[][];
 })
 export class PrincipalComponent implements OnInit {
 
-  constructor(private iService:IndicesService,private router:Router) { }
+  constructor(private iService:IndicesService,private router:Router,private excelService:ExcelService) { }
   term:any;
   resultados:any;
   incidencias:any=[];
   informeIncidencias:any=[]
   informeTotalIncidencias:any=[];
   auxIncidencias:any=[];
+  archivo:any;
 
   ngOnInit(): void {
 
@@ -78,6 +80,7 @@ export class PrincipalComponent implements OnInit {
   onFileChange(evt: any) {
     /* wire up file reader */
     const target: DataTransfer = <DataTransfer>(evt.target);
+    this.archivo=evt.target.files[0];
     if (target.files.length !== 1) throw new Error('Cannot use multiple files');
     const reader: FileReader = new FileReader();
     reader.onload = (e: any) => {
@@ -530,7 +533,7 @@ export class PrincipalComponent implements OnInit {
       }
     });
     let informeAux=this.informe;
-    console.log(this.informe);
+    // console.log(this.informe);
     this.informe.forEach((fila,index1) => {
       if(index1>0){
         fila.splice(0,0,fila[7]);
@@ -696,8 +699,6 @@ export class PrincipalComponent implements OnInit {
     //XLSX.writeFile(wb, 'informe.xlsx');
   }
 
-
-
   onChangeCheckbox(indice:any){
 
     if(this.tabla[indice-1][1]=='false'){
@@ -731,10 +732,10 @@ export class PrincipalComponent implements OnInit {
     this.informeIncidencias.forEach( (row:any) =>{
       row.splice(0,2);
     })
-    const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(this.informeIncidencias);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Incidencias');
-    XLSX.writeFile(wb, 'incidencias.xlsx');
+    let titulosExcel=[...this.titulos];
+    titulosExcel.splice(0,1);
+
+    this.excelService.downloadExcel(titulosExcel,this.informeIncidencias,'Incidencias.xlsx','Incidencias');
     this.informeIncidencias=[];
   }
 
@@ -743,7 +744,9 @@ export class PrincipalComponent implements OnInit {
     this.tabla.forEach((row:any) => {
       let aux;
       if(row[1]==='true'){
-        aux=[row[0],row[1],row[2]]
+        aux=[row[0],row[1],row[2]];
+        console.log(aux);
+        
       }else{
         aux=[...row]
       }
@@ -755,10 +758,9 @@ export class PrincipalComponent implements OnInit {
       row.splice(0,2);
     });
 
-    const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(this.informeTotalIncidencias);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'IncidenciasTotales');
-    XLSX.writeFile(wb, 'incidenciasTotales.xlsx');
+    let titulosExcel=[...this.titulos];
+    titulosExcel.splice(0,1);
+    // this.excelService.downloadExcel(titulosExcel,this.informeTotalIncidencias,'Incidencias.xlsx','Incidencias');
     this.informeTotalIncidencias=[];
 
   }
@@ -783,6 +785,83 @@ export class PrincipalComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, 'Incidencias');
     
     XLSX.writeFile(wb, 'incidencias.xlsx');
+  }
+
+  async onGuardarArchivo(){
+
+    let tipo=this.archivo['type'];
+    let nombre=this.archivo['name'];
+    let date= new Date();
+    let fecha=+date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();
+    let archivoBase64:any= await this.blobToBase64(this.archivo);
+    archivoBase64=archivoBase64.split(",")[1];
+    let registroArch:any=[
+      {
+      "SRAR_ARCHIVO": archivoBase64,
+      "SRAR_TIPO_ARCHIVO": tipo,
+      "SRAR_FECHA": fecha,
+      "SRAR_USUARIO": "vladimir-test-subida",
+      "SRAR_ESTADO": "Proceso",
+      "SRAR_NOMBRE_ARCHIVO": nombre}
+    ];
+    
+    const resp= await this.iService.addArchivo(registroArch);    
+    resp.subscribe((res)=>{
+      let codigoArchivo=res['MENSAJE'].split(";")[1];
+      this.subirFilasInformeDiario(codigoArchivo);
+    })
+  }
+
+  blobToBase64=(blob:any)=>{
+    return new Promise((resolve,reject)=>{
+      const reader=new FileReader();
+      reader.readAsDataURL(blob);
+      reader.onloadend=()=>{
+        resolve(reader.result);
+      }
+    })
+  }
+
+  async subirFilasInformeDiario(codigoArchivo:any){
+    for (let i = 0; i < this.tabla.length; i++) {
+      let filaInformeDiario:any=[
+        {
+      "SRAR_CODIGO": codigoArchivo,
+      "SIND_INCIDENCIA_ESTADO": this.tabla[i][1],
+      "SIND_NINCIDENTE":this.tabla[i][2],
+      "SIND_INDICADOR_FM":this.tabla[i][3],
+      "SIND_NIVEL_AFECT":this.tabla[i][4],
+      "SIND_ALIMENTADOR":this.tabla[i][5],
+      "SIND_ETAPA_FUN":this.tabla[i][6],
+      "SIND_INSTALACION_EF":this.tabla[i][7],
+      "SIND_PROVINCIA":this.tabla[i][8],
+      "SIND_CANTON":this.tabla[i][9],
+      "SIND_SECTOR":this.tabla[i][10],
+      "SIND_PROPIEDAD":this.tabla[i][13],
+      "SIND_PROTECCION":this.tabla[i][14],
+      "SIND_TIPO_PROTECCION":this.tabla[i][15],
+      "SIND_LINEA_SUBT":this.tabla[i][21],
+      "SIND_SUBESTACION":this.tabla[i][22],
+      "SIND_NIVEL_TENSION":this.tabla[i][25],
+      "SIND_INTE_ORIGEN":this.tabla[i][27],
+      "SIND_INTE_CAUSA":this.tabla[i][28],
+      "SIND_TRANSMISOR":this.tabla[i][29],
+      "SIND_CAUSAS":this.tabla[i][30],
+      "SIND_POTENCIAL_NI":this.tabla[i][31],
+      "SIND_POTENCIAL_NFS":this.tabla[i][32],
+      "SIND_INT_FECHA_INICIO":this.tabla[i][34],
+      "SIND_INT_FECHA_FIN":this.tabla[i][36],
+      "SIND_INT_HORA_INICIO":this.tabla[i][35],
+      "SIND_INT_HORA_FIN":this.tabla[i][37],
+      "SIND_INT_DURACION":this.tabla[i][39],
+      "SIND_FMIK":this.tabla[i][40],
+      "SIND_TTIK":this.tabla[i][41],
+        }
+      ]
+      const resp=await this.iService.addFilaInformeDiario(filaInformeDiario);
+      resp.subscribe((data)=>{
+      })
+    }
   }
 
   obtenerAlimentadores(){

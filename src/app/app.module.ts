@@ -31,6 +31,10 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatMenuModule} from '@angular/material/menu';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { InicioComponent } from './inicio/inicio.component';
+import { SubirArchivosComponent } from './componentes/subir-archivos/subir-archivos.component';
+import {MatCardModule} from '@angular/material/card';
+import { InformeDiarioComponent } from './componentes/informe-diario/informe-diario.component';
+
   
 @NgModule({
   declarations: [
@@ -43,7 +47,9 @@ import { InicioComponent } from './inicio/inicio.component';
     CatinterrupcionesComponent,
     AddCausafallosComponent,
     AddCatinterrupcionesComponent,
-    InicioComponent
+    InicioComponent,
+    SubirArchivosComponent,
+    InformeDiarioComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +72,9 @@ import { InicioComponent } from './inicio/inicio.component';
     Ng2SearchPipeModule,
     FormsModule,
     MatSelectModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCardModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

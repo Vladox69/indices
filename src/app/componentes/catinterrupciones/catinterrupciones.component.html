@@ -1,6 +1,6 @@
-<div style="padding: 1%;">
-  <p style="font-size: 20px;color: white;font-weight: bold;">Catálogo de Interrupciones</p>
-    <button (click)="openModal()" style="height: 37px;background-color: green;border-radius: 10px;color: aliceblue;border: 0px solid;" >Agregar</button>
+<div class="container shadow-lg p-3 pb-1 mt-2 mb-2 rounded bg-container" style="padding: 1%;">
+  <p class="text-center bg-title p-2 mb-2" style="font-size: 20px;color: white;font-weight: bold;">Catálogo de Interrupciones</p>
+    <button mat-raised-button (click)="openModal()" style="background-color: green;color: aliceblue;" >Agregar</button>
     <div style="width: 30%;padding-bottom: 5px;padding-top: 5px;">
       <input type="text" placeholder="Buscar ..." class="form-control" id="rol" [(ngModel)]="term" />
   </div>

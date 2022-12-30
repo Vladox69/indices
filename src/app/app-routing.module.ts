@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'causas', component: CausasfallosComponent},
   {path: 'catalogo', component: CatinterrupcionesComponent},
   {path:'subir-archivos',component:SubirArchivosComponent},
-  {path:'informe-diario',component:InformeDiarioComponent}
+  {path:'informe-diario/:id',component:InformeDiarioComponent}
 ];
 
 @NgModule({

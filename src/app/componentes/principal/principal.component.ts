@@ -533,7 +533,7 @@ export class PrincipalComponent implements OnInit {
       }
     });
     let informeAux=this.informe;
-    // console.log(this.informe);
+     console.log(this.informe);
     this.informe.forEach((fila,index1) => {
       if(index1>0){
         fila.splice(0,0,fila[7]);
@@ -760,7 +760,7 @@ export class PrincipalComponent implements OnInit {
 
     let titulosExcel=[...this.titulos];
     titulosExcel.splice(0,1);
-    // this.excelService.downloadExcel(titulosExcel,this.informeTotalIncidencias,'Incidencias.xlsx','Incidencias');
+    this.excelService.downloadExcel(titulosExcel,this.informeTotalIncidencias,'Incidencias.xlsx','Incidencias');
     this.informeTotalIncidencias=[];
 
   }
@@ -823,7 +823,8 @@ export class PrincipalComponent implements OnInit {
   }
 
   async subirFilasInformeDiario(codigoArchivo:any){
-    for (let i = 0; i < this.tabla.length; i++) {
+    
+    for (let i = 0; i < 15; i++) {
       let filaInformeDiario:any=[
         {
       "SRAR_CODIGO": codigoArchivo,
@@ -850,18 +851,21 @@ export class PrincipalComponent implements OnInit {
       "SIND_POTENCIAL_NI":this.tabla[i][31],
       "SIND_POTENCIAL_NFS":this.tabla[i][32],
       "SIND_INT_FECHA_INICIO":this.tabla[i][34],
-      "SIND_INT_FECHA_FIN":this.tabla[i][36],
       "SIND_INT_HORA_INICIO":this.tabla[i][35],
+      "SIND_INT_FECHA_FIN":this.tabla[i][36],
       "SIND_INT_HORA_FIN":this.tabla[i][37],
+      "SIND_INT_DURACION_HORAS":this.tabla[i][38],
       "SIND_INT_DURACION":this.tabla[i][39],
       "SIND_FMIK":this.tabla[i][40],
       "SIND_TTIK":this.tabla[i][41],
+      "SIND_INCIDENCIA_DES_RAZON":""
         }
       ]
       const resp=await this.iService.addFilaInformeDiario(filaInformeDiario);
       resp.subscribe((data)=>{
       })
     }
+    this.router.navigate(['/subir-archivos']);
   }
 
   obtenerAlimentadores(){

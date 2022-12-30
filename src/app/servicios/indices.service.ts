@@ -83,6 +83,8 @@ export class IndicesService {
     return this.httpClient.post(this.url +"addInformeDiario", filaRegistro, {'headers':headers});
   }
 
-  
+  listarInformeDiario(codigoArchivo:any): Observable<any> {
+    return this.httpClient.get<any>(this.url + 'listarFilasInforme/'+codigoArchivo);
+  }
 
 }

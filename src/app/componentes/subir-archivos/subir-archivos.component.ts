@@ -53,7 +53,7 @@ export class SubirArchivosComponent implements OnInit {
   }
 
   onFileOpen(row:any){
-    this.router.navigate(['/informe-diario']);
+    this.router.navigate(['/informe-diario',row['SRAR_CODIGO']]);
   }
 
 }

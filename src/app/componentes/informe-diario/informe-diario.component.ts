@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { IndicesService } from 'src/app/servicios/indices.service';
 
 @Component({
   selector: 'app-informe-diario',
@@ -7,10 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InformeDiarioComponent implements OnInit {
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute,private indicesServices:IndicesService) {
+    this.codigoArchivo=this.activatedRoute.snapshot.paramMap.get('id');
+   }
 
   p:any=1;
-  tabla:any=[];
   titulos:any=[
     'Quitar',
     'Incidente No',
@@ -54,13 +57,21 @@ export class InformeDiarioComponent implements OnInit {
     'FMIK',
     'TTIK',
   ];
+  codigoArchivo:any;
   term:any;
+  informeDiario:any=[];
 
   ngOnInit(): void {
+    this.obtenerFilasInformeDiario();
   }
 
-  obtenerFilasInformeDiario(codigoArchivo:any){
+  obtenerFilasInformeDiario(){
+   const resp=this.indicesServices.listarInformeDiario(this.codigoArchivo);
+   resp.subscribe((data)=>{
+    this.informeDiario=data;
+    console.log(this.informeDiario);
     
+   });
   }
 
 }

@@ -1,18 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { IndicesService } from 'src/app/servicios/indices.service';
 
 @Component({
-  selector: 'app-informe-diario',
-  templateUrl: './informe-diario.component.html',
-  styleUrls: ['./informe-diario.component.css']
+  selector: 'app-incidencias-descartadas',
+  templateUrl: './incidencias-descartadas.component.html',
+  styleUrls: ['./incidencias-descartadas.component.css']
 })
-export class InformeDiarioComponent implements OnInit {
-
-  constructor(private activatedRoute: ActivatedRoute,private indicesServices:IndicesService,private router:Router) {
-    this.codigoArchivo=this.activatedRoute.snapshot.paramMap.get('id');
-   }
-
+export class IncidenciasDescartadasComponent implements OnInit {
   p:any=1;
   titulos:any=[
     'Quitar',
@@ -59,39 +54,21 @@ export class InformeDiarioComponent implements OnInit {
   ];
   codigoArchivo:any;
   term:any;
-  informeDiario:any=[];
-  descartadas:any=[];
+  incidenciasDescartadas:any=[];
+  constructor(private activatedRoute: ActivatedRoute,private indicesServices:IndicesService) {
+    this.codigoArchivo=this.activatedRoute.snapshot.paramMap.get('id');
+   }
 
   ngOnInit(): void {
-    this.obtenerFilasInformeDiario();
+    this.obtenerIncidenciasDescartadas();
   }
 
-  obtenerFilasInformeDiario(){
-   const resp=this.indicesServices.listarInformeDiario(this.codigoArchivo);
-   resp.subscribe((data)=>{
-    this.informeDiario=data;
-    this.informeDiario=this.informeDiario.filter((row:any)=>row.SIND_INCIDENCIA_ESTADO==='false');
-   });
-  }
-
-  onDescartar(){
-    this.descartadas=this.informeDiario.filter((row:any)=>row.SIND_INCIDENCIA_ESTADO==='true');
-    // console.log(this.descartadas);
-  }
-
-  onIncidenciasDescartadas(){
-    this.router.navigate(['/incidencias-descartadas',this.codigoArchivo]);
-  }
-
-  onChangeCheckbox(row:any){
-    console.log(row['SIND_CODIGO']);
-    let indice=this.informeDiario.filter((infD:any,index:any)=>{
-      if(infD.SIND_CODIGO==row['SIND_CODIGO']){
-        return index
-      }
-    })   
-    console.log('indice');
-    console.log(indice);
-  }
+  obtenerIncidenciasDescartadas(){
+    const resp=this.indicesServices.listarInformeDiario(this.codigoArchivo);
+    resp.subscribe((data)=>{
+     this.incidenciasDescartadas=data;
+     this.incidenciasDescartadas=this.incidenciasDescartadas.filter((row:any)=>row.SIND_INCIDENCIA_ESTADO==='true');
+    });
+   }
 
 }

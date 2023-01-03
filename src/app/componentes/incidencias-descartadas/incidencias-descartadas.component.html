@@ -1,8 +1,7 @@
 <div class="container shadow-lg p-3 pb-1 mt-2 mb-2 rounded bg-container" style="padding:1%" >
     <p class="text-center bg-title p-2 mb-2" style="font-size: 20px;color: white;font-weight: bold;">Informe Diario</p>
     <br>
-    <button mat-raised-button class="mx-1"  style="background-color: rgb(45, 50, 122);color: aliceblue;">Reporte total</button>
-    <button mat-raised-button class="mx-1" (click)="onIncidenciasDescartadas()" style="background-color: rgb(45, 122, 119);color: aliceblue;">Incidencias descartadas</button>
+    <button mat-raised-button class="mx-1"  style="background-color: rgb(42, 30, 93);color: aliceblue;">Reporte incidencias</button>
     <br><br>
     <div class="d-flex flex-row" style="width: 50%;padding-bottom: 5px;">
         <input type="text" placeholder="Buscar ..." class="form-control" id="rol" [(ngModel)]="term" />
@@ -10,7 +9,7 @@
         <button mat-raised-button class="mx-1"  style="background-color: green;color: aliceblue;">
             <mat-icon style="color: #ffffff">refresh</mat-icon>
         </button>
-        <button mat-raised-button class="mx-1"  style="width: 40%;background-color: rgb(248, 17, 0);color: aliceblue;" (click)="onDescartar()" > Descartar</button>
+        <button mat-raised-button class="mx-1"  style="width: 40%;background-color: rgb(248, 17, 0);color: aliceblue;"  > Devolver</button>
     </div>
     <div style="overflow-x:auto;font-size: 10px;">
         <table id="customers">
@@ -18,9 +17,9 @@
                 <th >No</th>
                 <th *ngFor="let row of titulos">{{row}}</th>
             </tr>
-            <tr *ngFor="let row of informeDiario | filter:term| paginate: { itemsPerPage: 10, currentPage: p } ;let indice=index"> 
-                <td>{{((p-1)*10)+(indice+1)}}</td>
-                <td><input type="checkbox" (change)="onChangeCheckbox(row)" [checked]="row.SIND_INCIDENCIA_ESTADO==='true'"></td>
+            <tr *ngFor="let row of incidenciasDescartadas | filter:term| paginate: { itemsPerPage: 10, currentPage: p } ;let indice=index"> 
+                <td>{{indice+1}}</td>
+                <td><input type="checkbox" [checked]="row.SIND_INCIDENCIA_ESTADO==='true'"></td>
                 <td>{{row.SIND_NINCIDENTE}}</td>
                 <td>{{row.SIND_INDICADOR_FM}}</td>
                 <td>{{row.SIND_NIVEL_AFECT}}</td>
@@ -67,3 +66,4 @@
     </div>
     <pagination-controls style="color:white; text-align: center;" (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
 </div>
+

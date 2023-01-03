@@ -34,6 +34,7 @@ import { InicioComponent } from './inicio/inicio.component';
 import { SubirArchivosComponent } from './componentes/subir-archivos/subir-archivos.component';
 import {MatCardModule} from '@angular/material/card';
 import { InformeDiarioComponent } from './componentes/informe-diario/informe-diario.component';
+import { IncidenciasDescartadasComponent } from './componentes/incidencias-descartadas/incidencias-descartadas.component';
 
   
 @NgModule({
@@ -49,7 +50,8 @@ import { InformeDiarioComponent } from './componentes/informe-diario/informe-dia
     AddCatinterrupcionesComponent,
     InicioComponent,
     SubirArchivosComponent,
-    InformeDiarioComponent
+    InformeDiarioComponent,
+    IncidenciasDescartadasComponent
   ],
   imports: [
     BrowserModule,

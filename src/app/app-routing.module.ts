@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AlimentadorComponent } from './componentes/alimentador/alimentador.component';
 import { CatinterrupcionesComponent } from './componentes/catinterrupciones/catinterrupciones.component';
 import { CausasfallosComponent } from './componentes/causasfallos/causasfallos.component';
+import { IncidenciasDescartadasComponent } from './componentes/incidencias-descartadas/incidencias-descartadas.component';
 import { InformeDiarioComponent } from './componentes/informe-diario/informe-diario.component';
 import { PrincipalComponent } from './componentes/principal/principal.component';
 import { SubirArchivosComponent } from './componentes/subir-archivos/subir-archivos.component';
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path: 'causas', component: CausasfallosComponent},
   {path: 'catalogo', component: CatinterrupcionesComponent},
   {path:'subir-archivos',component:SubirArchivosComponent},
-  {path:'informe-diario/:id',component:InformeDiarioComponent}
+  {path:'informe-diario/:id',component:InformeDiarioComponent},
+  {path:'incidencias-descartadas/:id',component:IncidenciasDescartadasComponent}
 ];
 
 @NgModule({

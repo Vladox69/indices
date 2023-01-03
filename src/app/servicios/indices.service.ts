@@ -87,4 +87,9 @@ export class IndicesService {
     return this.httpClient.get<any>(this.url + 'listarFilasInforme/'+codigoArchivo);
   }
 
+  async updateFilaInformeDiario(filaRegistro:any):Promise<Observable<any>>{
+    const headers = { 'content-type': 'application/json'}
+    return this.httpClient.put(this.url +"updateInformeDiario", filaRegistro, {'headers':headers});
+  }
+
 }

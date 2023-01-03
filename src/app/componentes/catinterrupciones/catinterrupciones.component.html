@@ -7,12 +7,13 @@
     <table id="customers">
         <tr>
             <th style="width: 5%;text-align: center;">No</th>
-            <th style="width: 35%;" >Nombre</th>
+            <th style="width: 30%;" >Nombre</th>
             <th style="width: 10%;">Origen</th>
             <th style="width: 15%;">Causa</th>
-            <th style="width: 10%;">Linea</th>
-            <th style="width: 10%;">Observación</th>
-            <th style="width: 5%;">Fecha</th>
+            <th style="width: 8%;">Linea</th>
+            <th style="width: 8%;">Observación</th>
+            <th style="width: 9%;">Fecha</th>
+            <th style="width: 5%;">Estado</th>
             <th style="width: 10%;">Opción</th>
         </tr>
         <tr *ngFor="let inte of listaInterrupciones |filter:term| paginate: { itemsPerPage: 10, currentPage: p }; let i = index" style="font-size: 12px;">
@@ -23,6 +24,7 @@
             <td>{{inte.SCAT_LINEA}}</td>
             <td>{{inte.SCAT_OBSERVACION}}</td>
             <td>{{inte.SCAT_FECHA}}</td>
+            <td>{{inte.SCAT_ESTADO}}</td>
             <td style="text-align: center;">
                 <button mat-icon-button color="primary" (click)="onEditCatInterrupcion(inte)" >
                   <mat-icon style="color: #052d6c;" >edit</mat-icon>

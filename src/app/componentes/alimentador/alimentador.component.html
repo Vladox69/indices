@@ -17,6 +17,7 @@
             <th style="width:12%;">Subestación</th>
             <th style="width:5%;">KVA</th>
             <th style="width:5%;">Tipo</th>
+            <th style="width:5%;">Estado</th>
             <th style="width:7%;">Opción</th>
         </tr>
         <tr *ngFor="let ali of listaAlimentadores | filter:term| paginate: { itemsPerPage: 10, currentPage: p }; let i = index" style="font-size: 11px;">
@@ -31,6 +32,7 @@
             <td>{{ali.SALIM_SUBESTACION}}</td>
             <td>{{ali.SALIM_KVA}}</td>
             <td>{{ali.SALIM_TIPO}}</td>
+            <td>{{ali.SALIM_ESTADO}}</td>
             <td style="text-align: center;">
                 <button mat-icon-button color="primary" (click)="onEditAlimentador(ali)" >
                   <mat-icon style="color: #052d6c;">edit</mat-icon>

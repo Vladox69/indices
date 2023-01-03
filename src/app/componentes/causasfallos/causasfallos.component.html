@@ -11,6 +11,7 @@
             <th style="width:30%;text-align: center;" >Referencia</th>
             <th style="width:15%;text-align: center;" >Observacion</th>
             <th style="width:10%;text-align: center;" >Fecha</th>
+            <th style="width:10%;text-align: center;" >Estado</th>
             <th style="width:10%;text-align: center;" >Opción</th>
         </tr>
         <tr *ngFor="let cau of listaCausas |filter:term| paginate: { itemsPerPage: 10, currentPage: p }; let i = index" style="font-size: 12px;">
@@ -19,6 +20,7 @@
             <td>{{cau.SCAU_REFERENCIA}}</td>
             <td>{{cau.SCAU_OBSERVACION}}</td>
             <td style="text-align: center;">{{cau.SCAU_FECHA}}</td>
+            <td style="text-align: center;">{{cau.SCAU_ESTADO}}</td>
             <td style="text-align: center;">
                 <button mat-icon-button color="primary" (click)="onEditCausaFallo(cau)">
                   <mat-icon style="color: #052d6c;">edit</mat-icon>

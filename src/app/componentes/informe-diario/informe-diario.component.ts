@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ExcelService } from 'src/app/servicios/excel.service';
 import { IndicesService } from 'src/app/servicios/indices.service';
+import { AddIncidenciaComponent } from '../add-incidencia/add-incidencia.component';
 
 @Component({
   selector: 'app-informe-diario',
@@ -9,7 +12,7 @@ import { IndicesService } from 'src/app/servicios/indices.service';
 })
 export class InformeDiarioComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute,private indicesServices:IndicesService,private router:Router) {
+  constructor(private activatedRoute: ActivatedRoute,private indicesServices:IndicesService,private router:Router,private excelService:ExcelService,private modalService: NgbModal) {
     this.codigoArchivo=this.activatedRoute.snapshot.paramMap.get('id');
    }
 
@@ -74,9 +77,15 @@ export class InformeDiarioComponent implements OnInit {
    });
   }
 
-  onDescartar(){
+  async onDescartar(){
     this.descartadas=this.informeDiario.filter((row:any)=>row.SIND_INCIDENCIA_ESTADO==='true');
-    // console.log(this.descartadas);
+    for (let i = 0; i < this.descartadas.length; i++) {
+      const element = this.descartadas[i];
+      const resp= await this.indicesServices.updateFilaInformeDiario([element]);
+      resp.subscribe((data)=>{
+        this.onIncidenciasDescartadas();
+      })
+    }
   }
 
   onIncidenciasDescartadas(){
@@ -84,14 +93,76 @@ export class InformeDiarioComponent implements OnInit {
   }
 
   onChangeCheckbox(row:any){
-    console.log(row['SIND_CODIGO']);
-    let indice=this.informeDiario.filter((infD:any,index:any)=>{
-      if(infD.SIND_CODIGO==row['SIND_CODIGO']){
-        return index
+    for (let i = 0; i < this.informeDiario.length; i++) {
+      const element = this.informeDiario[i];
+      if(element.SIND_CODIGO===row['SIND_CODIGO']){
+          if(element.SIND_INCIDENCIA_ESTADO==='false'){
+            this.informeDiario[i].SIND_INCIDENCIA_ESTADO='true';
+          }else{
+            this.informeDiario[i].SIND_INCIDENCIA_ESTADO='false';
+          }        
       }
-    })   
-    console.log('indice');
-    console.log(indice);
+    }
   }
 
+  onReporteTotal(){
+    let titulosExcel = [...this.titulos];
+    titulosExcel.splice(0, 1);
+    let datosExcel:any=[];
+    for (let i = 0; i < this.informeDiario.length; i++) {
+      const element = this.informeDiario[i];
+      let dato = [
+        element.SIND_NINCIDENTE,
+        element.SIND_INDICADOR_FM,
+        element.SIND_NIVEL_AFECT,
+        element.SIND_ALIMENTADOR,
+        element.SIND_ETAPA_FUN,
+        element.SIND_INSTALACION_EF,
+        element.SIND_PROVINCIA,
+        element.SIND_CANTON,
+        element.SIND_SECTOR,
+        '',
+        '',
+        element.SIND_PROPIEDAD,
+        element.SIND_PROTECCION,
+        element.SIND_TIPO_PROTECCION,
+        element.SIND_ETAPA_FUN,
+        element.SIND_INSTALACION_EF,
+        element.SIND_PROVINCIA,
+        element.SIND_CANTON,
+        element.SIND_SECTOR,
+        element.SIND_LINEA_SUBT,
+        element.SIND_SUBESTACION,
+        '',
+        element.SIND_SECTOR,
+        element.SIND_NIVEL_TENSION,
+        element.SIND_NIVEL_AFECT,
+        element.SIND_INTE_ORIGEN,
+        element.SIND_INTE_CAUSA,
+        element.SIND_TRANSMISOR,
+        element.SIND_CAUSAS,
+        element.SIND_POTENCIAL_NI,
+        element.SIND_POTENCIAL_NFS,
+        '',
+        element.SIND_INT_FECHA_INICIO,
+        element.SIND_INT_HORA_INICIO,
+        element.SIND_INT_FECHA_FIN,
+        element.SIND_INT_HORA_FIN,
+        element.SIND_INT_DURACION_HORAS,
+        element.SIND_INT_DURACION,
+        element.SIND_FMIK,
+        element.SIND_TTIK,
+      ];
+      datosExcel.push(dato);
+    }
+    this.excelService.downloadExcel(titulosExcel,datosExcel,'IncidenciasTotales.xlsx','Incidencias Totales');
+  }
+  openModal() {
+    this.modalService.open(AddIncidenciaComponent, {
+      centered: true,
+      size: 'lg',
+      backdrop: 'static',
+      keyboard: false,
+    });
+  }
 }

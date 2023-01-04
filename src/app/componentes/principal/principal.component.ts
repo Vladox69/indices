@@ -733,7 +733,7 @@ export class PrincipalComponent implements OnInit {
     let titulosExcel=[...this.titulos];
     titulosExcel.splice(0,1);
 
-    this.excelService.downloadExcel(titulosExcel,this.informeIncidencias,'Incidencias.xlsx','Incidencias');
+    this.excelService.downloadExcel(titulosExcel,this.informeIncidencias,'IncidenciasDescartadas.xlsx','Incidencias');
     this.informeIncidencias=[];
   }
 
@@ -758,7 +758,7 @@ export class PrincipalComponent implements OnInit {
 
     let titulosExcel=[...this.titulos];
     titulosExcel.splice(0,1);
-    this.excelService.downloadExcel(titulosExcel,this.informeTotalIncidencias,'Incidencias.xlsx','Incidencias');
+    this.excelService.downloadExcel(titulosExcel,this.informeTotalIncidencias,'IncidenciasTotales.xlsx','Incidencias');
     this.informeTotalIncidencias=[];
 
   }
@@ -861,6 +861,7 @@ export class PrincipalComponent implements OnInit {
       ]
       const resp=await this.iService.addFilaInformeDiario(filaInformeDiario);
       resp.subscribe((data)=>{
+       
       })
     }
     this.router.navigate(['/subir-archivos']);

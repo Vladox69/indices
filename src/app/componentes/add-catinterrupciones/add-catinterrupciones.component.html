@@ -38,6 +38,16 @@
       required
     />
   </mat-form-field>
+    <!--Estado-->
+    <mat-form-field class="w-75" appearance="outline" *ngIf="this.catInterrupcion!=null">
+      <mat-label>Estado</mat-label>
+      <mat-select formControlName="SCAT_ESTADO" required (valueChange)="changeEstado($event)" >
+        <mat-option value="ACTIVO">ACTIVO
+        </mat-option>
+        <mat-option value="INACTIVO">INACTIVO
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   <!--Fecha-->
   <mat-form-field class="w-75" appearance="outline">
     <mat-label>Fecha</mat-label>

@@ -19,6 +19,7 @@ export class AddCausafallosComponent implements OnInit {
     SCAU_REFERENCIA: new FormControl('', [Validators.required]),
     SCAU_OBSERVACION: new FormControl('', [Validators.required]),
     SCAU_FECHA: new FormControl('', [Validators.required]),
+    SCAU_ESTADO: new FormControl('', [Validators.required]),
     SCAU_CODIGO:new FormControl(null)
   })
   
@@ -58,6 +59,7 @@ export class AddCausafallosComponent implements OnInit {
     this.formCausas.get("SCAU_NOMBRE")?.setValue(this.causaFallo["SCAU_NOMBRE"]);
     this.formCausas.get("SCAU_REFERENCIA")?.setValue(this.causaFallo["SCAU_REFERENCIA"]);
     this.formCausas.get("SCAU_OBSERVACION")?.setValue(this.causaFallo["SCAU_OBSERVACION"]);
+    this.formCausas.get("SCAU_ESTADO")?.setValue(this.causaFallo["SCAU_ESTADO"]);
     this.formCausas.get("SCAU_FECHA")?.setValue(this.causaFallo["SCAU_FECHA"]);
     this.formCausas.get("SCAU_CODIGO")?.setValue(this.causaFallo["SCAU_CODIGO"]);
   }
@@ -68,6 +70,10 @@ export class AddCausafallosComponent implements OnInit {
     }else{
       this.editarCausaFallo();
     }
+  }
+
+  changeEstado(event:any){
+    console.log(event);
   }
 
 }

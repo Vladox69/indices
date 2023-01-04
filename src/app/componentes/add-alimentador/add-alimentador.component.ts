@@ -27,6 +27,7 @@ export class AddAlimentadorComponent implements OnInit {
     SALIM_SUBESTACION: new FormControl('', [Validators.required]),
     SALIM_KVA: new FormControl('', [Validators.required]),
     SALIM_TIPO: new FormControl('', [Validators.required]),
+    SALIM_ESTADO: new FormControl('', [Validators.required]),
     SALIM_FECHA:new FormControl('',[Validators.required])
   }) 
   //Variables
@@ -90,6 +91,7 @@ export class AddAlimentadorComponent implements OnInit {
     this.formAlimentador.get("SALIM_SUBESTACION")?.setValue(this.alimentador["SALIM_SUBESTACION"]);
     this.formAlimentador.get("SALIM_KVA")?.setValue(this.alimentador["SALIM_KVA"]);
     this.formAlimentador.get("SALIM_TIPO")?.setValue(this.alimentador["SALIM_TIPO"]);
+    this.formAlimentador.get("SALIM_ESTADO")?.setValue(this.alimentador["SALIM_ESTADO"]);
     this.formAlimentador.get("SALIM_FECHA")?.setValue(this.alimentador["SALIM_FECHA"]);
   } 
 
@@ -119,5 +121,9 @@ export class AddAlimentadorComponent implements OnInit {
         this.listaCantonesFiltro.push(element);
       }
     });
+  }
+
+  changeEstado(event:any){
+    console.log(event);
   }
 }

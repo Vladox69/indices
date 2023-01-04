@@ -27,6 +27,7 @@ export class AddCatinterrupcionesComponent implements OnInit {
     SCAT_CAUSA: new FormControl('', [Validators.required]),
     SCAT_LINEA: new FormControl('', [Validators.required]),
     SCAT_OBSERVACION: new FormControl('', [Validators.required]),
+    SCAT_ESTADO: new FormControl('', [Validators.required]),
     SCAT_FECHA: new FormControl('', [Validators.required]),
   });
 
@@ -60,6 +61,7 @@ export class AddCatinterrupcionesComponent implements OnInit {
     this.formCatInterrupcion.get("SCAT_CAUSA")?.setValue(this.catInterrupcion["SCAT_CAUSA"]);
     this.formCatInterrupcion.get("SCAT_LINEA")?.setValue(this.catInterrupcion["SCAT_LINEA"]);
     this.formCatInterrupcion.get("SCAT_OBSERVACION")?.setValue(this.catInterrupcion["SCAT_OBSERVACION"]);
+    this.formCatInterrupcion.get("SCAT_ESTADO")?.setValue(this.catInterrupcion["SCAT_ESTADO"]);
     this.formCatInterrupcion.get("SCAT_FECHA")?.setValue(this.catInterrupcion["SCAT_FECHA"]);
   }
 
@@ -71,6 +73,8 @@ export class AddCatinterrupcionesComponent implements OnInit {
     }
   }
 
-
+  changeEstado(event:any){
+    console.log(event);
+  }
 
 }

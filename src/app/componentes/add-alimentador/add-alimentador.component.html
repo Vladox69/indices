@@ -69,6 +69,16 @@
       <input matInput placeholder="Tipo" formControlName="SALIM_TIPO" required >
       <!-- <mat-error *ngIf="tipo.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
+    <!--Estado-->
+    <mat-form-field class="w-75" appearance="outline" *ngIf="this.alimentador!=null">
+      <mat-label>Estado</mat-label>
+      <mat-select formControlName="SALIM_ESTADO" required (valueChange)="changeEstado($event)" >
+        <mat-option value="ACTIVO">ACTIVO
+        </mat-option>
+        <mat-option value="INACTIVO">INACTIVO
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>Elige fecha</mat-label>
       <input matInput type="date" formControlName="SALIM_FECHA">

@@ -4,7 +4,8 @@
     width: 100%;    
     border-radius: 8px;
 }
-mat-drawer-container { flex: 1 1 auto;  background: url("../../../assets/img/logotipo.png") left bottom,url("../../../assets/img/fondoIndices2.png");background-size: 15%,100%;   background-repeat: no-repeat,no-repeat;}
+mat-drawer-container { flex: 1 1 auto;  background: url("../../../assets/img/logotipo.png") left bottom,url("../../../assets/img/fondoIndices2.png");   background-repeat: no-repeat,no-repeat;background-size:300px,cover;
+  background-position:absolute,center}
 ::ng-deep .myMenu {
     background: #CFE1EC;
   }

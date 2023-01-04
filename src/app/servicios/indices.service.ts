@@ -26,6 +26,11 @@ export class IndicesService {
     return this.httpClient.get<Alimentador[]>(this.url+ 'listarAlimentadores');
   }
 
+  //Alimentadores Activos
+  listarAlimentadoresActivos(): Observable<Alimentador[]> {
+    return this.httpClient.get<Alimentador[]>(this.url+ 'listarAlimentadoresActivos');
+  }
+
   async addAlimentador(alimentador:any): Promise<Observable<any>> {
     const headers = { 'content-type': 'application/json'}
     return this.httpClient.post(this.url +"addAlimentador", alimentador, {'headers':headers});

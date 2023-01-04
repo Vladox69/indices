@@ -48,17 +48,17 @@ export class AddAlimentadorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    if(this.alimentador!=null){
-      this.setFormAlimentador();
-    }
     this.indicesServices.listarProvincias().subscribe(res=>{
       this.listaProvincias = res;
       console.log(res);
     });
     this.indicesServices.listarCantones().subscribe(res=>{
-      this.listaCantones = res;
+      this.listaCantones = res;   
+    if(this.alimentador!=null){
+      this.setFormAlimentador();
+    }
     });
+
   }
 
   async addAlimentador(){
@@ -80,6 +80,7 @@ export class AddAlimentadorComponent implements OnInit {
   setFormAlimentador(){
     this.formAlimentador.get("SALIM_CODIGO")?.setValue(this.alimentador["SALIM_CODIGO"]);
     this.formAlimentador.get("SALIM_PROVINCIA")?.setValue(this.alimentador["SALIM_PROVINCIA"]);
+    this.changeProvincia(this.alimentador["SALIM_PROVINCIA"]);
     this.formAlimentador.get("SALIM_CANTON")?.setValue(this.alimentador["SALIM_CANTON"]);
     this.formAlimentador.get("SALIM_NOMBRE")?.setValue(this.alimentador["SALIM_NOMBRE"]);
     this.formAlimentador.get("SALIM_LINEA")?.setValue(this.alimentador["SALIM_LINEA"]);

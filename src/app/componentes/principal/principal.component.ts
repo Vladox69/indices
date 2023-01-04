@@ -659,7 +659,6 @@ export class PrincipalComponent implements OnInit {
           element[14] = "Distribución";
         }
       }
-
     });
     
     this.exportInforme();
@@ -667,7 +666,6 @@ export class PrincipalComponent implements OnInit {
   
   exportInforme(): void {
     const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(this.informe);
-
     this.tabla=[...this.informe];
     this.titulos=this.tabla[0];
     this.titulos=['Quitar',...this.titulos];
@@ -869,9 +867,9 @@ export class PrincipalComponent implements OnInit {
   }
 
   obtenerAlimentadores(){
-    this.iService.listarAlimentadores().subscribe(res=>{
+    this.iService.listarAlimentadoresActivos().subscribe(res=>{
      this.listaAlimentadores=res;
-     //console.log(res);
+     console.log('este es lanueva',res);
     });
   }
 

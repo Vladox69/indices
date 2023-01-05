@@ -892,7 +892,7 @@ export class PrincipalComponent implements OnInit {
       ]
       const resp=await this.iService.addFilaInformeDiario(filaInformeDiario);
       resp.subscribe((data)=>{
-       
+        
       })
     }
     this.router.navigate(['/subir-archivos']);

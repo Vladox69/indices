@@ -15,7 +15,6 @@ export class InformeDiarioComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,private indicesServices:IndicesService,private router:Router,private excelService:ExcelService,private modalService: NgbModal) {
     this.codigoArchivo=this.activatedRoute.snapshot.paramMap.get('id');
    }
-
   p:any=1;
   titulos:any=[
     'Quitar',
@@ -64,6 +63,8 @@ export class InformeDiarioComponent implements OnInit {
   term:any;
   informeDiario:any=[];
   descartadas:any=[];
+  filtroMayorA:any=[];
+  mayorA:any;
 
   ngOnInit(): void {
     this.obtenerFilasInformeDiario();
@@ -73,7 +74,9 @@ export class InformeDiarioComponent implements OnInit {
    const resp=this.indicesServices.listarInformeDiario(this.codigoArchivo);
    resp.subscribe((data)=>{
     this.informeDiario=data;
+    this.filtroMayorA=data;
     this.informeDiario=this.informeDiario.filter((row:any)=>row.SIND_INCIDENCIA_ESTADO==='false');
+    this.filtroMayorA=this.filtroMayorA.filter((row:any)=>row.SIND_INCIDENCIA_ESTADO==='false');
    });
   }
 
@@ -165,4 +168,20 @@ export class InformeDiarioComponent implements OnInit {
       keyboard: false,
     });
   }
+
+  onChageInputMayor(){
+    this.informeDiario=this.filtroMayorA.filter((row:any)=>{
+      return row.SIND_INT_DURACION>=this.mayorA;
+    });
+  }
+
+  onRefresh(){
+    this.informeDiario=[];
+    for (let i = 0; i < this.filtroMayorA.length; i++) {
+      const element = this.filtroMayorA[i];
+      this.informeDiario=[...this.informeDiario,element];
+    }
+    this.mayorA=0;
+  }
+
 }

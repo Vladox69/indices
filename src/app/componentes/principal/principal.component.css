@@ -86,3 +86,8 @@ input[type=file]::file-selector-button:hover {
   background-color: #03348a;
   color: white;
 }
+
+::ng-deep .mat-form-field-wrapper{
+  margin-bottom: 0px !important;
+  padding-bottom: 0px !important;
+}

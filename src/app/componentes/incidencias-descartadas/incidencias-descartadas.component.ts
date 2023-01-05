@@ -57,6 +57,9 @@ export class IncidenciasDescartadasComponent implements OnInit {
   term: any;
   incidenciasDescartadas: any = [];
   incidenciasDevueltas: any = [];
+  filtroMayorA:any=[];
+  mayorA:any;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private indicesServices: IndicesService,
@@ -74,7 +77,11 @@ export class IncidenciasDescartadasComponent implements OnInit {
     const resp = this.indicesServices.listarInformeDiario(this.codigoArchivo);
     resp.subscribe((data) => {
       this.incidenciasDescartadas = data;
+      this.filtroMayorA=data;
       this.incidenciasDescartadas = this.incidenciasDescartadas.filter(
+        (row: any) => row.SIND_INCIDENCIA_ESTADO === 'true'
+      );
+      this.filtroMayorA = this.filtroMayorA.filter(
         (row: any) => row.SIND_INCIDENCIA_ESTADO === 'true'
       );
     });
@@ -163,5 +170,20 @@ export class IncidenciasDescartadasComponent implements OnInit {
 
   onRegresar() {
     this.router.navigate(['/informe-diario', this.codigoArchivo]);
+  }
+
+  onChageInputMayor(){
+    this.incidenciasDescartadas=this.filtroMayorA.filter((row:any)=>{
+      return row.SIND_INT_DURACION>=this.mayorA;
+    });
+  }
+
+  onRefresh(){
+    this.incidenciasDescartadas=[];
+    for (let i = 0; i < this.filtroMayorA.length; i++) {
+      const element = this.filtroMayorA[i];
+      this.incidenciasDescartadas=[...this.incidenciasDescartadas,element];
+    }
+    this.mayorA=0;
   }
 }

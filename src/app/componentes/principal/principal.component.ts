@@ -23,8 +23,9 @@ export class PrincipalComponent implements OnInit {
   incidencias:any=[];
   informeIncidencias:any=[]
   informeTotalIncidencias:any=[];
-  auxIncidencias:any=[];
+  filtroMayor:any=[];
   archivo:any;
+  mayorA:any;
 
   ngOnInit(): void {
 
@@ -684,7 +685,7 @@ export class PrincipalComponent implements OnInit {
 
     this.tabla.forEach((row:any) => {
       let aux=[...row];
-      this.auxIncidencias=[...this.auxIncidencias,aux];
+      this.filtroMayor=[...this.filtroMayor,aux];
     });
 
     /* generate worksheet */
@@ -699,16 +700,16 @@ export class PrincipalComponent implements OnInit {
 
   onChangeCheckbox(indice:any){
 
-    if(this.tabla[indice-1][1]=='false'){
-      this.tabla[indice-1][1]='true'  
+    if(this.filtroMayor[indice-1][1]=='false'){
+      this.filtroMayor[indice-1][1]='true'  
     }else{
-      this.tabla[indice-1][1]='false'
+      this.filtroMayor[indice-1][1]='false'
     }
     
     
     let buscar=true;
     if(this.incidencias.length<1){
-      this.incidencias=[...this.incidencias,this.tabla[indice-1]]
+      this.incidencias=[...this.incidencias,this.filtroMayor[indice-1]]
     }else{
       this.incidencias.forEach((row:any,i:any) => {
         if(row[0]==indice){
@@ -717,7 +718,7 @@ export class PrincipalComponent implements OnInit {
         }
       });
       if(buscar){
-        this.incidencias=[...this.incidencias,this.tabla[indice-1]]
+        this.incidencias=[...this.incidencias,this.filtroMayor[indice-1]]
       }
     }
   }
@@ -763,15 +764,15 @@ export class PrincipalComponent implements OnInit {
 
   }
 
-  onIncidenciasMayoresOnce(){
-    this.tabla=this.tabla.filter((row:any)=>{
-      return row[39]>=11;
+  onChageInputMayor(){
+    this.tabla=this.filtroMayor.filter((row:any)=>{
+      return row[39]>=this.mayorA;
     });
   }
 
   onRefrescar(){
     this.tabla=[];
-    this.auxIncidencias.forEach((row:any) => {
+    this.filtroMayor.forEach((row:any) => {
       let aux=[...row];
       this.tabla=[...this.tabla,aux];
     });
@@ -852,40 +853,40 @@ export class PrincipalComponent implements OnInit {
 
   async subirFilasInformeDiario(codigoArchivo:any){
     
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < this.filtroMayor.length; i++) {
       let filaInformeDiario:any=[
         {
       "SRAR_CODIGO": codigoArchivo,
-      "SIND_INCIDENCIA_ESTADO": this.tabla[i][1],
-      "SIND_NINCIDENTE":this.tabla[i][2],
-      "SIND_INDICADOR_FM":this.tabla[i][3],
-      "SIND_NIVEL_AFECT":this.tabla[i][4],
-      "SIND_ALIMENTADOR":this.tabla[i][5],
-      "SIND_ETAPA_FUN":this.tabla[i][6],
-      "SIND_INSTALACION_EF":this.tabla[i][7],
-      "SIND_PROVINCIA":this.tabla[i][8],
-      "SIND_CANTON":this.tabla[i][9],
-      "SIND_SECTOR":this.tabla[i][10],
-      "SIND_PROPIEDAD":this.tabla[i][13],
-      "SIND_PROTECCION":this.tabla[i][14],
-      "SIND_TIPO_PROTECCION":this.tabla[i][15],
-      "SIND_LINEA_SUBT":this.tabla[i][21],
-      "SIND_SUBESTACION":this.tabla[i][22],
-      "SIND_NIVEL_TENSION":this.tabla[i][25],
-      "SIND_INTE_ORIGEN":this.tabla[i][27],
-      "SIND_INTE_CAUSA":this.tabla[i][28],
-      "SIND_TRANSMISOR":this.tabla[i][29],
-      "SIND_CAUSAS":this.tabla[i][30],
-      "SIND_POTENCIAL_NI":this.tabla[i][31],
-      "SIND_POTENCIAL_NFS":this.tabla[i][32],
-      "SIND_INT_FECHA_INICIO":this.tabla[i][34],
-      "SIND_INT_HORA_INICIO":this.tabla[i][35],
-      "SIND_INT_FECHA_FIN":this.tabla[i][36],
-      "SIND_INT_HORA_FIN":this.tabla[i][37],
-      "SIND_INT_DURACION_HORAS":this.tabla[i][38],
-      "SIND_INT_DURACION":this.tabla[i][39],
-      "SIND_FMIK":this.tabla[i][40],
-      "SIND_TTIK":this.tabla[i][41],
+      "SIND_INCIDENCIA_ESTADO": this.filtroMayor[i][1],
+      "SIND_NINCIDENTE":this.filtroMayor[i][2],
+      "SIND_INDICADOR_FM":this.filtroMayor[i][3],
+      "SIND_NIVEL_AFECT":this.filtroMayor[i][4],
+      "SIND_ALIMENTADOR":this.filtroMayor[i][5],
+      "SIND_ETAPA_FUN":this.filtroMayor[i][6],
+      "SIND_INSTALACION_EF":this.filtroMayor[i][7],
+      "SIND_PROVINCIA":this.filtroMayor[i][8],
+      "SIND_CANTON":this.filtroMayor[i][9],
+      "SIND_SECTOR":this.filtroMayor[i][10],
+      "SIND_PROPIEDAD":this.filtroMayor[i][13],
+      "SIND_PROTECCION":this.filtroMayor[i][14],
+      "SIND_TIPO_PROTECCION":this.filtroMayor[i][15],
+      "SIND_LINEA_SUBT":this.filtroMayor[i][21],
+      "SIND_SUBESTACION":this.filtroMayor[i][22],
+      "SIND_NIVEL_TENSION":this.filtroMayor[i][25],
+      "SIND_INTE_ORIGEN":this.filtroMayor[i][27],
+      "SIND_INTE_CAUSA":this.filtroMayor[i][28],
+      "SIND_TRANSMISOR":this.filtroMayor[i][29],
+      "SIND_CAUSAS":this.filtroMayor[i][30],
+      "SIND_POTENCIAL_NI":this.filtroMayor[i][31],
+      "SIND_POTENCIAL_NFS":this.filtroMayor[i][32],
+      "SIND_INT_FECHA_INICIO":this.filtroMayor[i][34],
+      "SIND_INT_HORA_INICIO":this.filtroMayor[i][35],
+      "SIND_INT_FECHA_FIN":this.filtroMayor[i][36],
+      "SIND_INT_HORA_FIN":this.filtroMayor[i][37],
+      "SIND_INT_DURACION_HORAS":this.filtroMayor[i][38],
+      "SIND_INT_DURACION":this.filtroMayor[i][39],
+      "SIND_FMIK":this.filtroMayor[i][40],
+      "SIND_TTIK":this.filtroMayor[i][41],
       "SIND_INCIDENCIA_DES_RAZON":""
         }
       ]

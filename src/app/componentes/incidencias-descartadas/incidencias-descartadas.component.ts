@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ExcelService } from 'src/app/servicios/excel.service';
 import { IndicesService } from 'src/app/servicios/indices.service';
+import { AddIncidenciaComponent } from '../add-incidencia/add-incidencia.component';
 
 @Component({
   selector: 'app-incidencias-descartadas',
@@ -9,6 +11,16 @@ import { IndicesService } from 'src/app/servicios/indices.service';
   styleUrls: ['./incidencias-descartadas.component.css'],
 })
 export class IncidenciasDescartadasComponent implements OnInit {
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private indicesServices: IndicesService,
+    private router: Router,
+    private excelService:ExcelService,private modalService: NgbModal
+  ) {
+    this.codigoArchivo = this.activatedRoute.snapshot.paramMap.get('id');
+  }
+
   p: any = 1;
   titulos: any = [
     'Quitar',
@@ -52,6 +64,8 @@ export class IncidenciasDescartadasComponent implements OnInit {
     'Duración de Interrupción Horas',
     'FMIK',
     'TTIK',
+    'Razon Descartar',
+    'Editar'
   ];
   codigoArchivo: any;
   term: any;
@@ -59,15 +73,6 @@ export class IncidenciasDescartadasComponent implements OnInit {
   incidenciasDevueltas: any = [];
   filtroMayorA:any=[];
   mayorA:any;
-
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private indicesServices: IndicesService,
-    private router: Router,
-    private excelService:ExcelService
-  ) {
-    this.codigoArchivo = this.activatedRoute.snapshot.paramMap.get('id');
-  }
 
   ngOnInit(): void {
     this.obtenerIncidenciasDescartadas();
@@ -185,5 +190,16 @@ export class IncidenciasDescartadasComponent implements OnInit {
       this.incidenciasDescartadas=[...this.incidenciasDescartadas,element];
     }
     this.mayorA=0;
-  }
+ 
+}
+onEditIncidencia(incidencia:any) {
+  const activeModal =this.modalService.open(AddIncidenciaComponent, {
+    centered: true,
+    size: 'lg',
+    backdrop: 'static',
+    keyboard: false,
+  });
+  activeModal.componentInstance.incidencia = incidencia;
+
+}
 }

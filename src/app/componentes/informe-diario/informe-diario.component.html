@@ -65,6 +65,11 @@
                 <td>{{row.SIND_INT_DURACION}}</td>
                 <td>{{row.SIND_FMIK}}</td>
                 <td>{{row.SIND_TTIK}}</td>
+                <td style="text-align: center;">
+                    <button mat-icon-button color="primary" (click)="onEditIncidencia(row)" >
+                      <mat-icon style="color: #052d6c;">edit</mat-icon>
+                    </button>
+                  </td>
             </tr>
 
           </table>

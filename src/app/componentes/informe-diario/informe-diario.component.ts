@@ -12,7 +12,8 @@ import { AddIncidenciaComponent } from '../add-incidencia/add-incidencia.compone
 })
 export class InformeDiarioComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute,private indicesServices:IndicesService,private router:Router,private excelService:ExcelService,private modalService: NgbModal) {
+  constructor(private activatedRoute: ActivatedRoute,private indicesServices:IndicesService,
+    private router:Router,private excelService:ExcelService,private modalService: NgbModal) {
     this.codigoArchivo=this.activatedRoute.snapshot.paramMap.get('id');
    }
   p:any=1;
@@ -58,6 +59,7 @@ export class InformeDiarioComponent implements OnInit {
     'Duración de Interrupción Horas',
     'FMIK',
     'TTIK',
+    'Editar'
   ];
   codigoArchivo:any;
   term:any;
@@ -161,12 +163,24 @@ export class InformeDiarioComponent implements OnInit {
     this.excelService.downloadExcel(titulosExcel,datosExcel,'IncidenciasTotales.xlsx','Incidencias Totales');
   }
   openModal() {
-    this.modalService.open(AddIncidenciaComponent, {
+   const activeModal= this.modalService.open(AddIncidenciaComponent, {
       centered: true,
       size: 'lg',
       backdrop: 'static',
       keyboard: false,
     });
+    activeModal.componentInstance.codigoArchivo = this.codigoArchivo;
+  }
+
+  onEditIncidencia(incidencia:any) {
+    const activeModal =this.modalService.open(AddIncidenciaComponent, {
+      centered: true,
+      size: 'lg',
+      backdrop: 'static',
+      keyboard: false,
+    });
+    activeModal.componentInstance.incidencia = incidencia;
+
   }
 
   onChageInputMayor(){

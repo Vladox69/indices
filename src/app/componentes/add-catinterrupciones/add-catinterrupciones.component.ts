@@ -25,8 +25,8 @@ export class AddCatinterrupcionesComponent implements OnInit {
     SCAT_NOMBRE: new FormControl('', [Validators.required]),
     SCAT_ORIGEN: new FormControl('', [Validators.required]),
     SCAT_CAUSA: new FormControl('', [Validators.required]),
-    SCAT_LINEA: new FormControl('', [Validators.required]),
-    SCAT_OBSERVACION: new FormControl('', [Validators.required]),
+    SCAT_LINEA: new FormControl('', []),
+    SCAT_OBSERVACION: new FormControl('', []),
     SCAT_ESTADO: new FormControl('', [Validators.required]),
     SCAT_FECHA: new FormControl('', [Validators.required]),
   });
@@ -54,6 +54,17 @@ export class AddCatinterrupcionesComponent implements OnInit {
     this.modalService.dismissAll(AddCatinterrupcionesComponent);
   }
 
+  async updateCatInterrupcion(){
+
+    let catIterrupciones:any=[this.formCatInterrupcion.value];
+    
+    const resp= await this.indicesServices.updateCatInterrupcion(catIterrupciones);    
+    resp.subscribe((res)=>{
+      console.log(res);
+    })
+    this.modalService.dismissAll(AddCatinterrupcionesComponent);
+  }
+
   setFormCatInterrupcion(){
     this.formCatInterrupcion.get("SCAT_CODIGO")?.setValue(this.catInterrupcion["SCAT_CODIGO"]);
     this.formCatInterrupcion.get("SCAT_NOMBRE")?.setValue(this.catInterrupcion["SCAT_NOMBRE"]);
@@ -69,7 +80,7 @@ export class AddCatinterrupcionesComponent implements OnInit {
     if(this.catInterrupcion==null){
       this.addCatInterrupcion();
     }else{
-      console.log('editar');
+      this.updateCatInterrupcion();
     }
   }
 

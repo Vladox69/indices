@@ -17,7 +17,7 @@ export class AddCausafallosComponent implements OnInit {
   formCausas:FormGroup=new FormGroup({
     SCAU_NOMBRE: new FormControl('', [Validators.required]),
     SCAU_REFERENCIA: new FormControl('', [Validators.required]),
-    SCAU_OBSERVACION: new FormControl('', [Validators.required]),
+    SCAU_OBSERVACION: new FormControl('', []),
     SCAU_FECHA: new FormControl('', [Validators.required]),
     SCAU_ESTADO: new FormControl('', [Validators.required]),
     SCAU_CODIGO:new FormControl(null)
@@ -51,8 +51,14 @@ export class AddCausafallosComponent implements OnInit {
     this.modalService.dismissAll(AddCausafallosComponent);
   }
 
-  editarCausaFallo(){
+  async editarCausaFallo(){
+    let causaFallo:any=[this.formCausas.value];
 
+    const resp= await this.indicesServices.updateCausaFallo(causaFallo);    
+    resp.subscribe((res)=>{
+      console.log(res);
+    })
+    this.modalService.dismissAll(AddCausafallosComponent);
   }
 
   setFormCausaFallo(){

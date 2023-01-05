@@ -21,11 +21,11 @@ export class AddAlimentadorComponent implements OnInit {
     SALIM_CANTON: new FormControl('', [Validators.required]),
     SALIM_NOMBRE: new FormControl('', [Validators.required]),
     SALIM_LINEA: new FormControl('', [Validators.required]),
-    SALIM_OBSERVACION: new FormControl('', [Validators.required]),
+    SALIM_OBSERVACION: new FormControl('', []),
     SALIM_REFERENCIA: new FormControl('', [Validators.required]),
     SALIM_SUBADMS: new FormControl('', [Validators.required]),
     SALIM_SUBESTACION: new FormControl('', [Validators.required]),
-    SALIM_KVA: new FormControl('', [Validators.required]),
+    SALIM_KVA: new FormControl('', []),
     SALIM_TIPO: new FormControl('', [Validators.required]),
     SALIM_ESTADO: new FormControl('', [Validators.required]),
     SALIM_FECHA:new FormControl('',[Validators.required])
@@ -67,15 +67,22 @@ export class AddAlimentadorComponent implements OnInit {
     let alimentador:any=[this.formAlimentador.value];
     console.log(alimentador);
     
-    // const resp= await this.indicesServices.addAlimentador(alimentador);    
-    // resp.subscribe((res)=>{
-    //   console.log(res);
-    // })
-    // this.modalService.dismissAll(AddAlimentadorComponent);
+     const resp= await this.indicesServices.addAlimentador(alimentador);    
+     resp.subscribe((res)=>{
+       console.log(res);
+     })
+     this.modalService.dismissAll(AddAlimentadorComponent);
   }
 
-  editarAlimentador(){
+  async editarAlimentador(){
+    let alimentador:any=[this.formAlimentador.value];
+    console.log(alimentador);
 
+    const resp= await this.indicesServices.updateAlimentador(alimentador);    
+     resp.subscribe((res)=>{
+       console.log(res);
+    })
+    this.modalService.dismissAll(AddAlimentadorComponent);
   }
 
   setFormAlimentador(){

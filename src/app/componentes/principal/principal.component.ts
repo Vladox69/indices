@@ -6,7 +6,7 @@ import { CausaCambio } from 'src/app/modelos/causacambio.interface';
 import { catInterrupciones } from 'src/app/modelos/catinterrupciones.interface';
 import { Router } from '@angular/router';
 import { ExcelService } from 'src/app/servicios/excel.service';
-
+import swal from 'sweetalert2';
 type AOA = any[][];
 
 
@@ -786,6 +786,36 @@ export class PrincipalComponent implements OnInit {
   }
 
   async onGuardarArchivo(){
+    const swalWithBootstrapButtons = swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger',
+      },
+      buttonsStyling: true,
+      confirmButtonColor: '#052d6c',
+      cancelButtonColor: '#AD1212',
+      focusDeny: true,
+      focusConfirm: false,
+    });
+
+    swalWithBootstrapButtons
+      .fire({
+        title: '¿Está seguro?',
+        text: `Desea Guardar el archivo?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Aceptar',
+        cancelButtonText: 'Cancelar',
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.guardar();
+        }
+      });
+
+  }
+  async guardar(){
 
     let tipo=this.archivo['type'];
     let nombre=this.archivo['name'];
@@ -798,7 +828,8 @@ export class PrincipalComponent implements OnInit {
       "SRAR_ARCHIVO": archivoBase64,
       "SRAR_TIPO_ARCHIVO": tipo,
       "SRAR_FECHA": fecha,
-      "SRAR_USUARIO": "vladimir-test-subida",
+      "SRAR_USUARIO": "slopez",
+     // "SRAR_USUARIO": "vladimir-test-subida",
       "SRAR_ESTADO": "Proceso",
       "SRAR_NOMBRE_ARCHIVO": nombre}
     ];
@@ -809,7 +840,6 @@ export class PrincipalComponent implements OnInit {
       this.subirFilasInformeDiario(codigoArchivo);
     })
   }
-
   blobToBase64=(blob:any)=>{
     return new Promise((resolve,reject)=>{
       const reader=new FileReader();

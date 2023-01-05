@@ -13,14 +13,11 @@
       </mat-select>
     </mat-form-field>
     <!--Canton-->
-     <mat-form-field class="w-75" appearance="outline">
+    <mat-form-field class="w-75" appearance="outline">
       <mat-label>Cantón</mat-label>
-      <mat-select formControlName="SALIM_CANTON" required >
-        <mat-option *ngFor="let can of listaCantonesFiltro" [value]="can.VALUE">
-          {{can.VALUE}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field> 
+      <input matInput placeholder="Nombre" formControlName="SALIM_CANTON" required >
+      <!-- <mat-error *ngIf="nombre.invalid">{{getErrorMessage()}}</mat-error> -->
+    </mat-form-field>
     <!--Nombre-->
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>Nombre</mat-label>
@@ -36,7 +33,7 @@
      <!--Observación-->
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>Observación</mat-label>
-      <input matInput placeholder="Observación" formControlName="SALIM_OBSERVACION" required >
+      <input matInput placeholder="Observación" formControlName="SALIM_OBSERVACION" >
       <!-- <mat-error *ngIf="observacion.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
      <!--Referencia-->
@@ -60,7 +57,7 @@
      <!--KVA-->
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>KVA</mat-label>
-      <input matInput placeholder="KVA" formControlName="SALIM_KVA" required >
+      <input matInput placeholder="KVA" formControlName="SALIM_KVA" >
       <!-- <mat-error *ngIf="kva.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
      <!--Tipo-->

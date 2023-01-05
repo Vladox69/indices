@@ -40,6 +40,11 @@ export class IndicesService {
     return this.httpClient.delete(this.url+"deleteAlimentador/"+codigoAlimentador)
   }
 
+  async updateAlimentador(alimentador:any): Promise<Observable<any>> {
+    const headers = { 'content-type': 'application/json'}
+    return this.httpClient.put(this.url +"updateAlimentador", alimentador, {'headers':headers});
+  }
+
   //Causas cambio
   listarCausasCambio(): Observable<any> {
     return this.httpClient.get<any>(this.url + 'listarCausasCambio');
@@ -54,20 +59,29 @@ export class IndicesService {
     return this.httpClient.delete(this.url+"deleteCausa/"+codigoCausaFallo)
   }
 
+  async updateCausaFallo(causaFallo:any):Promise<Observable<any>>{
+    const headers = { 'content-type': 'application/json'}
+    return this.httpClient.put(this.url +"updateCausa", causaFallo, {'headers':headers});
+  }
+
   //Catalogo interripciones
   listarCatInterrupciones(): Observable<any> {
     return this.httpClient.get<any>(this.url + 'listarCatInterrupciones');
   }
 
-  async addCatInterrupcion(catInterrupcion:any):Promise<Observable<any>>{
+  async updateCatInterrupcion(catInterrupcion:any):Promise<Observable<any>>{
     const headers = { 'content-type': 'application/json'}
-    return this.httpClient.post(this.url +"addCatInterrupcion", catInterrupcion, {'headers':headers});
+    return this.httpClient.put(this.url +"updateCatalogo", catInterrupcion, {'headers':headers});
   }
 
   deleteCatInterrupcion(codigoCatInterrupcion:any):Observable<any>{
     return this.httpClient.delete(this.url+"deleteCatInterrupcion/"+codigoCatInterrupcion)
   }
   
+  async addCatInterrupcion(catInterrupcion:any):Promise<Observable<any>>{
+    const headers = { 'content-type': 'application/json'}
+    return this.httpClient.post(this.url +"addCatInterrupcion", catInterrupcion, {'headers':headers});
+  }
   //Archivos
   listarRegistroArchivos(): Observable<any> {
     return this.httpClient.get<any>(this.url + 'listarRegistrosArch');

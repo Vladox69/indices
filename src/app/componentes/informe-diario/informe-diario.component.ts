@@ -59,6 +59,7 @@ export class InformeDiarioComponent implements OnInit {
     'Duración de Interrupción Horas',
     'FMIK',
     'TTIK',
+    'Editar'
   ];
   codigoArchivo:any;
   term:any;
@@ -158,11 +159,23 @@ export class InformeDiarioComponent implements OnInit {
     this.excelService.downloadExcel(titulosExcel,datosExcel,'IncidenciasTotales.xlsx','Incidencias Totales');
   }
   openModal() {
-    this.modalService.open(AddIncidenciaComponent, {
+   const activeModal= this.modalService.open(AddIncidenciaComponent, {
       centered: true,
       size: 'lg',
       backdrop: 'static',
       keyboard: false,
     });
+    activeModal.componentInstance.codigoArchivo = this.codigoArchivo;
+  }
+
+  onEditIncidencia(incidencia:any) {
+    const activeModal =this.modalService.open(AddIncidenciaComponent, {
+      centered: true,
+      size: 'lg',
+      backdrop: 'static',
+      keyboard: false,
+    });
+    activeModal.componentInstance.incidencia = incidencia;
+
   }
 }

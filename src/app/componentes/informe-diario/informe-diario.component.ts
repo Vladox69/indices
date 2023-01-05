@@ -12,7 +12,8 @@ import { AddIncidenciaComponent } from '../add-incidencia/add-incidencia.compone
 })
 export class InformeDiarioComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute,private indicesServices:IndicesService,private router:Router,private excelService:ExcelService,private modalService: NgbModal) {
+  constructor(private activatedRoute: ActivatedRoute,private indicesServices:IndicesService,
+    private router:Router,private excelService:ExcelService,private modalService: NgbModal) {
     this.codigoArchivo=this.activatedRoute.snapshot.paramMap.get('id');
    }
 

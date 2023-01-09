@@ -113,6 +113,7 @@ export class InformeDiarioComponent implements OnInit {
   onReporteTotal(){
     let titulosExcel = [...this.titulos];
     titulosExcel.splice(0, 1);
+    
     let datosExcel:any=[];
     for (let i = 0; i < this.informeDiario.length; i++) {
       const element = this.informeDiario[i];

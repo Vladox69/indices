@@ -27,7 +27,7 @@ export class AddCatinterrupcionesComponent implements OnInit {
     SCAT_CAUSA: new FormControl('', [Validators.required]),
     SCAT_LINEA: new FormControl('', []),
     SCAT_OBSERVACION: new FormControl('', []),
-    SCAT_ESTADO: new FormControl('', [Validators.required]),
+    SCAT_ESTADO: new FormControl(''),
     SCAT_FECHA: new FormControl('', [Validators.required]),
   });
 

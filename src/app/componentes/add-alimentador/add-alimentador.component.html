@@ -66,10 +66,22 @@
       <input matInput placeholder="Tipo" formControlName="SALIM_TIPO" required >
       <!-- <mat-error *ngIf="tipo.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
+     <!--SubADMS Cambio-->
+     <mat-form-field class="w-75" appearance="outline">
+      <mat-label>Subestación ADMS Cambio</mat-label>
+      <input matInput placeholder="Tipo" formControlName="SALIM_SUBADMS_CAMBIO" required >
+      <!-- <mat-error *ngIf="tipo.invalid">{{getErrorMessage()}}</mat-error> -->
+    </mat-form-field>
+     <!--Alimentador ADMS Cambio-->
+     <mat-form-field class="w-75" appearance="outline">
+      <mat-label>Alimentador ADMS Cambio</mat-label>
+      <input matInput placeholder="Tipo" formControlName="SALIM_NOMBREADMS_CAMBIO" required >
+      <!-- <mat-error *ngIf="tipo.invalid">{{getErrorMessage()}}</mat-error> -->
+    </mat-form-field>
     <!--Estado-->
     <mat-form-field class="w-75" appearance="outline" *ngIf="this.alimentador!=null">
       <mat-label>Estado</mat-label>
-      <mat-select formControlName="SALIM_ESTADO" required (valueChange)="changeEstado($event)" >
+      <mat-select formControlName="SALIM_ESTADO"  (valueChange)="changeEstado($event)"  >
         <mat-option value="ACTIVO">ACTIVO
         </mat-option>
         <mat-option value="INACTIVO">INACTIVO
@@ -80,5 +92,5 @@
       <mat-label>Elige fecha</mat-label>
       <input matInput type="date" formControlName="SALIM_FECHA">
     </mat-form-field>
-    <button class="m-2 b-2" mat-raised-button color="primary" [disabled]="!formAlimentador.valid" (click)="onGuardarAlimentador()" >Agregar</button>
+    <button class="m-2 b-2" mat-raised-button color="primary" [disabled]="!formAlimentador.valid" (click)="onGuardarAlimentador()" >Guardar</button>
 </form>

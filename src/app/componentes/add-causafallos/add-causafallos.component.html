@@ -33,7 +33,7 @@
       <!--Estado-->
       <mat-form-field class="w-75" appearance="outline" *ngIf="this.causaFallo!=null">
         <mat-label>Estado</mat-label>
-        <mat-select formControlName="SCAU_ESTADO" required (valueChange)="changeEstado($event)" >
+        <mat-select formControlName="SCAU_ESTADO"  (valueChange)="changeEstado($event)" >
           <mat-option value="ACTIVO">ACTIVO
           </mat-option>
           <mat-option value="INACTIVO">INACTIVO

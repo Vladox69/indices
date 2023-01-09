@@ -18,10 +18,12 @@
             <th style="width:5%;">KVA</th>
             <th style="width:5%;">Tipo</th>
             <th style="width:5%;">Estado</th>
+            <th>SubADMS Cambio</th>
+            <th>Nombre ADMS Cambio</th>
             <th style="width:7%;">Opción</th>
         </tr>
         <tr *ngFor="let ali of listaAlimentadores | filter:term| paginate: { itemsPerPage: 10, currentPage: p }; let i = index" style="font-size: 11px;">
-            <td style="text-align: center;">{{i+1}}</td>
+            <td style="text-align: center;">{{((p-1)*10)+(i+1)}}</td>
             <td>{{ali.SALIM_PROVINCIA}}</td>
             <td>{{ali.SALIM_CANTON}}</td>
             <td>{{ali.SALIM_LINEA}}</td>
@@ -33,6 +35,8 @@
             <td>{{ali.SALIM_KVA}}</td>
             <td>{{ali.SALIM_TIPO}}</td>
             <td>{{ali.SALIM_ESTADO}}</td>
+            <td>{{ali.SALIM_SUBADMS_CAMBIO}}</td>
+            <td>{{ali.SALIM_NOMBREADMS_CAMBIO}}</td>
             <td style="text-align: center;">
                 <button mat-icon-button color="primary" (click)="onEditAlimentador(ali)" >
                   <mat-icon style="color: #052d6c;">edit</mat-icon>

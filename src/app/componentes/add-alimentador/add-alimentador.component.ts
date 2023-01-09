@@ -27,8 +27,10 @@ export class AddAlimentadorComponent implements OnInit {
     SALIM_SUBESTACION: new FormControl('', [Validators.required]),
     SALIM_KVA: new FormControl('', []),
     SALIM_TIPO: new FormControl('', [Validators.required]),
-    SALIM_ESTADO: new FormControl('', [Validators.required]),
-    SALIM_FECHA:new FormControl('',[Validators.required])
+    SALIM_ESTADO: new FormControl(''),
+    SALIM_FECHA:new FormControl('',[Validators.required]),
+    SALIM_SUBADMS_CAMBIO:new FormControl('',[]),
+    SALIM_NOMBREADMS_CAMBIO:new FormControl('',[])
   }) 
   //Variables
   listaProvincias:Provincia[]=[];

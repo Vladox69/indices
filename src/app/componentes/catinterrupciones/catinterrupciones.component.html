@@ -17,7 +17,7 @@
             <th style="width: 10%;">Opción</th>
         </tr>
         <tr *ngFor="let inte of listaInterrupciones |filter:term| paginate: { itemsPerPage: 10, currentPage: p }; let i = index" style="font-size: 12px;">
-            <td style="text-align: center;">{{i+1}}</td>
+            <td style="text-align: center;">{{((p-1)*10)+(i+1)}}</td>
             <td>{{inte.SCAT_NOMBRE}}</td>
             <td>{{inte.SCAT_ORIGEN}}</td>
             <td>{{inte.SCAT_CAUSA}}</td>

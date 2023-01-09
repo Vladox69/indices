@@ -19,7 +19,7 @@ export class AddCausafallosComponent implements OnInit {
     SCAU_REFERENCIA: new FormControl('', [Validators.required]),
     SCAU_OBSERVACION: new FormControl('', []),
     SCAU_FECHA: new FormControl('', [Validators.required]),
-    SCAU_ESTADO: new FormControl('', [Validators.required]),
+    SCAU_ESTADO: new FormControl(''),
     SCAU_CODIGO:new FormControl(null)
   })
   

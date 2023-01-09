@@ -12,7 +12,7 @@ export class SubirArchivosComponent implements OnInit {
   titulos = ['Fecha', 'Estado', 'Nombre archivo', 'Usuario', 'Tipo', 'Opción'];
   
   registroArchivos: any;
-  term: any;
+  term: any = 'slopez';
   p: any = 1;
   dt;
   constructor(private iService: IndicesService,private router:Router) {

@@ -830,7 +830,7 @@ export class PrincipalComponent implements OnInit {
       "SRAR_TIPO_ARCHIVO": tipo,
       "SRAR_FECHA": fecha,
       "SRAR_USUARIO": "slopez",
-     // "SRAR_USUARIO": "vladimir-test-subida",
+      //"SRAR_USUARIO": "vladimir-test-subida",
       "SRAR_ESTADO": "Proceso",
       "SRAR_NOMBRE_ARCHIVO": nombre}
     ];
@@ -852,7 +852,17 @@ export class PrincipalComponent implements OnInit {
   }
 
   async subirFilasInformeDiario(codigoArchivo:any){
-    
+    swal.fire({
+      title: 'Subiendo ...',
+      imageUrl: './././assets/img/loading.gif',
+      imageHeight: 300,
+      imageAlt: 'A tall image',
+      showCancelButton: false,
+      showConfirmButton: false,
+      allowOutsideClick: false
+    });
+
+    let contador=0;
     for (let i = 0; i < this.filtroMayor.length; i++) {
       let filaInformeDiario:any=[
         {
@@ -892,10 +902,15 @@ export class PrincipalComponent implements OnInit {
       ]
       const resp=await this.iService.addFilaInformeDiario(filaInformeDiario);
       resp.subscribe((data)=>{
-        
+        contador++;
+        if(contador==this.filtroMayor.length){
+          console.log('archivo guardado');
+          this.router.navigate(['/subir-archivos']);
+          swal.close();
+        }
       })
     }
-    this.router.navigate(['/subir-archivos']);
+
   }
 
   obtenerAlimentadores(){
@@ -904,7 +919,20 @@ export class PrincipalComponent implements OnInit {
      console.log('este es lanueva',res);
     });
   }
-
+  boton(){
+    swal.fire({
+      title: 'Subiendo ...',
+      imageUrl: './././assets/img/loading.gif',
+      imageHeight: 300,
+      imageAlt: 'A tall image',
+      showCancelButton: false,
+      showConfirmButton: false,
+      allowOutsideClick: false
+    });
+    setTimeout(() => {
+      swal.close();
+  }, 3000);
+  }
   irAAlimentadores(){
     this.router.navigate(['/alimentador']);
   }

@@ -1,6 +1,8 @@
 <div class="container shadow-lg p-3 pb-1 mt-2 mb-2 rounded bg-container" style="padding: 1%;" >
   <p class="text-center bg-title p-2 mb-2" style="font-size: 20px;color: white;font-weight: bold;">Listado Alimentadores</p>
     <button mat-raised-button (click)="openModalFormProceso() " style="background-color: green;color: aliceblue;">Agregar</button>
+    <button mat-raised-button (click)="potenciaAlimentadores() " style="background-color: rgb(45, 71, 45);color: aliceblue;">Carga</button>
+    <button mat-raised-button (click)="actualizarCarga() " style="background-color: rgb(45, 71, 45);color: aliceblue;">Actualizar</button>   
     <div style="width: 30%;padding-bottom: 5px;padding-top: 5px;">
       <input type="text" placeholder="Buscar ..." class="form-control" id="rol" [(ngModel)]="term" />
   </div>
@@ -11,15 +13,15 @@
             <th style="width:8%;">Cantón</th>
             <th style="width:13%;">Linea</th>
             <th style="width:10%;">Nombre</th>
-            <th style="width:8%;">Observación</th>
             <th style="width:10%;">Referencia</th>
             <th style="width:5%;">SubAdms</th>
             <th style="width:12%;">Subestación</th>
-            <th style="width:5%;">KVA</th>
+            <th style="width:5%;">Carga Instalada</th>
             <th style="width:5%;">Tipo</th>
             <th style="width:5%;">Estado</th>
             <th>SubADMS Cambio</th>
             <th>Nombre ADMS Cambio</th>
+            <th style="width:8%;">Observación</th>
             <th style="width:7%;">Opción</th>
         </tr>
         <tr *ngFor="let ali of listaAlimentadores | filter:term| paginate: { itemsPerPage: 10, currentPage: p }; let i = index" style="font-size: 11px;">
@@ -28,7 +30,6 @@
             <td>{{ali.SALIM_CANTON}}</td>
             <td>{{ali.SALIM_LINEA}}</td>
             <td>{{ali.SALIM_NOMBRE}}</td>
-            <td>{{ali.SALIM_OBSERVACION}}</td>
             <td>{{ali.SALIM_REFERENCIA}}</td>
             <td>{{ali.SALIM_SUBADMS}}</td>
             <td>{{ali.SALIM_SUBESTACION}}</td>
@@ -37,6 +38,7 @@
             <td>{{ali.SALIM_ESTADO}}</td>
             <td>{{ali.SALIM_SUBADMS_CAMBIO}}</td>
             <td>{{ali.SALIM_NOMBREADMS_CAMBIO}}</td>
+            <td>{{ali.SALIM_OBSERVACION}}</td>
             <td style="text-align: center;">
                 <button mat-icon-button color="primary" (click)="onEditAlimentador(ali)" >
                   <mat-icon style="color: #052d6c;">edit</mat-icon>

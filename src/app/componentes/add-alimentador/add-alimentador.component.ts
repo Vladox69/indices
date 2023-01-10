@@ -79,7 +79,6 @@ export class AddAlimentadorComponent implements OnInit {
   async editarAlimentador(){
     let alimentador:any=[this.formAlimentador.value];
     console.log(alimentador);
-
     const resp= await this.indicesServices.updateAlimentador(alimentador);    
      resp.subscribe((res)=>{
        console.log(res);
@@ -102,6 +101,8 @@ export class AddAlimentadorComponent implements OnInit {
     this.formAlimentador.get("SALIM_TIPO")?.setValue(this.alimentador["SALIM_TIPO"]);
     this.formAlimentador.get("SALIM_ESTADO")?.setValue(this.alimentador["SALIM_ESTADO"]);
     this.formAlimentador.get("SALIM_FECHA")?.setValue(this.alimentador["SALIM_FECHA"]);
+    this.formAlimentador.get("SALIM_SUBADMS_CAMBIO")?.setValue(this.alimentador["SALIM_SUBADMS_CAMBIO"]);
+    this.formAlimentador.get("SALIM_NOMBREADMS_CAMBIO")?.setValue(this.alimentador["SALIM_NOMBREADMS_CAMBIO"]);
   } 
 
   onGuardarAlimentador(){

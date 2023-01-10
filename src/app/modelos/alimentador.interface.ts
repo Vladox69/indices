@@ -10,5 +10,8 @@ export interface Alimentador{
     SALIM_LINEA: string,
     SALIM_TIPO: string,
     SALIM_OBSERVACION : string,
-    SALIM_FECHA : string
+    SALIM_FECHA : string,
+    SALIM_ESTADO : string,
+    SALIM_SUBADMS_CAMBIO : string,
+    SALIM_NOMBREADMS_CAMBIO : string
 }

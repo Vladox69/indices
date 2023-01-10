@@ -4,6 +4,7 @@ import { IndicesService } from 'src/app/servicios/indices.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddAlimentadorComponent } from '../add-alimentador/add-alimentador.component';
 import swal from 'sweetalert2';
+import { IfStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-alimentador',
@@ -21,6 +22,8 @@ export class AlimentadorComponent implements OnInit {
   }
   //variables
   listaAlimentadores: Alimentador[] = [];
+  potenAlimentadores: any[] = [];
+  historialPotencia:Alimentador[]=[];
   p: any = 1;
   term: any;
 
@@ -82,5 +85,76 @@ export class AlimentadorComponent implements OnInit {
     });
     activeModal.componentInstance.alimentador = alimentador;
 
+  }
+
+  potenciaAlimentadores(){
+    const resp = this.iService.listarPotenciaAlimentadores();
+    this.historialPotencia=[];
+    resp.subscribe((res) => {
+      this.potenAlimentadores=res;
+      this.listaAlimentadores.forEach(alim => {
+        let encontro=false;
+        this.potenAlimentadores.forEach(hist => {
+          if(alim.SALIM_NOMBRE==hist['SIND_ALIMENTADOR'] && alim.SALIM_ESTADO=='ACTIVO'){
+            let ali= {
+              'SALIM_CODIGO' : alim.SALIM_CODIGO,
+              'SALIM_NOMBRE' : alim.SALIM_NOMBRE,
+              'SALIM_REFERENCIA' : alim.SALIM_REFERENCIA,
+              'SALIM_PROVINCIA': alim.SALIM_PROVINCIA,
+              'SALIM_CANTON': alim.SALIM_CANTON,
+              'SALIM_SUBESTACION': alim.SALIM_SUBESTACION,
+              'SALIM_SUBADMS': alim.SALIM_SUBADMS,
+              'SALIM_KVA': hist['POTENCIA'],
+              'SALIM_LINEA': alim.SALIM_LINEA,
+              'SALIM_TIPO': alim.SALIM_TIPO,
+              'SALIM_OBSERVACION' : alim.SALIM_OBSERVACION,
+              'SALIM_FECHA' : hist['FECHA'],
+              'SALIM_ESTADO' : alim.SALIM_ESTADO,
+              'SALIM_SUBADMS_CAMBIO':alim.SALIM_SUBADMS_CAMBIO,
+              'SALIM_NOMBREADMS_CAMBIO':alim.SALIM_NOMBREADMS_CAMBIO
+            }
+            this.historialPotencia.push(ali);
+            encontro=true;
+          }
+        });
+        if(!encontro && alim.SALIM_ESTADO=='ACTIVO'){
+          let ali= {
+            'SALIM_CODIGO' : alim.SALIM_CODIGO,
+            'SALIM_NOMBRE' : alim.SALIM_NOMBRE,
+            'SALIM_REFERENCIA' : alim.SALIM_REFERENCIA,
+            'SALIM_PROVINCIA': alim.SALIM_PROVINCIA,
+            'SALIM_CANTON': alim.SALIM_CANTON,
+            'SALIM_SUBESTACION': alim.SALIM_SUBESTACION,
+            'SALIM_SUBADMS': alim.SALIM_SUBADMS,
+            'SALIM_KVA': alim.SALIM_KVA,
+            'SALIM_LINEA': alim.SALIM_LINEA,
+            'SALIM_TIPO': alim.SALIM_TIPO,
+            'SALIM_OBSERVACION' : alim.SALIM_OBSERVACION,
+            'SALIM_FECHA' : alim.SALIM_FECHA,
+            'SALIM_ESTADO' : alim.SALIM_FECHA,
+            'SALIM_SUBADMS_CAMBIO':alim.SALIM_SUBADMS_CAMBIO,
+            'SALIM_NOMBREADMS_CAMBIO':alim.SALIM_NOMBREADMS_CAMBIO
+          }
+          this.historialPotencia.push(ali);
+        }
+      });
+    });
+
+    console.log(this.historialPotencia);
+  }
+  
+  actualizarCarga(){
+
+    this.historialPotencia.forEach(element => {
+          this.guardar(element);
+    });
+  }
+  async guardar(alim:Alimentador){
+    let alimentador:any=[alim];
+    console.log(alimentador);
+    const resp= await this.iService.updateAlimentador(alimentador);    
+     resp.subscribe((res)=>{
+       console.log(res);
+    })
   }
 }

@@ -25,7 +25,9 @@ export class IndicesService {
   listarAlimentadores(): Observable<Alimentador[]> {
     return this.httpClient.get<Alimentador[]>(this.url+ 'listarAlimentadores');
   }
-
+  listarPotenciaAlimentadores(): Observable<Alimentador[]> {
+    return this.httpClient.get<Alimentador[]>(this.url+ 'listarHistorialPotencia');
+  }
   //Alimentadores Activos
   listarAlimentadoresActivos(): Observable<Alimentador[]> {
     return this.httpClient.get<Alimentador[]>(this.url+ 'listarAlimentadoresActivos');

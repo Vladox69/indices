@@ -177,16 +177,15 @@ export class PrincipalComponent implements OnInit {
         });
         this.copiaenMasa.push(fila);
       });
-
-      //console.log(this.copiaenMasa);
-
     };
     reader.readAsBinaryString(target.files[0]);
 
     ///creao el nuevo json para los calculosAutomatico
 
   }
-
+  ver(){
+    console.log('copiaenmasa',this.copiaenMasa);
+  }
   exportEnMasa(): void {
     /* generate worksheet */
     let data = this.copiaenMasa;
@@ -209,7 +208,9 @@ export class PrincipalComponent implements OnInit {
   }
 
   doCalculosAuto(){
-    this.calculosAutomaticos=this.copiaenMasa;
+    let copi = this.copiaenMasa;
+    this.calculosAutomaticos=copi;
+    console.log('aqui estoy',this.copiaenMasa);
     //remplazo el id de incidente por 0 para los q tienen interrupcion 2
     this.calculosAutomaticos.forEach(element => {
       if(element[5] >1){
@@ -217,6 +218,7 @@ export class PrincipalComponent implements OnInit {
       }
       
     });
+
     ///elimino region , subregion, subestacion , interrupcion
     this.calculosAutomaticos.forEach(element => {
       element.splice(0,3);
@@ -234,6 +236,7 @@ export class PrincipalComponent implements OnInit {
         });
       }
     });
+
     //separo las fechas y horas de desconeccion y conecxion
     this.calculosAutomaticos.forEach((fila,index) => {
       if(index!=0){
@@ -338,15 +341,16 @@ export class PrincipalComponent implements OnInit {
             }
           }
         });
-    //console.log('aqui',this.calculosAutomaticos);
+
     //elimino las ultimas columnas
     this.calculosAutomaticos.forEach((fila,index) => {
-      fila.length = fila.length - 17;
+     // fila.length = fila.length - 17;
       if(index!=0){
         fila.splice(13,0,'');
       }
     });
     this.resultado = this.calculosAutomaticos;
+        console.log('aqui',this.calculosAutomaticos);
     //this.exportCalculos();
   }
 
@@ -363,6 +367,7 @@ export class PrincipalComponent implements OnInit {
 
   doResultados(){
     this.doCalculosAuto();
+    console.log('resultados',this.resultado);
     //console.log(this.resultado);
     this.resultado.forEach((fila,index) => {
       if(index!=0){
@@ -485,6 +490,7 @@ export class PrincipalComponent implements OnInit {
 
   doInforme(){
     this.doResultados();
+
     //creo las cabeceras para el informe diario 
     //desde incidente N°
     this.informe = this.resultado;
@@ -529,10 +535,25 @@ export class PrincipalComponent implements OnInit {
         fila[35]='Hora Fin Interrupcion';
         fila[36]='Duración de Interrupción Horas/min/seg';
         fila[37]='Duración de Interrupción Horas';
-        fila[38]='FMIK';
-        fila[39]='TTIK';
+        fila[38]='FMIK_TOTAL';
+        fila[39]='TTIK_TOTAL';
+        fila[40]='FAL_TOTAL';
+        fila[41]='TAL_TOTAL';
+        fila[42]='FMIK_NOPROG';
+        fila[43]='FAL_NOPROG';
+        fila[44]='TTIK_NOPROG';
+        fila[45]='TAL_NOPROG';
+        fila[46]='FMIK_INT_PROG';
+        fila[47]='FAL_INT_PROG';
+        fila[48]='TTIK_INT_PROG';
+        fila[49]='TAL_INT_PROG';
+        fila[50]='FMIK_EXT_TRANS';
+        fila[51]='FAL_EXT_TRANS';
+        fila[52]='TTIK_EXT_TRANS';
+        fila[53]='TAL_EXT_TRANS';
       }
     });
+
     let informeAux=this.informe;
      console.log(this.informe);
     this.informe.forEach((fila,index1) => {
@@ -649,9 +670,14 @@ export class PrincipalComponent implements OnInit {
       }
 
     });
+
+
     this.informe.forEach((element,index) => {
       if(index!=0){
-        element.length=element.length-20;
+        element.length=element.length-1;
+        element.splice(40,20);
+        element.splice(40,1);
+        element.splice(41,1);
         if(element[21].length>1){
           element[4] = 'Transmisión';
           element[14] = 'Transmisión';
@@ -661,7 +687,7 @@ export class PrincipalComponent implements OnInit {
         }
       }
     });
-    
+    console.log('aqui nuevo',this.resultado);
     this.exportInforme();
   }
   
@@ -897,6 +923,20 @@ export class PrincipalComponent implements OnInit {
       "SIND_INT_DURACION":this.filtroMayor[i][39],
       "SIND_FMIK":this.filtroMayor[i][40],
       "SIND_TTIK":this.filtroMayor[i][41],
+      "SIND_FAL":this.filtroMayor[i][42],
+      "SIND_TAL":this.filtroMayor[i][43],
+      "SIND_FMIK_NOPROG":this.filtroMayor[i][44],
+      "SIND_FAL_NOPROG":this.filtroMayor[i][45],
+      "SIND_TTIK_NOPROG":this.filtroMayor[i][46],
+      "SIND_TAL_NOPROG":this.filtroMayor[i][47],
+      "SIND_FMIK_PROG":this.filtroMayor[i][48],
+      "SIND_FAL_PROG":this.filtroMayor[i][49],
+      "SIND_TTIK_PROG":this.filtroMayor[i][50],
+      "SIND_TAL_PROG":this.filtroMayor[i][51],
+      "SIND_FMIK_EXT_TRANS":this.filtroMayor[i][52],
+      "SIND_FAL_EXT_TRANS":this.filtroMayor[i][53],
+      "SIND_TTIK_EXT_TRANS":this.filtroMayor[i][54],
+      "SIND_TAL_EXT_TRANS":this.filtroMayor[i][55],
       "SIND_INCIDENCIA_DES_RAZON":""
         }
       ]
@@ -916,7 +956,6 @@ export class PrincipalComponent implements OnInit {
   obtenerAlimentadores(){
     this.iService.listarAlimentadoresActivos().subscribe(res=>{
      this.listaAlimentadores=res;
-     console.log('este es lanueva',res);
     });
   }
   boton(){

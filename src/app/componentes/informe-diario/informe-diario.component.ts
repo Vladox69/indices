@@ -58,7 +58,21 @@ export class InformeDiarioComponent implements OnInit {
     'Duración de Interrupción Horas/min/seg',
     'Duración de Interrupción Horas',
     'FMIK',
+    'FAL',
     'TTIK',
+    'TAL',
+    'FMIK_NOPROG',
+    'FAL_NOPROG',
+    'TTIK_NOPROG',
+    'TAL_NOPROG',
+    'FMIK_PROG',
+    'FAL_PROG',
+    'TTIK_PROG',
+    'TAL_PROG',
+    'FMIK_EXT_TRANS',
+    'FAL_EXT_TRANS',
+    'TTIK_EXT_TRANS',
+    'TAL_EXT_TRANS',
     'Editar'
   ];
   codigoArchivo:any;

@@ -981,4 +981,9 @@ export class PrincipalComponent implements OnInit {
   irACatalogo(){
     this.router.navigate(['/catalogo']);
   }
+
+  cabeceras(){
+    this.excelService.downloadExcelSisdat();
+  }
+
 }

@@ -14,13 +14,49 @@ export class SisdatComponent implements OnInit {
   ngOnInit(): void {
     this.cargarDatos();
   }
+
   //variables
+  codigoArchivo:any;
   SRAR_CODIGO='77';
   listaAlimentadores:Alimentador[]=[];
   historialPotencia:any[]=[];
   listaValoresSISDAT:any[]=[];
   listaValoresPROGNOPROG:any[]=[];
   informeSisdat:any[]=[];
+  titulos:any=[
+    'Subestación',
+    'Alimentador',
+    'Tipo',
+    'Potencia Instalada (KVA)',
+    'Energía no Suministrada (kWh)',
+    'FAL',
+    'TAL',
+    'FMIK',
+    'TTIK',
+    'Programadas',
+    'No Programadas',
+    'Otra distribuidora',
+    'Transmisor',
+    'Generador',
+    'Restricción de carga',
+    'Baja frecuencia',
+    'Otras',
+    'FMIK_Prog',
+    'FAL_Prog',
+    'TTIK_Prog',
+    'TAL_Prog',
+    'FMIK_NOPROG',
+    'FAL_NOPROG',
+    'TTIK_NOPROG',
+    'TAL_NOPROG',
+    'FMIK_EXT_TRANS',
+    'FAL_EXT_TRANS',
+    'TTIK_EXT_TRANS',
+    'TAL_EXT_TRANS',
+    'Observaciones'
+  ];
+  term:any;
+  p:any=1;
 
   cargarDatos(){
     this.indicesService.listarAlimentadores().subscribe(res=>{
@@ -144,5 +180,7 @@ export class SisdatComponent implements OnInit {
 
     console.log(this.informeSisdat);
   }
+
+
 
 }

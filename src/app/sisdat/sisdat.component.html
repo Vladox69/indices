@@ -1,1 +1,83 @@
-<button (click)="doInforme()">Informe</button>
+
+<div class="container shadow-lg p-3 pb-1 mt-2 mb-2 rounded bg-container" style="padding:1%" >
+    <p class="text-center bg-title p-2 mb-2" style="font-size: 20px;color: white;font-weight: bold;">SISDAT</p>
+    <br>
+    <button mat-raised-button class="mx-1" (click)="doInforme()" style="background-color: rgb(45, 50, 122);color: aliceblue;">Informe</button>
+  
+    <br><br>
+    <div class="d-flex flex-row" style="width: 50%;padding-bottom: 5px;">
+        <input type="text" placeholder="Buscar ..." class="form-control" id="rol" [(ngModel)]="term" />
+    </div>
+    <div style="overflow-x:auto;font-size: 10px;">
+        <table id="customers">
+            <tr>
+                <th >No</th>
+                <th *ngFor="let row of titulos">{{row}}</th>
+            </tr>
+            <tr *ngFor="let row of informeSisdat | filter:term| paginate: { itemsPerPage: 10, currentPage: p } ;let indice=index"> 
+                <td>{{((p-1)*10)+(indice+1)}}</td>
+                <td>{{row.SIND_NINCIDENTE}}</td>
+                <td>{{row.SIND_INDICADOR_FM}}</td>
+                <td>{{row.SIND_NIVEL_AFECT}}</td>
+                <td>{{row.SIND_ALIMENTADOR}}</td>
+                <td>{{row.SIND_ETAPA_FUN}}</td>
+                <td>{{row.SIND_INSTALACION_EF}}</td>
+                <td>{{row.SIND_PROVINCIA | titlecase}}</td>
+                <td>{{row.SIND_CANTON}}</td>
+                <td>{{row.SIND_SECTOR}}</td>
+                <td></td>
+                <td></td>
+                <td>{{row.SIND_PROPIEDAD}}</td>
+                <td>{{row.SIND_PROTECCION}}</td>
+                <td>{{row.SIND_TIPO_PROTECCION}}</td>
+                <td>{{row.SIND_ETAPA_FUN}}</td>
+                <td>{{row.SIND_INSTALACION_EF}}</td>
+                <td>{{row.SIND_PROVINCIA}}</td>
+                <td>{{row.SIND_CANTON}}</td>
+                <td>{{row.SIND_SECTOR}}</td>
+                <td>{{row.SIND_LINEA_SUBT}}</td>
+                <td>{{row.SIND_SUBESTACION}}</td>
+                <td></td>
+                <td>{{row.SIND_SECTOR}}</td>
+                <td>{{row.SIND_NIVEL_TENSION}}</td>
+                <td>{{row.SIND_NIVEL_AFECT}}</td>
+                <td>{{row.SIND_INTE_ORIGEN}}</td>
+                <td>{{row.SIND_INTE_CAUSA}}</td>
+                <td>{{row.SIND_TRANSMISOR}}</td>
+                <td>{{row.SIND_CAUSAS}}</td>
+                <td>{{row.SIND_POTENCIAL_NI}}</td>
+                <td>{{row.SIND_POTENCIAL_NFS}}</td>
+                <td></td>
+                <td>{{row.SIND_INT_FECHA_INICIO}}</td>
+                <td>{{row.SIND_INT_HORA_INICIO}}</td>
+                <td>{{row.SIND_INT_FECHA_FIN}}</td>
+                <td>{{row.SIND_INT_HORA_FIN}}</td>
+                <td>{{row.SIND_INT_DURACION_HORAS}}</td>
+                <td>{{row.SIND_INT_DURACION}}</td>
+                <td>{{row.SIND_FMIK}}</td>
+                <td>{{row.SIND_FAL}}</td>
+                <td>{{row.SIND_TTIK}}</td>
+                <td>{{row.SIND_TAL}}</td>
+                <td>{{row.SIND_FMIK_NOPROG}}</td>
+                <td>{{row.SIND_FAL_NOPROG}}</td>
+                <td>{{row.SIND_TTIK_NOPROG}}</td>
+                <td>{{row.SIND_TAL_NOPROG}}</td>
+                <td>{{row.SIND_FMIK_PROG}}</td>
+                <td>{{row.SIND_FAL_PROG}}</td>
+                <td>{{row.SIND_TTIK_PROG}}</td>
+                <td>{{row.SIND_TAL_PROG}}</td>
+                <td>{{row.SIND_FMIK_EXT_TRANS}}</td>
+                <td>{{row.SIND_FAL_EXT_TRANS}}</td>
+                <td>{{row.SIND_TTIK_EXT_TRANS}}</td>
+                <td>{{row.SIND_TAL_EXT_TRANS}}</td>
+                <td style="text-align: center;">
+                    <button mat-icon-button color="primary" >
+                      <mat-icon style="color: #052d6c;">edit</mat-icon>
+                    </button>
+                  </td>
+            </tr>
+
+          </table>
+    </div>
+    <pagination-controls style="color:white; text-align: center;" (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+</div>

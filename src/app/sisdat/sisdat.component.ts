@@ -45,7 +45,7 @@ export class SisdatComponent implements OnInit {
         if(alim.SALIM_NOMBRE==val['SIND_ALIMENTADOR'] && alim.SALIM_ESTADO=='ACTIVO'){
           fila={
             'SALIM_NOMBRE':alim.SALIM_NOMBRE,
-            'SALIM_SUBADMS_CAMBIO':alim.SALIM_SUBADMS_CAMBIO,
+            'SALIM_SUBESTACION':alim.SALIM_SUBESTACION,
             'SALIM_NOMBREADMS_CAMBIO':alim.SALIM_NOMBREADMS_CAMBIO,
             'SALIM_TIPO':alim.SALIM_TIPO,
             'SALIM_ESTADO':alim.SALIM_ESTADO,
@@ -77,7 +77,7 @@ export class SisdatComponent implements OnInit {
       if(!encontro){
         fila={
           'SALIM_NOMBRE':alim.SALIM_NOMBRE,
-          'SALIM_SUBADMS_CAMBIO':alim.SALIM_SUBADMS_CAMBIO,
+          'SALIM_SUBESTACION':alim.SALIM_SUBESTACION,
           'SALIM_NOMBREADMS_CAMBIO':alim.SALIM_NOMBREADMS_CAMBIO,
           'SALIM_TIPO':alim.SALIM_TIPO,
           'SALIM_ESTADO':alim.SALIM_ESTADO,

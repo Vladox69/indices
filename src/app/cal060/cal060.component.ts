@@ -16,9 +16,12 @@ export class Cal060Component implements OnInit {
 
   //variables
   listaIncidencias:any[]=[];
+  informeCal:any[]=[];
 
   doInforme(){
-
+    this.listaIncidencias.forEach(element => {
+      
+    });
   }
   cargarDatos(){
     this.indicesService.listarInformeDiario('77').subscribe(res=>{

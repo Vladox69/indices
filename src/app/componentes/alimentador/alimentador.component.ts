@@ -131,7 +131,7 @@ export class AlimentadorComponent implements OnInit {
             'SALIM_TIPO': alim.SALIM_TIPO,
             'SALIM_OBSERVACION' : alim.SALIM_OBSERVACION,
             'SALIM_FECHA' : alim.SALIM_FECHA,
-            'SALIM_ESTADO' : alim.SALIM_FECHA,
+            'SALIM_ESTADO' : alim.SALIM_ESTADO,
             'SALIM_SUBADMS_CAMBIO':alim.SALIM_SUBADMS_CAMBIO,
             'SALIM_NOMBREADMS_CAMBIO':alim.SALIM_NOMBREADMS_CAMBIO
           }

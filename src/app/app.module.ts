@@ -37,6 +37,7 @@ import { InformeDiarioComponent } from './componentes/informe-diario/informe-dia
 import { IncidenciasDescartadasComponent } from './componentes/incidencias-descartadas/incidencias-descartadas.component';
 import { AddIncidenciaComponent } from './componentes/add-incidencia/add-incidencia.component';
 import { SisdatComponent } from './sisdat/sisdat.component';
+import { Cal060Component } from './cal060/cal060.component';
 
   
 @NgModule({
@@ -55,7 +56,8 @@ import { SisdatComponent } from './sisdat/sisdat.component';
     InformeDiarioComponent,
     IncidenciasDescartadasComponent,
     AddIncidenciaComponent,
-    SisdatComponent
+    SisdatComponent,
+    Cal060Component
   ],
   imports: [
     BrowserModule,

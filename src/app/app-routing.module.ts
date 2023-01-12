@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Cal060Component } from './cal060/cal060.component';
 import { AlimentadorComponent } from './componentes/alimentador/alimentador.component';
 import { CatinterrupcionesComponent } from './componentes/catinterrupciones/catinterrupciones.component';
 import { CausasfallosComponent } from './componentes/causasfallos/causasfallos.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'catalogo', component: CatinterrupcionesComponent},
   {path:'subir-archivos',component:SubirArchivosComponent},
   {path:'sisdat/:id',component:SisdatComponent},
+  {path:'cal060/:id',component:Cal060Component},
   {path:'informe-diario/:id',component:InformeDiarioComponent},
   {path:'incidencias-descartadas/:id',component:IncidenciasDescartadasComponent}
 ];

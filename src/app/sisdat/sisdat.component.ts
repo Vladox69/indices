@@ -76,6 +76,7 @@ export class SisdatComponent implements OnInit {
       });
       if(!encontro){
         fila={
+          'SALIM_NOMBRE':alim.SALIM_NOMBRE,
           'SALIM_SUBADMS_CAMBIO':alim.SALIM_SUBADMS_CAMBIO,
           'SALIM_NOMBREADMS_CAMBIO':alim.SALIM_NOMBREADMS_CAMBIO,
           'SALIM_TIPO':alim.SALIM_TIPO,

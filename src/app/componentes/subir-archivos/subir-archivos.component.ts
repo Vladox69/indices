@@ -59,4 +59,8 @@ export class SubirArchivosComponent implements OnInit {
   onFileOpenSISDAT(){
     this.router.navigate(['/sisdat','77']);
   }
+
+  onFileOpenCAL060(){
+    this.router.navigate(['/cal060','77']);
+  }
 }

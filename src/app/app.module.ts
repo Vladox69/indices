@@ -38,6 +38,7 @@ import { IncidenciasDescartadasComponent } from './componentes/incidencias-desca
 import { AddIncidenciaComponent } from './componentes/add-incidencia/add-incidencia.component';
 import { SisdatComponent } from './sisdat/sisdat.component';
 import { Cal060Component } from './cal060/cal060.component';
+import { SisdatModalComponent } from './componentes/sisdat-modal/sisdat-modal.component';
 
   
 @NgModule({
@@ -57,7 +58,8 @@ import { Cal060Component } from './cal060/cal060.component';
     IncidenciasDescartadasComponent,
     AddIncidenciaComponent,
     SisdatComponent,
-    Cal060Component
+    Cal060Component,
+    SisdatModalComponent
   ],
   imports: [
     BrowserModule,

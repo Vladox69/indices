@@ -183,9 +183,6 @@ export class PrincipalComponent implements OnInit {
     ///creao el nuevo json para los calculosAutomatico
 
   }
-  ver(){
-    console.log('copiaenmasa',this.copiaenMasa);
-  }
   exportEnMasa(): void {
     /* generate worksheet */
     let data = this.copiaenMasa;

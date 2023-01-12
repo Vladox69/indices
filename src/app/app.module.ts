@@ -36,6 +36,7 @@ import {MatCardModule} from '@angular/material/card';
 import { InformeDiarioComponent } from './componentes/informe-diario/informe-diario.component';
 import { IncidenciasDescartadasComponent } from './componentes/incidencias-descartadas/incidencias-descartadas.component';
 import { AddIncidenciaComponent } from './componentes/add-incidencia/add-incidencia.component';
+import { SisdatComponent } from './sisdat/sisdat.component';
 
   
 @NgModule({
@@ -53,7 +54,8 @@ import { AddIncidenciaComponent } from './componentes/add-incidencia/add-inciden
     SubirArchivosComponent,
     InformeDiarioComponent,
     IncidenciasDescartadasComponent,
-    AddIncidenciaComponent
+    AddIncidenciaComponent,
+    SisdatComponent
   ],
   imports: [
     BrowserModule,

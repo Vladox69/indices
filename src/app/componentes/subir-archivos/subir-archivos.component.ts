@@ -56,4 +56,7 @@ export class SubirArchivosComponent implements OnInit {
     this.router.navigate(['/informe-diario',row['SRAR_CODIGO']]);
   }
 
+  onFileOpenSISDAT(){
+    this.router.navigate(['/sisdat','77']);
+  }
 }

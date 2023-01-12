@@ -8,6 +8,7 @@ import { InformeDiarioComponent } from './componentes/informe-diario/informe-dia
 import { PrincipalComponent } from './componentes/principal/principal.component';
 import { SubirArchivosComponent } from './componentes/subir-archivos/subir-archivos.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { SisdatComponent } from './sisdat/sisdat.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'inicio'},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'causas', component: CausasfallosComponent},
   {path: 'catalogo', component: CatinterrupcionesComponent},
   {path:'subir-archivos',component:SubirArchivosComponent},
+  {path:'sisdat/:id',component:SisdatComponent},
   {path:'informe-diario/:id',component:InformeDiarioComponent},
   {path:'incidencias-descartadas/:id',component:IncidenciasDescartadasComponent}
 ];

@@ -113,4 +113,12 @@ export class IndicesService {
     return this.httpClient.put(this.url +"updateInformeDiario", filaRegistro, {'headers':headers});
   }
 
+  listarValoresPROGNOPROG(codigoArchivo:any){
+    return this.httpClient.get<any>(this.url + 'listarValoresPROGNOPROG/'+codigoArchivo);
+  }
+
+  listarValoresSISDAT(codigoArchivo:any){
+    return this.httpClient.get<any>(this.url + 'listarValoresSISDAT/'+codigoArchivo);
+  }
+
 }

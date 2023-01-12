@@ -725,8 +725,644 @@ export class ExcelService {
     };
     ensKWH.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
 
+    sheet.mergeCells('G12:H13')
+    const indiceMensualFalTal = sheet.getCell('G12');
+    indiceMensualFalTal.value='Indice Mensual';
+    indiceMensualFalTal.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    indiceMensualFalTal.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    indiceMensualFalTal.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
 
-    
+    sheet.mergeCells('I12:J13')
+    const indiceMensualTTIK_FMIK = sheet.getCell('I12');
+    indiceMensualTTIK_FMIK.value='Indice Mensual';
+    indiceMensualTTIK_FMIK.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    indiceMensualTTIK_FMIK.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    indiceMensualTTIK_FMIK.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    sheet.mergeCells('G14:G15')
+    const falIM = sheet.getCell('G14');
+    falIM.value='FAL';
+    falIM.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    falIM.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    falIM.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    sheet.mergeCells('H14:H15')
+    const talIM = sheet.getCell('H14');
+    talIM.value='TAL';
+    talIM.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    talIM.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    talIM.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    sheet.mergeCells('I14:I15')
+    const fmikIM = sheet.getCell('I14');
+    fmikIM.value='FMIK';
+    fmikIM.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    fmikIM.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    fmikIM.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    sheet.mergeCells('J14:J15')
+    const ttikIM = sheet.getCell('J14');
+    ttikIM.value='TTIK';
+    ttikIM.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    ttikIM.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    ttikIM.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    sheet.mergeCells('K12:R12')
+    const numeroInterrupciones = sheet.getCell('K12');
+    numeroInterrupciones.value='NÚMERO DE INTERRUPCIONES';
+    numeroInterrupciones.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    numeroInterrupciones.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    numeroInterrupciones.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    sheet.mergeCells('K13:L13')
+    const niIternas = sheet.getCell('K13');
+    niIternas.value='Internas';
+    niIternas.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    niIternas.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    niIternas.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    sheet.mergeCells('M13:R13')
+    const niExternas = sheet.getCell('M13');
+    niExternas.value='Externas';
+    niExternas.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    niExternas.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    niExternas.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    sheet.mergeCells('K14:K15')
+    const inteProgramadas = sheet.getCell('K14');
+    inteProgramadas.value='Programadas';
+    inteProgramadas.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    inteProgramadas.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    inteProgramadas.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+    sheet.mergeCells('L14:L15')
+    const inteNoProgramadas = sheet.getCell('L14');
+    inteNoProgramadas.value='No Programadas';
+    inteNoProgramadas.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    inteNoProgramadas.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    inteNoProgramadas.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    sheet.mergeCells('M14:M15')
+    const exteOtraDistri = sheet.getCell('M14');
+    exteOtraDistri.value='Otra distribuidora';
+    exteOtraDistri.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    exteOtraDistri.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    exteOtraDistri.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    sheet.mergeCells('N14:N15')
+    const exteTransmisor = sheet.getCell('N14');
+    exteTransmisor.value='Transmisor';
+    exteTransmisor.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    exteTransmisor.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    exteTransmisor.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    sheet.mergeCells('O14:O15')
+    const exteGenerador = sheet.getCell('O14');
+    exteGenerador.value='Generador';
+    exteGenerador.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    exteGenerador.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    exteGenerador.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    sheet.mergeCells('P14:P15')
+    const exteResCarga = sheet.getCell('P14');
+    exteResCarga.value='Restricción de carga';
+    exteResCarga.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    exteResCarga.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    exteResCarga.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    sheet.mergeCells('Q14:Q15')
+    const exteBajaFrec = sheet.getCell('Q14');
+    exteBajaFrec.value='Baja frecuencia';
+    exteBajaFrec.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    exteBajaFrec.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    exteBajaFrec.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    sheet.mergeCells('R14:R15')
+    const exteOtras = sheet.getCell('R14');
+    exteOtras.value='Otras';
+    exteOtras.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    exteOtras.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    exteOtras.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    sheet.mergeCells('S12:AD12')
+    const desgloseIndicadores = sheet.getCell('S12');
+    desgloseIndicadores.value='DESGLOSE DE LOS INDICADORES';
+    desgloseIndicadores.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    desgloseIndicadores.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    desgloseIndicadores.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    sheet.mergeCells('S13:Z13')
+    const desIndInternos = sheet.getCell('S13');
+    desIndInternos.value='Internos';
+    desIndInternos.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    desIndInternos.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    desIndInternos.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    sheet.mergeCells('AA13:AD13')
+    const desIndExternos = sheet.getCell('AA13');
+    desIndExternos.value='Externos';
+    desIndExternos.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    desIndExternos.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    desIndExternos.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    sheet.mergeCells('S14:V14')
+    const desIndIntProgramados = sheet.getCell('S14');
+    desIndIntProgramados.value='Programadas';
+    desIndIntProgramados.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    desIndIntProgramados.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    desIndIntProgramados.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    sheet.mergeCells('W14:Z14')
+    const desIndIntNoProgramados = sheet.getCell('W14');
+    desIndIntNoProgramados.value='No Programadas';
+    desIndIntNoProgramados.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    desIndIntNoProgramados.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    desIndIntNoProgramados.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    sheet.mergeCells('AA14:AD14')
+    const desIndExtTransmisor = sheet.getCell('AA14');
+    desIndExtTransmisor.value='Transmisor';
+    desIndExtTransmisor.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    desIndExtTransmisor.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    desIndExtTransmisor.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    sheet.mergeCells('AE12:AE15')
+    const observacion = sheet.getCell('AE12');
+    observacion.value='Observaciones';
+    observacion.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    observacion.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    observacion.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    const desIndIntProFMIK = sheet.getCell('S15');
+    desIndIntProFMIK.value='FMIK';
+    desIndIntProFMIK.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    desIndIntProFMIK.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    desIndIntProFMIK.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    const desIndIntProFAL = sheet.getCell('T15');
+    desIndIntProFAL.value='FAL';
+    desIndIntProFAL.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    desIndIntProFAL.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    desIndIntProFAL.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    const desIndIntProTTIK = sheet.getCell('U15');
+    desIndIntProTTIK.value='TTIK';
+    desIndIntProTTIK.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    desIndIntProTTIK.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    desIndIntProTTIK.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    const desIndIntProTAL = sheet.getCell('V15');
+    desIndIntProTAL.value='TAL';
+    desIndIntProTAL.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    desIndIntProTAL.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    desIndIntProTAL.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    const desIndIntNProFMIK = sheet.getCell('W15');
+    desIndIntNProFMIK.value='FMIK';
+    desIndIntNProFMIK.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    desIndIntNProFMIK.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    desIndIntNProFMIK.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    const desIndIntNProFAL = sheet.getCell('X15');
+    desIndIntNProFAL.value='FAL';
+    desIndIntNProFAL.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    desIndIntNProFAL.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    desIndIntNProFAL.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    const desIndIntNProTTIK = sheet.getCell('Y15');
+    desIndIntNProTTIK.value='TTIK';
+    desIndIntNProTTIK.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    desIndIntNProTTIK.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    desIndIntNProTTIK.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    const desIndIntNProTAL = sheet.getCell('Z15');
+    desIndIntNProTAL.value='TAL';
+    desIndIntNProTAL.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    desIndIntNProTAL.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    desIndIntNProTAL.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    const desIndExtTransFMIK = sheet.getCell('AA15');
+    desIndExtTransFMIK.value='FMIK';
+    desIndExtTransFMIK.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    desIndExtTransFMIK.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    desIndExtTransFMIK.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    const desIndExtTransFAL = sheet.getCell('AB15');
+    desIndExtTransFAL.value='FAL';
+    desIndExtTransFAL.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    desIndExtTransFAL.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    desIndExtTransFAL.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    const desIndExtTransTTIK = sheet.getCell('AC15');
+    desIndExtTransTTIK.value='TTIK';
+    desIndExtTransTTIK.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    desIndExtTransTTIK.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    desIndExtTransTTIK.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+    const desIndExtTransTAL = sheet.getCell('AD15');
+    desIndExtTransTAL.value='TAL';
+    desIndExtTransTAL.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' },
+    };
+    desIndExtTransTAL.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'd0d8e4' },
+      bgColor: { argb: 'd0d8e4' },
+    };
+    desIndExtTransTAL.alignment = { vertical: 'middle', horizontal: 'center',wrapText: true };
+
+
+
 
   }
+
+
+  
 }

@@ -59,7 +59,7 @@ export class SisdatComponent implements OnInit {
   p:any=1;
 
   cargarDatos(){
-    this.indicesService.listarAlimentadores().subscribe(res=>{
+    this.indicesService.listarAlimentadoresActivos().subscribe(res=>{
      this.listaAlimentadores=res; 
     });
     //

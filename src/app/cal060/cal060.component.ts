@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Alimentador } from '../modelos/alimentador.interface';
 import { IndicesService } from '../servicios/indices.service';
 
 @Component({
@@ -15,18 +16,26 @@ export class Cal060Component implements OnInit {
   }
 
   //variables
+  listaAlimentadores:Alimentador[]=[];
   listaIncidencias:any[]=[];
   informeCal:any[]=[];
 
   doInforme(){
-    this.listaIncidencias.forEach(element => {
-      
+    this.listaIncidencias.forEach(incid => {
+      this.listaAlimentadores.forEach(alim => {
+        if(incid['SIND_ALIMENTADOR']==alim.SALIM_NOMBRE){
+          
+        }
+      });
     });
   }
   cargarDatos(){
     this.indicesService.listarInformeDiario('77').subscribe(res=>{
       this.listaIncidencias = res;
       console.log(this.listaIncidencias);
+    });
+    this.indicesService.listarAlimentadoresActivos().subscribe(res=>{
+     this.listaAlimentadores = res; 
     });
   }
 }

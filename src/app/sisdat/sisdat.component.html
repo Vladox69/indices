@@ -15,36 +15,36 @@
             </tr>
             <tr *ngFor="let row of informeSisdat | filter:term| paginate: { itemsPerPage: 10, currentPage: p } ;let indice=index"> 
                 <td>{{((p-1)*10)+(indice+1)}}</td>
-                <td>{{row.SALIM_SUBESTACION}}</td>
-                <td>{{row.SALIM_NOMBREADMS_CAMBIO}}</td>
-                <td>{{row.SALIM_TIPO}}</td>
-                <td>{{row.SALIM_KVA}}</td>
+                <td>{{row.SSIS_SUBESTACION}}</td>
+                <td>{{row.SSIS_ALIMENTADOR}}</td>
+                <td>{{row.SSIS_SECTOR}}</td>
+                <td>{{row.SSIS_POTENCIA}}</td>
                 <td> </td>
-                <td>{{row.SIND_FAL}}</td>
-                <td>{{row.SIND_TAL}}</td>
-                <td>{{row.SIND_FMIK}}</td>
-                <td>{{row.SIND_TTIK}}</td>
-                <td>{{row.PROGRAMADA}}</td>
-                <td>{{row.NOPROGRAMADA}}</td>
+                <td *ngIf="row.SSIS_FAL!=null">{{row.SSIS_FAL}}</td> <td *ngIf="row.SSIS_FAL==null">-</td>
+                <td *ngIf="row.SSIS_TAL!=null">{{row.SSIS_TAL}}</td> <td *ngIf="row.SSIS_TAL==null">-</td>
+                <td *ngIf="row.SSIS_FMIK!=null">{{row.SSIS_FMIK}}</td> <td *ngIf="row.SSIS_FMIK==null">-</td>
+                <td *ngIf="row.SSIS_TTIK!=null">{{row.SSIS_TTIK}}</td> <td *ngIf="row.SSIS_TTIK==null">-</td>
+                <td>{{row.SSIS_PROGRAMADAS}}</td> 
+                <td>{{row.SSIS_NOPROGRAMADAS}}</td> 
                 <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
+                <td>{{row.SSIS_TRANSMISOR}}</td>
                 <td> </td>
                 <td> </td>
-                <td>{{row.SIND_FMIK_PROG}}</td>
-                <td>{{row.SIND_FAL_PROG}}</td>
-                <td>{{row.SIND_TTIK_PROG}}</td>
-                <td>{{row.SIND_TAL_PROG}}</td>
-                <td>{{row.SIND_FMIK_NOPROG}}</td>
-                <td>{{row.SIND_FAL_NOPROG}}</td>
-                <td>{{row.SIND_TTIK_NOPROG}}</td>
-                <td>{{row.SIND_TAL_NOPROG}}</td>
-                <td>{{row.SIND_FMIK_EXT_TRANS}}</td>
-                <td>{{row.SIND_FAL_EXT_TRANS}}</td>
-                <td>{{row.SIND_TTIK_EXT_TRANS}}</td>
-                <td>{{row.SIND_TAL_EXT_TRANS}}</td>
-                <td></td>
+                <td> </td>
+                <td> </td>
+                <td *ngIf="row.SSIS_FMIK_PROG!=null">{{row.SSIS_FMIK_PROG}}</td><td *ngIf="row.SSIS_FMIK_PROG==null">-</td>
+                <td *ngIf="row.SSIS_FMIK_PROG!=null">{{row.SSIS_FAL_PROG}}</td> <td *ngIf="row.SSIS_FMIK_PROG==null">-</td>
+                <td *ngIf="row.SSIS_FMIK_PROG!=null">{{row.SSIS_TTIK_PROG}}</td> <td *ngIf="row.SSIS_FMIK_PROG==null">-</td>
+                <td *ngIf="row.SSIS_FMIK_PROG!=null">{{row.SSIS_TAL_PROG}}</td> <td *ngIf="row.SSIS_FMIK_PROG==null">-</td>
+                <td *ngIf="row.SSIS_FMIK_PROG!=null">{{row.SSIS_FMIK_NOPROG}}</td> <td *ngIf="row.SSIS_FMIK_PROG==null">-</td>
+                <td *ngIf="row.SSIS_FMIK_PROG!=null">{{row.SSIS_FAL_NOPROG}}</td> <td *ngIf="row.SSIS_FMIK_PROG==null">-</td>
+                <td *ngIf="row.SSIS_FMIK_PROG!=null">{{row.SSIS_TTIK_NOPROG}}</td> <td *ngIf="row.SSIS_FMIK_PROG==null">-</td>
+                <td *ngIf="row.SSIS_FMIK_PROG!=null">{{row.SSIS_TAL_NOPROG}}</td> <td *ngIf="row.SSIS_FMIK_PROG==null">-</td>
+                <td *ngIf="row.SSIS_FMIK_PROG!=null">{{row.SSIS_FMIK_EXT_TRANS}}</td> <td *ngIf="row.SSIS_FMIK_PROG==null">-</td>
+                <td *ngIf="row.SSIS_FMIK_PROG!=null">{{row.SSIS_FAL_EXT_TRANS}}</td> <td *ngIf="row.SSIS_FMIK_PROG==null">-</td>
+                <td *ngIf="row.SSIS_FMIK_PROG!=null">{{row.SSIS_TTIK_EXT_TRANS}}</td> <td *ngIf="row.SSIS_FMIK_PROG==null">-</td>
+                <td *ngIf="row.SSIS_FMIK_PROG!=null">{{row.SSIS_TAL_EXT_TRANS}}</td> <td *ngIf="row.SSIS_FMIK_PROG==null">-</td>
+                <td>{{row.SSIS_OBSERVACION}}</td>
                 <td style="text-align: center;">
                     <button mat-icon-button color="primary" >
                       <mat-icon style="color: #052d6c;">edit</mat-icon>

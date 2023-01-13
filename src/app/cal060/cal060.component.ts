@@ -67,7 +67,17 @@ export class Cal060Component implements OnInit {
   p: any = 1;
   
   doInforme() {
-    this.listaIncidencias.forEach((element) => {});
+    this.listaIncidencias.forEach(inc => {
+      let encontro=false;
+      this.listaAlimentadores.forEach(alim => {
+        if(inc['SIND_ALIMENTADOR']==alim.SALIM_NOMBRE){
+          inc.SALIM_SUBADMS_CAMBIO=alim.SALIM_NOMBREADMS_CAMBIO;
+          inc.SALIM_NOMBREADMS_CAMBIO=alim.SALIM_NOMBREADMS_CAMBIO;
+          encontro=true;
+        }
+      });
+    });
+    console.log(this.listaIncidencias);
   }
   cargarDatos() {
     this.indicesService.listarInformeDiario('77').subscribe((res) => {
@@ -76,6 +86,9 @@ export class Cal060Component implements OnInit {
     });
     this.indicesService.listarAlimentadoresActivos().subscribe(res=>{
      this.listaAlimentadores = res; 
+     console.log(res);
+     this.doInforme();
     });
+
   }
 }

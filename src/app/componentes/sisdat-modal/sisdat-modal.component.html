@@ -1,8 +1,11 @@
+<button class="position-absolute top-0 start-100 translate-middle" mat-fab color="warn" (click)="ngbActiveModal.close('Close click')">
+    <mat-icon>close</mat-icon>
+  </button>
 <div class="container shadow-lg p-3 pb-1 mt-2 mb-2 rounded bg-container" style="padding:1%" >
     <p class="text-center bg-title p-2 mb-2" style="font-size: 20px;color: white;font-weight: bold;">SISDAT Temporal</p>
     <br>
-    <button mat-raised-button class="mx-1"  style="background-color: rgb(45, 50, 122);color: aliceblue;">Guardar</button>
-    
+    <button mat-raised-button class="mx-1"  (click)="doInforme()" style="background-color: rgb(45, 50, 122);color: aliceblue;">Generar</button>
+    <button mat-raised-button class="mx-1"  (click)="onGuardarArchivo()" style="background-color: rgb(70, 168, 4);color: aliceblue;">Guardar</button>
     <br><br>
     <div class="d-flex flex-row" style="width: 50%;padding-bottom: 5px;">
         <input type="text" placeholder="Buscar ..." class="form-control" id="rol" [(ngModel)]="term" />
@@ -27,7 +30,7 @@
                 <td>{{row.PROGRAMADA}}</td>
                 <td>{{row.NOPROGRAMADA}}</td>
                 <td> </td>
-                <td> </td>
+                <td>{{row.TRANSMISOR}}</td>
                 <td> </td>
                 <td> </td>
                 <td> </td>

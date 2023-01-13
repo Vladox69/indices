@@ -113,12 +113,30 @@ export class IndicesService {
     return this.httpClient.put(this.url +"updateInformeDiario", filaRegistro, {'headers':headers});
   }
 
+  //para el SISDAT
   listarValoresPROGNOPROG(codigoArchivo:any){
     return this.httpClient.get<any>(this.url + 'listarValoresPROGNOPROG/'+codigoArchivo);
   }
 
   listarValoresSISDAT(codigoArchivo:any){
     return this.httpClient.get<any>(this.url + 'listarValoresSISDAT/'+codigoArchivo);
+  }
+
+  listarValoresTransmisor(codigoArchivo:any){
+    return this.httpClient.get<any>(this.url + 'listarCantidadTransmisor/'+codigoArchivo);
+  }
+
+  listarFilasSISDAT(codigoArchivo:any){
+    return this.httpClient.get<any>(this.url + 'listarFilasSISDAT/'+codigoArchivo);
+  }
+
+  addFilaSISDAT(filaRegistro:any){
+    const headers = { 'content-type': 'application/json'}
+    return this.httpClient.post(this.url +"addSISDAT", filaRegistro, {'headers':headers});
+  }
+
+  deleteInformeSISDAT(codigoArchivo:any):Observable<any>{
+    return this.httpClient.delete(this.url+"deleteInformeSISDAT/"+codigoArchivo);
   }
 
 }

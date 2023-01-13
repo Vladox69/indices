@@ -22,10 +22,6 @@ export class SisdatComponent implements OnInit {
   //variables
   codigoArchivo:any;
   SRAR_CODIGO='77';
-  listaAlimentadores:Alimentador[]=[];
-  historialPotencia:any[]=[];
-  listaValoresSISDAT:any[]=[];
-  listaValoresPROGNOPROG:any[]=[];
   informeSisdat:any[]=[];
   titulos:any=[
     'Subestación',
@@ -64,19 +60,9 @@ export class SisdatComponent implements OnInit {
   p:any=1;
 
   cargarDatos(){
-    this.indicesService.listarAlimentadoresActivos().subscribe(res=>{
-     this.listaAlimentadores=res; 
+    this.indicesService.listarFilasSISDAT(this.SRAR_CODIGO).subscribe(res=>{
+      this.informeSisdat=res;
     });
-    //
-    this.indicesService.listarValoresPROGNOPROG(this.SRAR_CODIGO).subscribe(res=>{
-     this.listaValoresPROGNOPROG=res; 
-    });
-    //
-    this.indicesService.listarValoresSISDAT(this.SRAR_CODIGO).subscribe(res=>{
-      this.listaValoresSISDAT=res; 
-      console.log(this.listaValoresSISDAT);
-     });
-    
   }
 
   

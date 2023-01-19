@@ -139,4 +139,11 @@ export class IndicesService {
     return this.httpClient.delete(this.url+"deleteInformeSISDAT/"+codigoArchivo);
   }
 
+  //Cal060
+
+  addFilaCal060(filaRegistro:any){
+    const headers = { 'content-type': 'application/json'}
+    return this.httpClient.post(this.url +"addCAL060", filaRegistro, {'headers':headers});
+  }
+
 }

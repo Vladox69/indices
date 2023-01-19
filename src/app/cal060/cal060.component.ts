@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Cal060ModalComponent } from '../componentes/cal060-modal/cal060-modal.component';
 import { Alimentador } from '../modelos/alimentador.interface';
+import { ExcelService } from '../servicios/excel.service';
 import { IndicesService } from '../servicios/indices.service';
 
 @Component({
@@ -8,12 +11,12 @@ import { IndicesService } from '../servicios/indices.service';
   styleUrls: ['./cal060.component.css'],
 })
 export class Cal060Component implements OnInit {
-  constructor(private indicesService: IndicesService) {}
+  constructor(private indicesService: IndicesService,private modalService: NgbModal,private excelService:ExcelService) {}
 
  
 
   ngOnInit(): void {
-    this.cargarDatos();
+    // this.cargarDatos();
   }
 
   //variables
@@ -62,7 +65,7 @@ export class Cal060Component implements OnInit {
     'TTIk',
     'Observaciones',
     'Editar'
-  ];
+    ];
   term: any;
   p: any = 1;
   
@@ -91,4 +94,18 @@ export class Cal060Component implements OnInit {
     });
 
   }
+
+  openModalTableCal060(){
+    this.modalService.open(Cal060ModalComponent, {
+      centered: true,
+      size: 'lg',
+      backdrop: 'static',
+      keyboard: false,
+    });
+  }
+
+  onReporteCal060(){
+    this.excelService.downloadExcelCal060('Cal060.xlsx',"Cal060",[]); 
+  }
+
 }

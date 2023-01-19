@@ -980,7 +980,6 @@ export class PrincipalComponent implements OnInit {
   }
 
   cabeceras(){
-    this.excelService.downloadExcelSisdat();
   }
 
 }

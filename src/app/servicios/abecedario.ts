@@ -39,4 +39,6 @@ export const ABECEDARIO: string[] = [
   'AL',
   'AM',
   'AN',
+  'AO',
+  'AP',
 ];

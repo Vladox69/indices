@@ -141,6 +141,10 @@ export class IndicesService {
 
   //Cal060
 
+  listarFilasCal060(codigoArchivo:any){
+    return this.httpClient.get<any>(this.url + 'listarFilasCAL060/'+codigoArchivo);
+  }
+
   addFilaCal060(filaRegistro:any){
     const headers = { 'content-type': 'application/json'}
     return this.httpClient.post(this.url +"addCAL060", filaRegistro, {'headers':headers});

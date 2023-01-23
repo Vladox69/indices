@@ -16,12 +16,10 @@ export class Cal060Component implements OnInit {
  
 
   ngOnInit(): void {
-    // this.cargarDatos();
+    this.cargarDatos();
   }
 
   //variables
-    listaAlimentadores:Alimentador[]=[];
-    listaIncidencias:any[]=[];
     informeCal:any[]=[];
     titulos: any = [
     'Código de Interrupción',
@@ -70,27 +68,12 @@ export class Cal060Component implements OnInit {
   p: any = 1;
   
   doInforme() {
-    this.listaIncidencias.forEach(inc => {
-      let encontro=false;
-      this.listaAlimentadores.forEach(alim => {
-        if(inc['SIND_ALIMENTADOR']==alim.SALIM_NOMBRE){
-          inc.SALIM_SUBADMS_CAMBIO=alim.SALIM_NOMBREADMS_CAMBIO;
-          inc.SALIM_NOMBREADMS_CAMBIO=alim.SALIM_NOMBREADMS_CAMBIO;
-          encontro=true;
-        }
-      });
-    });
-    console.log(this.listaIncidencias);
+    
   }
   cargarDatos() {
-    this.indicesService.listarInformeDiario('77').subscribe((res) => {
-      this.listaIncidencias = res;
-      console.log(this.listaIncidencias);
-    });
-    this.indicesService.listarAlimentadoresActivos().subscribe(res=>{
-     this.listaAlimentadores = res; 
-     console.log(res);
-     this.doInforme();
+    this.indicesService.listarFilasCal060('77').subscribe((resp:any)=>{
+      this.informeCal=resp;
+      console.log(resp);
     });
 
   }

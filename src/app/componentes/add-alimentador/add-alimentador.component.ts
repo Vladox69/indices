@@ -1,5 +1,6 @@
+import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Canton } from 'src/app/modelos/canton.interface';
 import { Provincia } from 'src/app/modelos/provincia.interface';
@@ -11,12 +12,12 @@ import { IndicesService } from 'src/app/servicios/indices.service';
   styleUrls: ['./add-alimentador.component.css']
 })
 export class AddAlimentadorComponent implements OnInit {
-  constructor(private modalService:NgbModal,public ngbActiveModal:NgbActiveModal,private indicesServices:IndicesService) { }
-  
-  @Input() alimentador:any=null;
+  constructor(private modalService: NgbModal, public ngbActiveModal: NgbActiveModal, private indicesServices: IndicesService) { }
 
-  formAlimentador:FormGroup=new FormGroup({
-    SALIM_CODIGO:new FormControl(null),
+  @Input() alimentador: any = null;
+
+  formAlimentador: FormGroup = new FormGroup({
+    SALIM_CODIGO: new FormControl(null),
     SALIM_PROVINCIA: new FormControl('', [Validators.required]),
     SALIM_CANTON: new FormControl('', [Validators.required]),
     SALIM_NOMBRE: new FormControl('', [Validators.required]),
@@ -28,68 +29,58 @@ export class AddAlimentadorComponent implements OnInit {
     SALIM_KVA: new FormControl('', []),
     SALIM_TIPO: new FormControl('', [Validators.required]),
     SALIM_ESTADO: new FormControl(''),
-    SALIM_FECHA:new FormControl('',[Validators.required]),
-    SALIM_SUBADMS_CAMBIO:new FormControl('',[]),
-    SALIM_NOMBREADMS_CAMBIO:new FormControl('',[])
-  }) 
+    SALIM_FECHA: new FormControl('', [Validators.required]),
+    SALIM_SUBADMS_CAMBIO: new FormControl('', []),
+    SALIM_NOMBREADMS_CAMBIO: new FormControl('', [])
+  })
   //Variables
-  listaProvincias:Provincia[]=[];
-  listaCantones:Canton[]=[];
-  listaCantonesFiltro:any;
-  provincia:any;
+  listaProvincias: Provincia[] = [];
+  listaCantones: Canton[] = [];
+  listaCantonesFiltro: any;
+  provincia: any;
+  datePipe = new DatePipe('es');
 
-  // getErrorMessage() {
-  //   if (this.provincia.hasError('required')) {
-  //     return 'You must enter a value';
-  //   }
-
-  //   return this.provincia.hasError('provincia') ? 'Not a valid provincia' : '';
-  // }
-
-  onClose(){
+  onClose() {
     this.modalService.dismissAll(AddAlimentadorComponent);
   }
 
   ngOnInit(): void {
-    this.indicesServices.listarProvincias().subscribe(res=>{
+    this.indicesServices.listarProvincias().subscribe(res => {
       this.listaProvincias = res;
-      console.log(res);
     });
-    this.indicesServices.listarCantones().subscribe(res=>{
-      this.listaCantones = res;   
-    if(this.alimentador!=null){
+
+    this.indicesServices.listarCantones().subscribe(res => {
+      this.listaCantones = res;
+    });
+    if (this.alimentador != null) {
       this.setFormAlimentador();
     }
-    });
-
   }
 
-  async addAlimentador(){
-    
-    let alimentador:any=[this.formAlimentador.value];
-    console.log(alimentador);
-    
-     const resp= await this.indicesServices.addAlimentador(alimentador);    
-     resp.subscribe((res)=>{
-       console.log(res);
-     })
-     this.modalService.dismissAll(AddAlimentadorComponent);
-  }
-
-  async editarAlimentador(){
-    let alimentador:any=[this.formAlimentador.value];
-    console.log(alimentador);
-    const resp= await this.indicesServices.updateAlimentador(alimentador);    
-     resp.subscribe((res)=>{
-       console.log(res);
+  async addAlimentador() {
+    let alimentador: any = [this.formAlimentador.value];
+    const resp = await this.indicesServices.addAlimentador(alimentador);
+    alimentador[0]["SALIM_FECHA"]=this.datePipe.transform(alimentador[0]["SALIM_FECHA"],"dd/MM/yyyy");
+    resp.subscribe((res) => {
+      console.log(res);
     })
     this.modalService.dismissAll(AddAlimentadorComponent);
   }
 
-  setFormAlimentador(){
+  async editarAlimentador() {
+    let alimentador: any = [this.formAlimentador.value];
+    const resp = await this.indicesServices.updateAlimentador(alimentador);
+    alimentador[0]["SALIM_FECHA"]=this.datePipe.transform(alimentador[0]["SALIM_FECHA"],"dd/MM/yyyy");
+    resp.subscribe((res) => {
+      console.log(res);
+    })
+    this.modalService.dismissAll(AddAlimentadorComponent);
+  }
+
+  setFormAlimentador() {
     this.formAlimentador.get("SALIM_CODIGO")?.setValue(this.alimentador["SALIM_CODIGO"]);
     this.formAlimentador.get("SALIM_PROVINCIA")?.setValue(this.alimentador["SALIM_PROVINCIA"]);
-    this.changeProvincia(this.alimentador["SALIM_PROVINCIA"]);
+    // this.changeProvincia(this.alimentador["SALIM_PROVINCIA"]);
     this.formAlimentador.get("SALIM_CANTON")?.setValue(this.alimentador["SALIM_CANTON"]);
     this.formAlimentador.get("SALIM_NOMBRE")?.setValue(this.alimentador["SALIM_NOMBRE"]);
     this.formAlimentador.get("SALIM_LINEA")?.setValue(this.alimentador["SALIM_LINEA"]);
@@ -103,37 +94,37 @@ export class AddAlimentadorComponent implements OnInit {
     this.formAlimentador.get("SALIM_FECHA")?.setValue(this.alimentador["SALIM_FECHA"]);
     this.formAlimentador.get("SALIM_SUBADMS_CAMBIO")?.setValue(this.alimentador["SALIM_SUBADMS_CAMBIO"]);
     this.formAlimentador.get("SALIM_NOMBREADMS_CAMBIO")?.setValue(this.alimentador["SALIM_NOMBREADMS_CAMBIO"]);
-  } 
+  }
 
-  onGuardarAlimentador(){
-    if(this.alimentador==null){
+  onGuardarAlimentador() {
+    if (this.alimentador == null) {
       this.addAlimentador();
-    }else{
+    } else {
       this.editarAlimentador();
     }
   }
 
-  changeProvincia(event:any){
+  changeProvincia(event: any) {
     console.log(event);
-    this.listaCantonesFiltro=[];
+    this.listaCantonesFiltro = [];
     //busco la provincia con ese nombre para ver el codigo
-    let codigoProv='';
+    let codigoProv = '';
     this.listaProvincias.forEach(element => {
-      if(element.VALUE==event){
-        codigoProv=element.CODE;
+      if (element.VALUE == event) {
+        codigoProv = element.CODE;
         console.log(codigoProv);
       }
     });
 
     this.listaCantones.forEach(element => {
-      let codigo = element.CODE.substring(0,2);
-      if(codigo==codigoProv){
+      let codigo = element.CODE.substring(0, 2);
+      if (codigo == codigoProv) {
         this.listaCantonesFiltro.push(element);
       }
     });
   }
 
-  changeEstado(event:any){
+  changeEstado(event: any) {
     console.log(event);
   }
 }

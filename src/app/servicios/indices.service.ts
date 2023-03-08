@@ -9,7 +9,7 @@ export class IndicesService {
 
   constructor(private httpClient: HttpClient) {}
 
-  url: string = 'http://172.20.35.10:7001/WSIServices/rest/api_rest/';
+  url: string = 'http://127.0.0.1:7001/WSIServices/rest/api_rest/';
 
   //Provincias
   listarProvincias(): Observable<any[]> {

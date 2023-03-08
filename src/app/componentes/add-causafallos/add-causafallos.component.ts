@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -28,22 +29,17 @@ export class AddCausafallosComponent implements OnInit {
       this.setFormCausaFallo();
     }
   }
-
-  // getErrorMessage() {
-  //   if (this.nombre.hasError('required')) {
-  //     return 'You must enter a value';
-  //   }
-
-  //   return this.nombre.hasError('nombre') ? 'Not a valid nombre' : '';
-  // }
+  datePipe = new DatePipe('es');
 
   onClose(){
     this.modalService.dismissAll(AddCausafallosComponent);
   }
 
   async addCausaFallo(){
+    this.formCausas.get("SCAU_ESTADO")?.setValue("ACTIVO");
     let causaFallo:any=[this.formCausas.value];
-
+    
+    causaFallo[0]["SCAU_FECHA"]=this.datePipe.transform(causaFallo[0]["SCAU_FECHA"],"dd/MM/yyyy");
     const resp= await this.indicesServices.addCausaFallo(causaFallo);    
     resp.subscribe((res)=>{
       console.log(res);
@@ -53,7 +49,7 @@ export class AddCausafallosComponent implements OnInit {
 
   async editarCausaFallo(){
     let causaFallo:any=[this.formCausas.value];
-
+    causaFallo[0]["SCAU_FECHA"]=this.datePipe.transform(causaFallo[0]["SCAU_FECHA"],"dd/MM/yyyy");
     const resp= await this.indicesServices.updateCausaFallo(causaFallo);    
     resp.subscribe((res)=>{
       console.log(res);

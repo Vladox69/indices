@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -81,6 +82,7 @@ export class InformeDiarioComponent implements OnInit {
   descartadas:any=[];
   filtroMayorA:any=[];
   mayorA:any;
+  datePipe = new DatePipe('es');
 
   ngOnInit(): void {
     this.obtenerFilasInformeDiario();
@@ -100,6 +102,9 @@ export class InformeDiarioComponent implements OnInit {
     this.descartadas=this.informeDiario.filter((row:any)=>row.SIND_INCIDENCIA_ESTADO==='true');
     for (let i = 0; i < this.descartadas.length; i++) {
       const element = this.descartadas[i];
+      element["SIND_INT_FECHA_FIN"]=this.datePipe.transform(element["SIND_INT_FECHA_FIN"],"dd/MM/yyyy");
+      element["SIND_INT_FECHA_INICIO"]=this.datePipe.transform(element["SIND_INT_FECHA_INICIO"],"dd/MM/yyyy");
+      console.log(element);
       const resp= await this.indicesServices.updateFilaInformeDiario([element]);
       resp.subscribe((data)=>{
         this.onIncidenciasDescartadas();

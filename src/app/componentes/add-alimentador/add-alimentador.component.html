@@ -6,77 +6,79 @@
      <!--Provincia-->
      <mat-form-field class="w-75" appearance="outline">
       <mat-label>Provincia</mat-label>
+      <input matInput placeholder="Provincia" formControlName="SALIM_PROVINCIA" required >
+    </mat-form-field>
+     <!-- <mat-form-field class="w-75" appearance="outline">
+      <mat-label>Provincia</mat-label>
       <mat-select formControlName="SALIM_PROVINCIA" required (valueChange)="changeProvincia($event)" >
         <mat-option *ngFor="let prov of listaProvincias" [value]="prov.VALUE">
           {{prov.VALUE}}
         </mat-option>
       </mat-select>
-    </mat-form-field>
+    </mat-form-field> -->
+
     <!--Canton-->
+    <!-- <mat-form-field class="w-75" appearance="outline">
+      <mat-label>Provincia</mat-label>
+      <mat-select formControlName="SALIM_CANTON" required  >
+        <mat-option *ngFor="let prov of listaCantonesFiltro" [value]="prov.VALUE">
+          {{prov.VALUE}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>Cantón</mat-label>
-      <input matInput placeholder="Nombre" formControlName="SALIM_CANTON" required >
-      <!-- <mat-error *ngIf="nombre.invalid">{{getErrorMessage()}}</mat-error> -->
+      <input matInput placeholder="Cantón" formControlName="SALIM_CANTON" required >
     </mat-form-field>
     <!--Nombre-->
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>Nombre</mat-label>
       <input matInput placeholder="Nombre" formControlName="SALIM_NOMBRE" required >
-      <!-- <mat-error *ngIf="nombre.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
      <!--Línea-->
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>Línea</mat-label>
       <input matInput placeholder="Línea" formControlName="SALIM_LINEA" required >
-      <!-- <mat-error *ngIf="linea.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
      <!--Observación-->
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>Observación</mat-label>
       <input matInput placeholder="Observación" formControlName="SALIM_OBSERVACION" >
-      <!-- <mat-error *ngIf="observacion.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
      <!--Referencia-->
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>Referencia</mat-label>
       <input matInput placeholder="Referencia" formControlName="SALIM_REFERENCIA" required >
-      <!-- <mat-error *ngIf="referencia.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
      <!--SubAdms-->
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>SubAdms</mat-label>
       <input matInput placeholder="SubAdms" formControlName="SALIM_SUBADMS" required >
-      <!-- <mat-error *ngIf="subadms.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
      <!--Subestación-->
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>Subestación</mat-label>
       <input matInput placeholder="Subestación" formControlName="SALIM_SUBESTACION" required >
-      <!-- <mat-error *ngIf="subestacion.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
      <!--KVA-->
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>KVA</mat-label>
       <input matInput placeholder="KVA" formControlName="SALIM_KVA" >
-      <!-- <mat-error *ngIf="kva.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
      <!--Tipo-->
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>Tipo</mat-label>
       <input matInput placeholder="Tipo" formControlName="SALIM_TIPO" required >
-      <!-- <mat-error *ngIf="tipo.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
      <!--SubADMS Cambio-->
      <mat-form-field class="w-75" appearance="outline">
       <mat-label>Subestación ADMS Cambio</mat-label>
       <input matInput placeholder="Tipo" formControlName="SALIM_SUBADMS_CAMBIO" required >
-      <!-- <mat-error *ngIf="tipo.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
      <!--Alimentador ADMS Cambio-->
      <mat-form-field class="w-75" appearance="outline">
       <mat-label>Alimentador ADMS Cambio</mat-label>
       <input matInput placeholder="Tipo" formControlName="SALIM_NOMBREADMS_CAMBIO" required >
-      <!-- <mat-error *ngIf="tipo.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
     <!--Estado-->
     <mat-form-field class="w-75" appearance="outline" *ngIf="this.alimentador!=null">

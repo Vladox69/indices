@@ -22,7 +22,7 @@ export class SisdatComponent implements OnInit {
 
   //variables
   codigoArchivo:any;
-  SRAR_CODIGO='77';
+  SRAR_CODIGO='1';
   informeSisdat:any[]=[];
   titulos:any=[
     'Subestación',

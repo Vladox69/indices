@@ -81,7 +81,7 @@ export class Cal060ModalComponent implements OnInit {
     });
   }
   cargarDatos() {
-    this.indicesService.listarInformeDiario('77').subscribe((res) => {
+    this.indicesService.listarInformeDiario('1').subscribe((res) => {
       this.listaIncidencias = res;
     });
     this.indicesService.listarAlimentadoresActivos().subscribe(res=>{
@@ -151,7 +151,7 @@ export class Cal060ModalComponent implements OnInit {
         }
 
         if(contador==this.listaIncidencias.length){
-          this.router.navigate(['/cal060','77']);
+          this.router.navigate(['/cal060','1']);
           swal.close();
         }
         

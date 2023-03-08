@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
@@ -30,6 +31,7 @@ export class AddCatinterrupcionesComponent implements OnInit {
     SCAT_ESTADO: new FormControl(''),
     SCAT_FECHA: new FormControl('', [Validators.required]),
   });
+  datePipe = new DatePipe('es');
 
   ngOnInit(): void {
     if(this.catInterrupcion!=null){
@@ -37,16 +39,9 @@ export class AddCatinterrupcionesComponent implements OnInit {
     }
   }
 
-  // getErrorMessage() {
-  //   if (this.nombre.hasError('required')) {
-  //     return 'You must enter a value';
-  //   }
-
-  //   return this.nombre.hasError('nombre') ? 'Not a valid nombre' : '';
-  // }
   async addCatInterrupcion() {
     let catIterrupciones:any=[this.formCatInterrupcion.value];
-    
+    catIterrupciones[0]["SCAT_FECHA"]=this.datePipe.transform(catIterrupciones[0]["SCAT_FECHA"],"dd/MM/yyyy");
     const resp= await this.indicesServices.addCatInterrupcion(catIterrupciones);    
     resp.subscribe((res)=>{
       console.log(res);
@@ -57,7 +52,7 @@ export class AddCatinterrupcionesComponent implements OnInit {
   async updateCatInterrupcion(){
 
     let catIterrupciones:any=[this.formCatInterrupcion.value];
-    
+    catIterrupciones[0]["SCAT_FECHA"]=this.datePipe.transform(catIterrupciones[0]["SCAT_FECHA"],"dd/MM/yyyy");
     const resp= await this.indicesServices.updateCatInterrupcion(catIterrupciones);    
     resp.subscribe((res)=>{
       console.log(res);

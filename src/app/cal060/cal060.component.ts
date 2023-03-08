@@ -71,7 +71,7 @@ export class Cal060Component implements OnInit {
     
   }
   cargarDatos() {
-    this.indicesService.listarFilasCal060('77').subscribe((resp:any)=>{
+    this.indicesService.listarFilasCal060('1').subscribe((resp:any)=>{
       this.informeCal=resp;
       console.log(resp);
     });

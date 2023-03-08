@@ -57,7 +57,6 @@ export class PrincipalComponent implements OnInit {
     });
     this.iService.listarCatInterrupciones().subscribe(res=>{
       this.listaCatInterrupciones = res;
-      //console.log(this.listaCatInterrupciones);
     });
     this.obtenerAlimentadores();
 
@@ -207,7 +206,7 @@ export class PrincipalComponent implements OnInit {
   doCalculosAuto(){
     let copi = this.copiaenMasa;
     this.calculosAutomaticos=copi;
-    console.log('aqui estoy',this.copiaenMasa);
+    // console.log('aqui estoy',this.copiaenMasa);
     //remplazo el id de incidente por 0 para los q tienen interrupcion 2
     this.calculosAutomaticos.forEach(element => {
       if(element[5] >1){
@@ -223,7 +222,7 @@ export class PrincipalComponent implements OnInit {
       element.splice(2,1);
       element.splice(4,1);
     });
-    //busco ycambio el nombre del alimentador
+    //busco y cambio el nombre del alimentador
     this.calculosAutomaticos.forEach((celda,index) => {
       if(index!=0){
         this.listaAlimentadores.forEach(alimentador => {
@@ -946,12 +945,13 @@ export class PrincipalComponent implements OnInit {
           swal.close();
         }
       })
+      console.log(filaInformeDiario);
     }
 
   }
 
   obtenerAlimentadores(){
-    this.iService.listarAlimentadoresActivos().subscribe(res=>{
+    this.iService.listarAlimentadoresActivos().subscribe((res)=>{
      this.listaAlimentadores=res;
     });
   }

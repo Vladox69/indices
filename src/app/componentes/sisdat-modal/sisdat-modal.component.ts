@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Alimentador } from 'src/app/modelos/alimentador.interface';
 import { IndicesService } from 'src/app/servicios/indices.service';
 import swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sisdat-modal',
@@ -11,8 +11,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./sisdat-modal.component.css']
 })
 export class SisdatModalComponent implements OnInit {
-
-  constructor(private indicesService:IndicesService,private router:Router,private modalService:NgbModal,public ngbActiveModal:NgbActiveModal) { }
+  @Input() SRAR_CODIGO: any = null;
+  constructor(private indicesService:IndicesService,private router:Router,private modalService:NgbModal,public ngbActiveModal:NgbActiveModal,private activatedRoute: ActivatedRoute) { 
+  }
 
   ngOnInit(): void {
     this.cargarDatos();
@@ -20,7 +21,6 @@ export class SisdatModalComponent implements OnInit {
 
   //variables
   codigoArchivo:any;
-  SRAR_CODIGO='1';
   listaAlimentadores:Alimentador[]=[];
   historialPotencia:any[]=[];
   listaValoresSISDAT:any[]=[];
@@ -88,7 +88,7 @@ export class SisdatModalComponent implements OnInit {
       let fila={};
       let encontro=false;
       this.listaValoresSISDAT.forEach(val => {
-        if(alim.SALIM_NOMBRE==val['SIND_ALIMENTADOR'] && alim.SALIM_ESTADO=='ACTIVO'){
+        if(alim.SALIM_NOMBRE==val['SIND_ALIMENTADOR']){
           fila={
             'SRAR_CODIGO':this.SRAR_CODIGO,
             'SALIM_NOMBRE':alim.SALIM_NOMBRE,
@@ -153,7 +153,8 @@ export class SisdatModalComponent implements OnInit {
         this.informeSisdat.push(fila);
       }
     });
-
+    console.log(this.informeSisdat);
+    
     this.informeSisdat.forEach(inf=>{
       let encontro=false;
       let programada=false;

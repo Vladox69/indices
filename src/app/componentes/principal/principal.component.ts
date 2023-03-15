@@ -87,7 +87,7 @@ export class PrincipalComponent implements OnInit {
       /* read workbook */
       const bstr: string = e.target.result;
       const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
-
+      
       /* grab first sheet */
       const wsname: string = wb.SheetNames[0];
       const ws: XLSX.WorkSheet = wb.Sheets[wsname];
@@ -109,8 +109,6 @@ export class PrincipalComponent implements OnInit {
         }
       });
       //console.log('datosprimeros',this.data);
-
-
       ///
       this.data.forEach((element,index) => {
         if(index!=0){
@@ -180,7 +178,6 @@ export class PrincipalComponent implements OnInit {
     reader.readAsBinaryString(target.files[0]);
 
     ///creao el nuevo json para los calculosAutomatico
-
   }
   exportEnMasa(): void {
     /* generate worksheet */

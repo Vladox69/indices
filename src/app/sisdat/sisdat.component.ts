@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SisdatModalComponent } from '../componentes/sisdat-modal/sisdat-modal.component';
 import { Alimentador } from '../modelos/alimentador.interface';
@@ -12,8 +13,8 @@ import { IndicesService } from '../servicios/indices.service';
 })
 export class SisdatComponent implements OnInit {
 
-  constructor(private indicesService:IndicesService,private modalService: NgbModal,private excelService:ExcelService) { 
-    
+  constructor(private indicesService:IndicesService,private modalService: NgbModal,private excelService:ExcelService,private activatedRoute: ActivatedRoute) { 
+    this.SRAR_CODIGO=this.activatedRoute.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
@@ -22,7 +23,7 @@ export class SisdatComponent implements OnInit {
 
   //variables
   codigoArchivo:any;
-  SRAR_CODIGO='1';
+  SRAR_CODIGO:any;
   informeSisdat:any[]=[];
   titulos:any=[
     'Subestación',
@@ -110,12 +111,13 @@ export class SisdatComponent implements OnInit {
   }
 
   openModalFormSisdat() {
-    this.modalService.open(SisdatModalComponent, {
+    const activeModal =this.modalService.open(SisdatModalComponent, {
       centered: true,
       size: 'lg',
       backdrop: 'static',
       keyboard: false,
     });
+    activeModal.componentInstance.SRAR_CODIGO = this.SRAR_CODIGO;
   }
 
 }

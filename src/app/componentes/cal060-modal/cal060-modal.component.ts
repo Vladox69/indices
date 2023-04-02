@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Alimentador } from 'src/app/modelos/alimentador.interface';
 import { IndicesService } from 'src/app/servicios/indices.service';
 import swal from 'sweetalert2';
@@ -12,13 +12,14 @@ import swal from 'sweetalert2';
 })
 export class Cal060ModalComponent implements OnInit {
 
-  constructor(private indicesService: IndicesService,public ngbActiveModal:NgbActiveModal,private router:Router) {}
+  constructor(private indicesService: IndicesService,public ngbActiveModal:NgbActiveModal,private router:Router,private modalService:NgbModal) {}
 
   ngOnInit(): void {
     this.cargarDatos();
   }
 
   //variables
+  @Input() SRAR_CODIGO: any = null;
     listaAlimentadores:Alimentador[]=[];
     listaIncidencias:any[]=[];
     informeCal:any[]=[];
@@ -73,7 +74,7 @@ export class Cal060ModalComponent implements OnInit {
       let encontro=false;
       this.listaAlimentadores.forEach(alim => {
         if(inc['SIND_ALIMENTADOR']==alim.SALIM_NOMBRE){
-          inc.SALIM_SUBADMS_CAMBIO=alim.SALIM_SUBADMS_CAMBIO;
+          inc.SALIM_SUBADMS_CAMBIO=alim.SALIM_SUBANTERIOR_CAMBIO;
           inc.SALIM_NOMBREADMS_CAMBIO=alim.SALIM_NOMBREADMS_CAMBIO;
           encontro=true;
         }
@@ -81,12 +82,11 @@ export class Cal060ModalComponent implements OnInit {
     });
   }
   cargarDatos() {
-    this.indicesService.listarInformeDiario('1').subscribe((res) => {
+    this.indicesService.listarInformeDiario(this.SRAR_CODIGO).subscribe((res) => {
       this.listaIncidencias = res;
     });
     this.indicesService.listarAlimentadoresActivos().subscribe(res=>{
      this.listaAlimentadores = res;
-     this.doInforme();
     });
   }
 
@@ -103,61 +103,54 @@ export class Cal060ModalComponent implements OnInit {
       allowOutsideClick: false
     });
     let contador=0;
-    for (let i = 0; i < this.listaIncidencias.length; i++) {
-      let filaInformeDiario:any=[
+    this.listaIncidencias.forEach(element=>{
+      let filaCal060:any=[
         {
-          "SCAL_TTIK": this.listaIncidencias[i]['SIND_TTIK'],
-          "SRAR_CODIGO": this.listaIncidencias[i]['SRAR_CODIGO'],
-          "SCAL_INT_HORA_FIN": this.listaIncidencias[i]['SIND_INT_HORA_FIN'],
+          "SCAL_TTIK": element['SIND_TTIK'],
+          "SRAR_CODIGO": element['SRAR_CODIGO'],
+          "SCAL_INT_HORA_FIN": element['SIND_INT_HORA_FIN'],
           "SCAL_OBSERVACION": "",
-          "SCAL_PROTECCION": this.listaIncidencias[i]['SIND_PROTECCION'],
+          "SCAL_PROTECCION": element['SIND_PROTECCION'],
           "SCAL_CODIGO": null,
-          "SCAL_POTENCIAL_NFS": this.listaIncidencias[i]['SIND_POTENCIAL_NFS'],
-          "SCAL_INT_FECHA_INICIO": this.listaIncidencias[i]['SIND_INT_FECHA_INICIO'],
-          "SCAL_TIPO_PROTECCION": this.listaIncidencias[i]['SIND_TIPO_PROTECCION'],
+          "SCAL_POTENCIAL_NFS": element['SIND_POTENCIAL_NFS'],
+          "SCAL_INT_FECHA_INICIO": element['SIND_INT_FECHA_INICIO'],
+          "SCAL_TIPO_PROTECCION": element['SIND_TIPO_PROTECCION'],
           "SCAL_ENERGIA_NOSUMINISTRADA": "0",
-          "SCAL_CANTON": this.listaIncidencias[i]['SIND_CANTON'],
-          "SCAL_ALIMENTADOR_PRIMARIO": this.listaIncidencias[i]['SALIM_NOMBREADMS_CAMBIO'],
-          "SCAL_SUBESTACION": this.listaIncidencias[i]['SALIM_SUBADMS_CAMBIO'],
-          "SCAL_INTE_ORIGEN": this.listaIncidencias[i]['SIND_INTE_ORIGEN'],
-          "SCAL_INTE_CAUSA": this.listaIncidencias[i]['SIND_INTE_CAUSA'],
-          "SCAL_INT_DURACION_HORAS": this.listaIncidencias[i]['SIND_INT_DURACION_HORAS'],
-          "SCAL_INDICADOR_FM": this.listaIncidencias[i]['SIND_INDICADOR_FM'],
-          "SCAL_NIVEL_TENSION": this.listaIncidencias[i]['SIND_NIVEL_TENSION'],
-          "SCAL_INT_DURACION": this.listaIncidencias[i]['SIND_INT_DURACION'],
-          "SCAL_INT_FECHA_FIN": this.listaIncidencias[i]['SIND_INT_FECHA_FIN'],
+          "SCAL_CANTON": element['SIND_CANTON'],
+          "SCAL_ALIMENTADOR_PRIMARIO": element['SALIM_NOMBREADMS_CAMBIO'],
+          "SCAL_SUBESTACION": element['SALIM_SUBADMS_CAMBIO'],
+          "SCAL_INTE_ORIGEN": element['SIND_INTE_ORIGEN'],
+          "SCAL_INTE_CAUSA": element['SIND_INTE_CAUSA'],
+          "SCAL_INT_DURACION_HORAS": element['SIND_INT_DURACION_HORAS'],
+          "SCAL_INDICADOR_FM": element['SIND_INDICADOR_FM'],
+          "SCAL_NIVEL_TENSION": element['SIND_NIVEL_TENSION'],
+          "SCAL_INT_DURACION": element['SIND_INT_DURACION'],
+          "SCAL_INT_FECHA_FIN": element['SIND_INT_FECHA_FIN'],
           "SCAL_CODIGO_INTERRUPCION": "",
-          "SCAL_PROVINCIA": this.listaIncidencias[i]['SIND_PROVINCIA'],
-          "SCAL_INSTALACION_EF": this.listaIncidencias[i]['SIND_INSTALACION_EF'],
-          "SCAL_INT_HORA_INICIO": this.listaIncidencias[i]['SIND_INT_HORA_INICIO'],
-          "SCAL_PROPIEDAD": this.listaIncidencias[i]['SIND_PROPIEDAD'],
-          "SCAL_CAUSAS": this.listaIncidencias[i]['SIND_CAUSAS'],
-          "SCAL_FMIK": this.listaIncidencias[i]['SIND_FMIK'],
-          "SCAL_POTENCIAL_NI": this.listaIncidencias[i]['SIND_POTENCIAL_NI'],
-          "SCAL_SECTOR": this.listaIncidencias[i]['SIND_SECTOR'],
-          "SCAL_LINEA_SUBT": this.listaIncidencias[i]['SIND_LINEA_SUBT'],
-          "SCAL_ETAPA_FUN": this.listaIncidencias[i]['SIND_ETAPA_FUN']
+          "SCAL_PROVINCIA": element['SIND_PROVINCIA'],
+          "SCAL_INSTALACION_EF": element['SIND_INSTALACION_EF'],
+          "SCAL_INT_HORA_INICIO": element['SIND_INT_HORA_INICIO'],
+          "SCAL_PROPIEDAD": element['SIND_PROPIEDAD'],
+          "SCAL_CAUSAS": element['SIND_CAUSAS'],
+          "SCAL_FMIK": element['SIND_FMIK'],
+          "SCAL_POTENCIAL_NI": element['SIND_POTENCIAL_NI'],
+          "SCAL_SECTOR": element['SIND_SECTOR'],
+          "SCAL_LINEA_SUBT": element['SIND_LINEA_SUBT'],
+          "SCAL_ETAPA_FUN": element['SIND_ETAPA_FUN']
         }
       ]
-      const resp=this.indicesService.addFilaCal060(filaInformeDiario);
-      resp.subscribe((data:any)=>{
+      this.indicesService.addFilaCal060(filaCal060).subscribe((res:any)=>{
         contador++;
-        if(data['MENSAJE']){
-          console.log('los trues');
-          console.log(filaInformeDiario);
-        }else{
-          console.log('Los falses');
-          console.log(filaInformeDiario);
-        }
-
+        console.log(contador);
+        console.log(res);
+        console.log(filaCal060);
         if(contador==this.listaIncidencias.length){
-          this.router.navigate(['/cal060','1']);
+          this.modalService.dismissAll(Cal060ModalComponent);
           swal.close();
+          this.router.navigate(['/cal060',this.SRAR_CODIGO]);
         }
-        
-        
       })
-    }
+    })
 
   }
 

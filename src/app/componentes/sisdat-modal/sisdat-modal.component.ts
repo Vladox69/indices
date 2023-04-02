@@ -62,7 +62,7 @@ export class SisdatModalComponent implements OnInit {
   p:any=1;
 
   cargarDatos(){
-    this.indicesService.listarAlimentadores().subscribe(res=>{
+    this.indicesService.listarAlimentadoresActivos().subscribe(res=>{
      this.listaAlimentadores=res; 
     });
     //
@@ -72,7 +72,6 @@ export class SisdatModalComponent implements OnInit {
     //
     this.indicesService.listarValoresTransmisor(this.SRAR_CODIGO).subscribe(res=>{
       this.listaValoresTransmisor=res; 
-      console.log(this.listaValoresTransmisor);
      });
     //
     this.indicesService.listarValoresSISDAT(this.SRAR_CODIGO).subscribe(res=>{
@@ -153,8 +152,7 @@ export class SisdatModalComponent implements OnInit {
         this.informeSisdat.push(fila);
       }
     });
-    console.log(this.informeSisdat);
-    
+
     this.informeSisdat.forEach(inf=>{
       let encontro=false;
       let programada=false;
@@ -204,7 +202,6 @@ export class SisdatModalComponent implements OnInit {
       }
     });
 
-    console.log(this.informeSisdat);
   }
   async onGuardarArchivo(){
     const swalWithBootstrapButtons = swal.mixin({
@@ -249,9 +246,7 @@ export class SisdatModalComponent implements OnInit {
 
     let contador=0;
 
-    this.indicesService.deleteInformeSISDAT(this.SRAR_CODIGO).subscribe(res=>{
-     console.log(res); 
-    });
+    this.indicesService.deleteInformeSISDAT(this.SRAR_CODIGO).subscribe(res=>{});
     this.informeSisdat.forEach(element => {
       let filaSisdat:any=[
         {
@@ -282,12 +277,11 @@ export class SisdatModalComponent implements OnInit {
           'SSIS_OBSERVACION' : ''
         }];
       this.indicesService.addFilaSISDAT(filaSisdat).subscribe(res=>{
-        console.log(res);
         contador++;
         if(contador==this.informeSisdat.length){
-          console.log('archivo guardado');
-          this.router.navigate(['/subir-archivos']);
+          this.modalService.dismissAll(SisdatModalComponent);
           swal.close();
+          this.router.navigate(['/sisdat',this.SRAR_CODIGO]);
         }
       });
     });

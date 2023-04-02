@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHandler, HttpHeaders } from '@angular/common/http';
 import { Alimentador } from '../modelos/alimentador.interface';
 import { Observable } from 'rxjs';
+import { AlimentadorSIGELEC } from '../modelos/alimentadorSIGELEC';
+import { SubestacionSIGELEC } from '../modelos/subestacionSIGELEC';
 @Injectable({
   providedIn: 'root'
 })
@@ -31,6 +33,14 @@ export class IndicesService {
   //Alimentadores Activos
   listarAlimentadoresActivos(): Observable<Alimentador[]> {
     return this.httpClient.get<Alimentador[]>(this.url+ 'listarAlimentadoresActivos');
+  }
+
+  listarAlimenadoresSIGELEC():Observable<AlimentadorSIGELEC[]> {
+    return this.httpClient.get<AlimentadorSIGELEC[]>(this.url+ 'listarAlimentadoresSIGELEC');
+  }
+
+  listarSubestacionesSIGELEC():Observable<SubestacionSIGELEC[]> {
+    return this.httpClient.get<SubestacionSIGELEC[]>(this.url+ 'listarSubestacionesSIGELEC');
   }
 
   async addAlimentador(alimentador:any): Promise<Observable<any>> {

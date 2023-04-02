@@ -13,5 +13,8 @@ export interface Alimentador{
     SALIM_FECHA : string,
     SALIM_ESTADO : string,
     SALIM_SUBADMS_CAMBIO : string,
-    SALIM_NOMBREADMS_CAMBIO : string
+    SALIM_NOMBREADMS_CAMBIO : string,
+    SALIM_ALIMENTADORID_SIGELEC:string,
+    SALIM_SUBESTACIONID_SIGELEC:string,
+    SALIM_SUBANTERIOR_CAMBIO:string
 }

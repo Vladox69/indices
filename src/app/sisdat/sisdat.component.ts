@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SisdatModalComponent } from '../componentes/sisdat-modal/sisdat-modal.component';
 import { Alimentador } from '../modelos/alimentador.interface';
@@ -13,7 +13,7 @@ import { IndicesService } from '../servicios/indices.service';
 })
 export class SisdatComponent implements OnInit {
 
-  constructor(private indicesService:IndicesService,private modalService: NgbModal,private excelService:ExcelService,private activatedRoute: ActivatedRoute) { 
+  constructor(private indicesService:IndicesService,private modalService: NgbModal,private excelService:ExcelService,private activatedRoute: ActivatedRoute,private router:Router) { 
     this.SRAR_CODIGO=this.activatedRoute.snapshot.paramMap.get('id');
   }
 
@@ -118,6 +118,10 @@ export class SisdatComponent implements OnInit {
       keyboard: false,
     });
     activeModal.componentInstance.SRAR_CODIGO = this.SRAR_CODIGO;
+  }
+
+  goBack(){
+    this.router.navigate(['/subir-archivos'])
   }
 
 }

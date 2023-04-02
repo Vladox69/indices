@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Cal060ModalComponent } from '../componentes/cal060-modal/cal060-modal.component';
 import { Alimentador } from '../modelos/alimentador.interface';
@@ -11,7 +12,9 @@ import { IndicesService } from '../servicios/indices.service';
   styleUrls: ['./cal060.component.css'],
 })
 export class Cal060Component implements OnInit {
-  constructor(private indicesService: IndicesService,private modalService: NgbModal,private excelService:ExcelService) {}
+  constructor(private indicesService: IndicesService,private modalService: NgbModal,private excelService:ExcelService,private activatedRoute: ActivatedRoute,private router:Router) {
+    this.SRAR_CODIGO=this.activatedRoute.snapshot.paramMap.get('id');
+  }
 
  
 
@@ -64,6 +67,7 @@ export class Cal060Component implements OnInit {
     'Observaciones',
     'Editar'
     ];
+    SRAR_CODIGO:any;
   term: any;
   p: any = 1;
   
@@ -71,7 +75,7 @@ export class Cal060Component implements OnInit {
     
   }
   cargarDatos() {
-    this.indicesService.listarFilasCal060('1').subscribe((resp:any)=>{
+    this.indicesService.listarFilasCal060(this.SRAR_CODIGO).subscribe((resp:any)=>{
       this.informeCal=resp;
       console.log(resp);
     });
@@ -79,16 +83,22 @@ export class Cal060Component implements OnInit {
   }
 
   openModalTableCal060(){
-    this.modalService.open(Cal060ModalComponent, {
+    const activeModal = this.modalService.open(Cal060ModalComponent, {
       centered: true,
       size: 'lg',
       backdrop: 'static',
       keyboard: false,
     });
+    activeModal.componentInstance.SRAR_CODIGO = this.SRAR_CODIGO;
   }
 
   onReporteCal060(){
     this.excelService.downloadExcelCal060('Cal060.xlsx',"Cal060",[]); 
   }
+
+  goBack(){
+    this.router.navigate(['/subir-archivos'])
+  }
+
 
 }

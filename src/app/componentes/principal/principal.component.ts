@@ -41,7 +41,6 @@ export class PrincipalComponent implements OnInit {
       horas.push('00');
     }
     var resminutos = Number('0.'+horas[1])*60;
-    //console.log(totalminutos,'resmin');
     var minutos = resminutos.toString().split('.');
     if(minutos[1]==undefined){
       minutos.push('00');
@@ -49,8 +48,6 @@ export class PrincipalComponent implements OnInit {
     var ressegundos = Number('0.'+minutos[1])*60;
     var segundos = Math.round(ressegundos);
     let tiempo = horas[0]+':'+minutos[0]+':'+segundos;
-    //console.log(tiempo);
-
 
     this.iService.listarCausasCambio().subscribe(res=>{
       this.listaCausaCambio = res;
@@ -209,7 +206,6 @@ export class PrincipalComponent implements OnInit {
       if(element[5] >1){
         element[4]=0;
       }
-      
     });
 
     ///elimino region , subregion, subestacion , interrupcion
@@ -265,8 +261,6 @@ export class PrincipalComponent implements OnInit {
       }
     });
     //verifico si en la causa hay transmisor
-
-
     this.calculosAutomaticos.forEach((fila,index) => {
       if(index!=0){
         if(fila[8]=='Transmisor'){
@@ -343,7 +337,7 @@ export class PrincipalComponent implements OnInit {
       }
     });
     this.resultado = this.calculosAutomaticos;
-        console.log('aqui',this.calculosAutomaticos);
+    // console.log('aqui',this.calculosAutomaticos);
     //this.exportCalculos();
   }
 
@@ -360,8 +354,6 @@ export class PrincipalComponent implements OnInit {
 
   doResultados(){
     this.doCalculosAuto();
-    console.log('resultados',this.resultado);
-    //console.log(this.resultado);
     this.resultado.forEach((fila,index) => {
       if(index!=0){
       }else{
@@ -458,7 +450,7 @@ export class PrincipalComponent implements OnInit {
             }
           });
       
-        this.exportResultados();
+        // this.exportResultados();
   }
   exportResultados(): void {
     /* generate worksheet */
@@ -547,8 +539,8 @@ export class PrincipalComponent implements OnInit {
       }
     });
 
-    let informeAux=this.informe;
-     console.log(this.informe);
+    // let informeAux=this.informe;
+    //  console.log(this.informe);
     this.informe.forEach((fila,index1) => {
       if(index1>0){
         fila.splice(0,0,fila[7]);
@@ -974,9 +966,6 @@ export class PrincipalComponent implements OnInit {
   }
   irACatalogo(){
     this.router.navigate(['/catalogo']);
-  }
-
-  cabeceras(){
   }
 
 }

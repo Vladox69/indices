@@ -2,8 +2,10 @@ import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AlimentadorSIGELEC } from 'src/app/modelos/alimentadorSIGELEC';
 import { Canton } from 'src/app/modelos/canton.interface';
 import { Provincia } from 'src/app/modelos/provincia.interface';
+import { SubestacionSIGELEC } from 'src/app/modelos/subestacionSIGELEC';
 import { IndicesService } from 'src/app/servicios/indices.service';
 
 @Component({
@@ -31,12 +33,17 @@ export class AddAlimentadorComponent implements OnInit {
     SALIM_ESTADO: new FormControl(''),
     SALIM_FECHA: new FormControl('', [Validators.required]),
     SALIM_SUBADMS_CAMBIO: new FormControl('', []),
-    SALIM_NOMBREADMS_CAMBIO: new FormControl('', [])
+    SALIM_NOMBREADMS_CAMBIO: new FormControl('', []),
+    SALIM_ALIMENTADORID_SIGELEC:new FormControl('', []),
+    SALIM_SUBESTACIONID_SIGELEC:new FormControl('', [])
   })
   //Variables
   listaProvincias: Provincia[] = [];
   listaCantones: Canton[] = [];
   listaCantonesFiltro: any;
+  listaAlimentadoresSIGELEC:AlimentadorSIGELEC[]=[];
+  listaAlimentadoresSIGELECFiltro:AlimentadorSIGELEC[]=[];
+  listaSubestacionesSIGELEC:SubestacionSIGELEC[]=[];
   provincia: any;
   datePipe = new DatePipe('es');
 
@@ -52,6 +59,16 @@ export class AddAlimentadorComponent implements OnInit {
     this.indicesServices.listarCantones().subscribe(res => {
       this.listaCantones = res;
     });
+    
+    this.indicesServices.listarSubestacionesSIGELEC().subscribe(res=>{
+      this.listaSubestacionesSIGELEC=res;
+    });
+
+    this.indicesServices.listarAlimenadoresSIGELEC().subscribe(res=>{
+      this.listaAlimentadoresSIGELEC=res;
+      this.listaAlimentadoresSIGELECFiltro=res;
+    })
+
     if (this.alimentador != null) {
       this.setFormAlimentador();
     }
@@ -60,7 +77,7 @@ export class AddAlimentadorComponent implements OnInit {
   async addAlimentador() {
     let alimentador: any = [this.formAlimentador.value];
     const resp = await this.indicesServices.addAlimentador(alimentador);
-    alimentador[0]["SALIM_FECHA"]=this.datePipe.transform(alimentador[0]["SALIM_FECHA"],"dd/MM/yyyy");
+    alimentador[0]["SALIM_FECHA"]=this.datePipe.transform(alimentador[0]["SALIM_FECHA"],"dd/MM/yyyy");    
     resp.subscribe((res) => {
       console.log(res);
     })
@@ -80,7 +97,6 @@ export class AddAlimentadorComponent implements OnInit {
   setFormAlimentador() {
     this.formAlimentador.get("SALIM_CODIGO")?.setValue(this.alimentador["SALIM_CODIGO"]);
     this.formAlimentador.get("SALIM_PROVINCIA")?.setValue(this.alimentador["SALIM_PROVINCIA"]);
-    // this.changeProvincia(this.alimentador["SALIM_PROVINCIA"]);
     this.formAlimentador.get("SALIM_CANTON")?.setValue(this.alimentador["SALIM_CANTON"]);
     this.formAlimentador.get("SALIM_NOMBRE")?.setValue(this.alimentador["SALIM_NOMBRE"]);
     this.formAlimentador.get("SALIM_LINEA")?.setValue(this.alimentador["SALIM_LINEA"]);
@@ -94,6 +110,8 @@ export class AddAlimentadorComponent implements OnInit {
     this.formAlimentador.get("SALIM_FECHA")?.setValue(this.alimentador["SALIM_FECHA"]);
     this.formAlimentador.get("SALIM_SUBADMS_CAMBIO")?.setValue(this.alimentador["SALIM_SUBADMS_CAMBIO"]);
     this.formAlimentador.get("SALIM_NOMBREADMS_CAMBIO")?.setValue(this.alimentador["SALIM_NOMBREADMS_CAMBIO"]);
+    this.formAlimentador.get("SALIM_ALIMENTADORID_SIGELEC")?.setValue(this.alimentador["SALIM_ALIMENTADORID_SIGELEC"]);
+    this.formAlimentador.get("SALIM_SUBESTACIONID_SIGELEC")?.setValue(this.alimentador["SALIM_SUBESTACIONID_SIGELEC"]);
   }
 
   onGuardarAlimentador() {
@@ -120,6 +138,15 @@ export class AddAlimentadorComponent implements OnInit {
       let codigo = element.CODE.substring(0, 2);
       if (codigo == codigoProv) {
         this.listaCantonesFiltro.push(element);
+      }
+    });
+  }
+
+  changeSubestacion(event:any){
+    this.listaAlimentadoresSIGELECFiltro=[];
+    this.listaAlimentadoresSIGELEC.forEach(alim=>{
+      if(alim.IDSUBESTACION==event){
+        this.listaAlimentadoresSIGELECFiltro.push(alim);
       }
     });
   }

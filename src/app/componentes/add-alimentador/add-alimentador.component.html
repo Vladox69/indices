@@ -90,9 +90,32 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+
+    <!--Subestacion-->
+    <mat-form-field class="w-75" appearance="outline" >
+      <mat-label>Subestacion</mat-label>
+      <mat-select formControlName="SALIM_SUBESTACIONID_SIGELEC"  (valueChange)="changeSubestacion($event)" >
+        <mat-option *ngFor="let subestacion of listaSubestacionesSIGELEC" [value]="subestacion.NUM_SUBEST">
+          {{subestacion.NOMBRE_SUBEST}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> 
+    <!--Alimentador-->
+   <mat-form-field class="w-75" appearance="outline" >
+      <mat-label>Alimentador</mat-label>
+      <mat-select formControlName="SALIM_ALIMENTADORID_SIGELEC">
+        <mat-option *ngFor="let alimS of listaAlimentadoresSIGELECFiltro" [value]="alimS.ALIMENTADORID">
+          {{alimS.NOM_ALIM}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> 
+
     <mat-form-field class="w-75" appearance="outline">
       <mat-label>Elige fecha</mat-label>
       <input matInput type="date" formControlName="SALIM_FECHA">
     </mat-form-field>
+
     <button class="m-2 b-2" mat-raised-button color="primary" [disabled]="!formAlimentador.valid" (click)="onGuardarAlimentador()" >Guardar</button>
 </form>
+
+ 

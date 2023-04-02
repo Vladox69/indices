@@ -15,7 +15,7 @@ export class AlimentadorComponent implements OnInit {
   constructor(
     private iService: IndicesService,
     private modalService: NgbModal
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.obtenerAlimentadores();
@@ -23,7 +23,7 @@ export class AlimentadorComponent implements OnInit {
   //variables
   listaAlimentadores: Alimentador[] = [];
   potenAlimentadores: any[] = [];
-  historialPotencia:Alimentador[]=[];
+  historialPotencia: Alimentador[] = [];
   p: any = 1;
   term: any;
 
@@ -70,14 +70,14 @@ export class AlimentadorComponent implements OnInit {
         if (result.isConfirmed) {
           const resp = this.iService.deleteAlimentador(ali['SALIM_CODIGO']);
           resp.subscribe((res) => {
-           window.location.reload();
+            window.location.reload();
           });
         }
       });
   }
 
-  onEditAlimentador(alimentador:any) {
-    const activeModal =this.modalService.open(AddAlimentadorComponent, {
+  onEditAlimentador(alimentador: any) {
+    const activeModal = this.modalService.open(AddAlimentadorComponent, {
       centered: true,
       size: 'lg',
       backdrop: 'static',
@@ -87,19 +87,19 @@ export class AlimentadorComponent implements OnInit {
 
   }
 
-  potenciaAlimentadores(){
+  potenciaAlimentadores() {
     const resp = this.iService.listarPotenciaAlimentadores();
-    this.historialPotencia=[];
+    this.historialPotencia = [];
     resp.subscribe((res) => {
-      this.potenAlimentadores=res;
+      this.potenAlimentadores = res;
       this.listaAlimentadores.forEach(alim => {
-        let encontro=false;
+        let encontro = false;
         this.potenAlimentadores.forEach(hist => {
-          if(alim.SALIM_NOMBRE==hist['SIND_ALIMENTADOR'] && alim.SALIM_ESTADO=='ACTIVO'){
-            let ali= {
-              'SALIM_CODIGO' : alim.SALIM_CODIGO,
-              'SALIM_NOMBRE' : alim.SALIM_NOMBRE,
-              'SALIM_REFERENCIA' : alim.SALIM_REFERENCIA,
+          if (alim.SALIM_NOMBRE == hist['SIND_ALIMENTADOR'] && alim.SALIM_ESTADO == 'ACTIVO') {
+            let ali = {
+              'SALIM_CODIGO': alim.SALIM_CODIGO,
+              'SALIM_NOMBRE': alim.SALIM_NOMBRE,
+              'SALIM_REFERENCIA': alim.SALIM_REFERENCIA,
               'SALIM_PROVINCIA': alim.SALIM_PROVINCIA,
               'SALIM_CANTON': alim.SALIM_CANTON,
               'SALIM_SUBESTACION': alim.SALIM_SUBESTACION,
@@ -107,54 +107,54 @@ export class AlimentadorComponent implements OnInit {
               'SALIM_KVA': hist['POTENCIA'],
               'SALIM_LINEA': alim.SALIM_LINEA,
               'SALIM_TIPO': alim.SALIM_TIPO,
-              'SALIM_OBSERVACION' : alim.SALIM_OBSERVACION,
-              'SALIM_FECHA' : hist['FECHA'],
-              'SALIM_ESTADO' : alim.SALIM_ESTADO,
-              'SALIM_SUBADMS_CAMBIO':alim.SALIM_SUBADMS_CAMBIO,
-              'SALIM_NOMBREADMS_CAMBIO':alim.SALIM_NOMBREADMS_CAMBIO
+              'SALIM_OBSERVACION': alim.SALIM_OBSERVACION,
+              'SALIM_FECHA': hist['FECHA'],
+              'SALIM_ESTADO': alim.SALIM_ESTADO,
+              'SALIM_SUBADMS_CAMBIO': alim.SALIM_SUBADMS_CAMBIO,
+              'SALIM_NOMBREADMS_CAMBIO': alim.SALIM_NOMBREADMS_CAMBIO,
+              'SALIM_ALIMENTADORID_SIGELEC':alim.SALIM_ALIMENTADORID_SIGELEC,
+              'SALIM_SUBESTACIONID_SIGELEC':alim.SALIM_SUBESTACIONID_SIGELEC,
+              'SALIM_SUBANTERIOR_CAMBIO':alim.SALIM_SUBANTERIOR_CAMBIO
             }
             this.historialPotencia.push(ali);
-            encontro=true;
+            encontro = true;
           }
         });
-        if(!encontro && alim.SALIM_ESTADO=='ACTIVO'){
-          let ali= {
-            'SALIM_CODIGO' : alim.SALIM_CODIGO,
-            'SALIM_NOMBRE' : alim.SALIM_NOMBRE,
-            'SALIM_REFERENCIA' : alim.SALIM_REFERENCIA,
-            'SALIM_PROVINCIA': alim.SALIM_PROVINCIA,
-            'SALIM_CANTON': alim.SALIM_CANTON,
-            'SALIM_SUBESTACION': alim.SALIM_SUBESTACION,
-            'SALIM_SUBADMS': alim.SALIM_SUBADMS,
-            'SALIM_KVA': alim.SALIM_KVA,
-            'SALIM_LINEA': alim.SALIM_LINEA,
-            'SALIM_TIPO': alim.SALIM_TIPO,
-            'SALIM_OBSERVACION' : alim.SALIM_OBSERVACION,
-            'SALIM_FECHA' : alim.SALIM_FECHA,
-            'SALIM_ESTADO' : alim.SALIM_ESTADO,
-            'SALIM_SUBADMS_CAMBIO':alim.SALIM_SUBADMS_CAMBIO,
-            'SALIM_NOMBREADMS_CAMBIO':alim.SALIM_NOMBREADMS_CAMBIO
-          }
-          this.historialPotencia.push(ali);
-        }
+        // if (!encontro && alim.SALIM_ESTADO == 'ACTIVO') {
+        //   let ali = {
+        //     'SALIM_CODIGO': alim.SALIM_CODIGO,
+        //     'SALIM_NOMBRE': alim.SALIM_NOMBRE,
+        //     'SALIM_REFERENCIA': alim.SALIM_REFERENCIA,
+        //     'SALIM_PROVINCIA': alim.SALIM_PROVINCIA,
+        //     'SALIM_CANTON': alim.SALIM_CANTON,
+        //     'SALIM_SUBESTACION': alim.SALIM_SUBESTACION,
+        //     'SALIM_SUBADMS': alim.SALIM_SUBADMS,
+        //     'SALIM_KVA': alim.SALIM_KVA,
+        //     'SALIM_LINEA': alim.SALIM_LINEA,
+        //     'SALIM_TIPO': alim.SALIM_TIPO,
+        //     'SALIM_OBSERVACION': alim.SALIM_OBSERVACION,
+        //     'SALIM_FECHA': alim.SALIM_FECHA,
+        //     'SALIM_ESTADO': alim.SALIM_ESTADO,
+        //     'SALIM_SUBADMS_CAMBIO': alim.SALIM_SUBADMS_CAMBIO,
+        //     'SALIM_NOMBREADMS_CAMBIO': alim.SALIM_NOMBREADMS_CAMBIO
+        //   }
+        //   this.historialPotencia.push(ali);
+        // }
       });
     });
-
     console.log(this.historialPotencia);
   }
-  
-  actualizarCarga(){
+
+  actualizarCarga() {
 
     this.historialPotencia.forEach(element => {
-          this.guardar(element);
+      this.guardar(element);
     });
   }
-  async guardar(alim:Alimentador){
-    let alimentador:any=[alim];
-    console.log(alimentador);
-    const resp= await this.iService.updateAlimentador(alimentador);    
-     resp.subscribe((res)=>{
-       console.log(res);
+  async guardar(alim: Alimentador) {
+    let alimentador: any = [alim];
+    const resp = await this.iService.updateAlimentador(alimentador);
+    resp.subscribe((res) => {
     })
   }
 }

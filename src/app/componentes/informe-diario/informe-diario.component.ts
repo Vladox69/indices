@@ -217,5 +217,7 @@ export class InformeDiarioComponent implements OnInit {
     }
     this.mayorA=0;
   }
-
+  goBack(){
+    this.router.navigate(['/subir-archivos'])
+  }
 }

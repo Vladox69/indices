@@ -104,12 +104,13 @@ export class Cal060ModalComponent implements OnInit {
     });
     let contador=0;
     this.listaIncidencias.forEach(element=>{
+      element;
       let filaCal060:any=[
         {
           "SCAL_TTIK": element['SIND_TTIK'],
           "SRAR_CODIGO": element['SRAR_CODIGO'],
           "SCAL_INT_HORA_FIN": element['SIND_INT_HORA_FIN'],
-          "SCAL_OBSERVACION": "",
+          "SCAL_OBSERVACION": element['SIND_CODIGO'],
           "SCAL_PROTECCION": element['SIND_PROTECCION'],
           "SCAL_CODIGO": null,
           "SCAL_POTENCIAL_NFS": element['SIND_POTENCIAL_NFS'],
@@ -139,11 +140,9 @@ export class Cal060ModalComponent implements OnInit {
           "SCAL_ETAPA_FUN": element['SIND_ETAPA_FUN']
         }
       ]
+      
       this.indicesService.addFilaCal060(filaCal060).subscribe((res:any)=>{
         contador++;
-        console.log(contador);
-        console.log(res);
-        console.log(filaCal060);
         if(contador==this.listaIncidencias.length){
           this.modalService.dismissAll(Cal060ModalComponent);
           swal.close();

@@ -43,6 +43,7 @@ import { SisdatComponent } from './sisdat/sisdat.component';
 import { Cal060Component } from './cal060/cal060.component';
 import { SisdatModalComponent } from './componentes/sisdat-modal/sisdat-modal.component';
 import { Cal060ModalComponent } from './componentes/cal060-modal/cal060-modal.component';
+import { FormSisdatComponent } from './componentes/form-sisdat/form-sisdat.component';
 
   
 @NgModule({
@@ -64,7 +65,8 @@ import { Cal060ModalComponent } from './componentes/cal060-modal/cal060-modal.co
     SisdatComponent,
     Cal060Component,
     SisdatModalComponent,
-    Cal060ModalComponent
+    Cal060ModalComponent,
+    FormSisdatComponent
   ],
   imports: [
     BrowserModule,

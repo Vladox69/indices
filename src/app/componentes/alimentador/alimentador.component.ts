@@ -4,7 +4,7 @@ import { IndicesService } from 'src/app/servicios/indices.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddAlimentadorComponent } from '../add-alimentador/add-alimentador.component';
 import swal from 'sweetalert2';
-import { IfStmt } from '@angular/compiler';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-alimentador',
@@ -26,11 +26,11 @@ export class AlimentadorComponent implements OnInit {
   historialPotencia: Alimentador[] = [];
   p: any = 1;
   term: any;
+  datePipe = new DatePipe('es');
 
   obtenerAlimentadores() {
     this.iService.listarAlimentadores().subscribe((res) => {
       this.listaAlimentadores = res;
-      console.log(res);
     });
   }
 
@@ -96,6 +96,9 @@ export class AlimentadorComponent implements OnInit {
         let encontro = false;
         this.potenAlimentadores.forEach(hist => {
           if (alim.SALIM_NOMBRE == hist['SIND_ALIMENTADOR'] && alim.SALIM_ESTADO == 'ACTIVO') {
+            let fecha=hist['FECHA'].split('-');
+            let fec_ali=fecha[2]+"/"+fecha[1]+"/"+fecha[0];
+            console.log(fec_ali);
             let ali = {
               'SALIM_CODIGO': alim.SALIM_CODIGO,
               'SALIM_NOMBRE': alim.SALIM_NOMBRE,
@@ -108,7 +111,7 @@ export class AlimentadorComponent implements OnInit {
               'SALIM_LINEA': alim.SALIM_LINEA,
               'SALIM_TIPO': alim.SALIM_TIPO,
               'SALIM_OBSERVACION': alim.SALIM_OBSERVACION,
-              'SALIM_FECHA': hist['FECHA'],
+              'SALIM_FECHA': fec_ali,
               'SALIM_ESTADO': alim.SALIM_ESTADO,
               'SALIM_SUBADMS_CAMBIO': alim.SALIM_SUBADMS_CAMBIO,
               'SALIM_NOMBREADMS_CAMBIO': alim.SALIM_NOMBREADMS_CAMBIO,
@@ -142,11 +145,9 @@ export class AlimentadorComponent implements OnInit {
         // }
       });
     });
-    console.log(this.historialPotencia);
   }
 
   actualizarCarga() {
-
     this.historialPotencia.forEach(element => {
       this.guardar(element);
     });

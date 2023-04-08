@@ -17,46 +17,46 @@
             </tr>
             <tr *ngFor="let row of informeCal | filter:term| paginate: { itemsPerPage: 10, currentPage: p } ;let indice=index"> 
                 <td>{{((p-1)*10)+(indice+1)}}</td>
-                <td></td>
-                <td>{{row.SIND_INDICADOR_FM}}</td>
-                <td>{{row.SIND_ETAPA_FUN}}</td>
-                <td>{{row.SIND_INSTALACION_EF}}</td>
-                <td>{{row.SIND_PROVINCIA}}</td>
-                <td>{{row.SIND_CANTON}}</td>
-                <td>{{row.SIND_SECTOR}}</td>
+                <td>{{row.SCAL_CODIGO_INTERRUPCION}}</td>
+                <td>{{row.SCAL_INDICADOR_FM}}</td>
+                <td>{{row.SCAL_ETAPA_FUN}}</td>
+                <td>{{row.SCAL_INSTALACION_EF}}</td>
+                <td>{{row.SCAL_PROVINCIA}}</td>
+                <td>{{row.SCAL_CANTON}}</td>
+                <td>{{row.SCAL_SECTOR}}</td>
                 <td>-</td>
-                <td>{{row.SIND_PROPIEDAD}}</td>
-                <td>{{row.SIND_PROTECCION}}</td>
-                <td>{{row.SIND_TIPO_PROTECCION}}</td>
-                <td>{{row.SIND_ETAPA_FUN}}</td>
-                <td>{{row.SIND_INSTALACION_EF}}</td>
-                <td>{{row.SIND_PROVINCIA}}</td>
-                <td>{{row.SIND_CANTON}}</td>
-                <td>{{row.SIND_SECTOR}}</td>
-                <td>{{row.SIND_LINEA_SUBT}}</td>
-                <td>{{row.SALIM_SUBADMS_CAMBIO}}</td>
-                <td>{{row.SALIM_NOMBREADMS_CAMBIO}}</td>
-                <td>{{row.SIND_SECTOR}}</td>
-                <td>{{row.SIND_NIVEL_TENSION}}</td>
-                <td>{{row.SIND_NIVEL_AFECT}}</td>
-                <td>{{row.SIND_INTE_ORIGEN}}</td>
-                <td>{{row.SIND_INTE_CAUSA}}</td>
-                <td>{{row.SIND_CAUSAS}}</td>
+                <td>{{row.SCAL_PROPIEDAD}}</td>
+                <td>{{row.SCAL_PROTECCION}}</td>
+                <td>{{row.SCAL_TIPO_PROTECCION}}</td>
+                <td>{{row.SCAL_ETAPA_FUN}}</td>
+                <td>{{row.SCAL_INSTALACION_EF}}</td>
+                <td>{{row.SCAL_PROVINCIA}}</td>
+                <td>{{row.SCAL_CANTON}}</td>
+                <td>{{row.SCAL_SECTOR}}</td>
+                <td>{{row.SCAL_LINEA_SUBT}}</td>
+                <td>{{row.SCAL_SUBESTACION}}</td>
+                <td>{{row.SCAL_ALIMENTADOR_PRIMARIO}}</td>
+                <td>{{row.SCAL_SECTOR}}</td>
+                <td>{{row.SCAL_NIVEL_TENSION}}</td>
+                <td>Ramal Trifásico</td>
+                <td>{{row.SCAL_INTE_ORIGEN}}</td>
+                <td>{{row.SCAL_INTE_CAUSA}}</td>
+                <td>{{row.SCAL_CAUSAS}}</td>
                 <td>-</td>
-                <td>{{row.SIND_POTENCIAL_NI}}</td>
-                <td>{{row.SIND_POTENCIAL_NFS}}</td>
+                <td>{{row.SCAL_POTENCIAL_NI}}</td>
+                <td>{{row.SCAL_POTENCIAL_NFS}}</td>
+                <td>Potencial Nominal Fuera de Servicio (MW)</td>
                 <td>CARGA FUERA SERVICIO</td>
                 <td>ENERGIA NO SUMINISTRADA</td>
-                <td>0</td>
-                <td>{{row.SIND_INT_FECHA_INICIO}}</td>
-                <td>{{row.SIND_INT_HORA_INICIO}}</td>
-                <td>{{row.SIND_INT_FECHA_FIN}}</td>
-                <td>{{row.SIND_INT_HORA_FIN}}</td>
-                <td>{{row.SIND_INT_DURACION}}</td>
-                <td>{{row.SIND_INT_DURACION_HORAS}}</td>
-                <td>{{row.SIND_FMIK}}</td>
-                <td>{{row.SIND_TTIK}}</td>
-                <td>{{row.SIND_OBSERVACIONES}}</td>
+                <td>{{row.SCAL_INT_FECHA_INICIO}}</td>
+                <td>{{row.SCAL_INT_HORA_INICIO}}</td>
+                <td>{{row.SCAL_INT_FECHA_FIN}}</td>
+                <td>{{row.SCAL_INT_HORA_FIN}}</td>
+                <td>{{row.SCAL_INT_DURACION}}</td>
+                <td>{{row.SCAL_INT_DURACION_HORAS}}</td>
+                <td>{{row.SCAL_FMIK}}</td>
+                <td>{{row.SCAL_TTIK}}</td>
+                <td>{{row.SCAL_OBSERVACIONES}}</td>
                 <td style="text-align: center;">
                     <button mat-icon-button color="primary" >
                       <mat-icon style="color: #052d6c;">edit</mat-icon>

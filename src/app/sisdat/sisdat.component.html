@@ -48,9 +48,9 @@
                 <td *ngIf="row.SSIS_TAL_EXT_TRANS!=null">{{row.SSIS_TAL_EXT_TRANS}}</td> <td *ngIf="row.SSIS_TAL_EXT_TRANS==null">-</td>
                 <td>{{row.SSIS_OBSERVACION}}</td>
                 <td style="text-align: center;">
-                    <button mat-icon-button color="primary" >
-                      <mat-icon style="color: #052d6c;">edit</mat-icon>
-                    </button>
+                    <button mat-icon-button color="primary" (click)="openModalSisdat(row)" >
+                        <mat-icon style="color: #052d6c;">edit</mat-icon>
+                      </button>
                 </td>
             </tr>
 

@@ -5,6 +5,7 @@ import { SisdatModalComponent } from '../componentes/sisdat-modal/sisdat-modal.c
 import { Alimentador } from '../modelos/alimentador.interface';
 import { ExcelService } from '../servicios/excel.service';
 import { IndicesService } from '../servicios/indices.service';
+import { FormSisdatComponent } from '../componentes/form-sisdat/form-sisdat.component';
 
 @Component({
   selector: 'app-sisdat',
@@ -120,6 +121,18 @@ export class SisdatComponent implements OnInit {
     activeModal.componentInstance.SRAR_CODIGO = this.SRAR_CODIGO;
   }
 
+  openModalSisdat(filaSisdat:any){
+    const activeModal =this.modalService.open(FormSisdatComponent, {
+      centered: true,
+      size: 'lg',
+      backdrop: 'static',
+      keyboard: false,
+    });
+    activeModal.componentInstance.filaSisdat = filaSisdat;
+  }
+
+ 
+  
   goBack(){
     this.router.navigate(['/subir-archivos'])
   }

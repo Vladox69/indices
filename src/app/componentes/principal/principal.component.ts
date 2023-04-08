@@ -672,7 +672,6 @@ export class PrincipalComponent implements OnInit {
         }
       }
     });
-    console.log('aqui nuevo',this.resultado);
     this.exportInforme();
   }
   
@@ -698,15 +697,6 @@ export class PrincipalComponent implements OnInit {
       let aux=[...row];
       this.filtroMayor=[...this.filtroMayor,aux];
     });
-
-    /* generate worksheet */
-
-    /* generate workbook and add the worksheet */
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Resultados');
-    // console.log(this.tabla);
-    /* save to file */
-    //XLSX.writeFile(wb, 'informe.xlsx');
   }
 
   onChangeCheckbox(indice:any){
@@ -925,18 +915,23 @@ export class PrincipalComponent implements OnInit {
       "SIND_INCIDENCIA_DES_RAZON":""
         }
       ]
+      // this.listaAlimentadores.forEach(async (ali)=>{
+      //   if(ali.SALIM_NOMBRE==this.filtroMayor[i][5]){
+      //       ali.SALIM_KVA=this.filtroMayor[i][31];
+      //       ali.SALIM_OBSERVACION='S';
+      //       let auxAli=[ali]
+      //       this.iService.updateAlimentador(auxAli);
+      //   }
+      // })
       const resp=await this.iService.addFilaInformeDiario(filaInformeDiario);
       resp.subscribe((data)=>{
         contador++;
         if(contador==this.filtroMayor.length){
-          console.log('archivo guardado');
           this.router.navigate(['/subir-archivos']);
           swal.close();
         }
       })
-      console.log(filaInformeDiario);
     }
-
   }
 
   obtenerAlimentadores(){

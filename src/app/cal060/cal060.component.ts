@@ -77,7 +77,6 @@ export class Cal060Component implements OnInit {
   cargarDatos() {
     this.indicesService.listarFilasCal060(this.SRAR_CODIGO).subscribe((resp:any)=>{
       this.informeCal=resp;
-      console.log(resp);
     });
 
   }

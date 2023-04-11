@@ -1119,6 +1119,16 @@ export class ExcelService {
      observacion.border = allBorder;
      observacion.fill = fillCeleste;
      observacion.alignment = aligmentTitulos;
+
+     for (let i = 0; i < datos.length; i++) {
+      let dataRow = sheet.getRow(12 + i);
+      dataRow.values = datos[i];
+      for (let j = 0; j < 42; j++) {
+        const rowStyle=sheet.getCell(abecedario[j]+(12+i));
+        rowStyle.border = allBorder;        
+      }
+    }
+
   }
   
 }

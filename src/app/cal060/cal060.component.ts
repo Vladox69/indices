@@ -92,7 +92,58 @@ export class Cal060Component implements OnInit {
   }
 
   onReporteCal060(){
-    this.excelService.downloadExcelCal060('Cal060.xlsx',"Cal060",[]); 
+    let datosExcel:any=[];
+    for (let i = 0; i < this.informeCal.length; i++) {
+      const element = this.informeCal[i];
+      let dato:any=[
+        i+1,
+        element.SCAL_CODIGO_INTERRUPCION,
+        element.SCAL_INDICADOR_FM,
+        element.SCAL_ETAPA_FUN,
+        element.SCAL_INSTALACION_EF,
+        element.SCAL_PROVINCIA,
+        element.SCAL_CANTON,
+        element.SCAL_SECTOR,
+        "-",
+        element.SCAL_PROPIEDAD,
+        element.SCAL_PROTECCION,
+        element.SCAL_TIPO_PROTECCION,
+        element.SCAL_TIPO_PROTECCION,
+        element.SSIS_TRANSMISOR,
+        element.SCAL_TIPO_PROTECCION,
+        element.SCAL_ETAPA_FUN,
+        element.SCAL_INSTALACION_EF,
+        element.SCAL_PROVINCIA,
+        element.SCAL_CANTON,
+        element.SCAL_SECTOR,
+        element.SCAL_LINEA_SUBT,
+        element.SCAL_SUBESTACION,
+        element.SCAL_ALIMENTADOR_PRIMARIO,
+        element.SCAL_SECTOR,
+        element.SCAL_NIVEL_TENSION,
+        "Ramal Trifásico",
+        element.SCAL_INTE_ORIGEN,
+        element.SCAL_INTE_CAUSA,
+        element.SCAL_CAUSAS,
+        "-",
+        element.SCAL_POTENCIAL_NI,
+        element.SCAL_POTENCIAL_NFS,
+        "Potencial Nominal Fuera de Servicio (MW)",
+        "CARGA FUERA SERVICIO",
+        "ENERGIA NO SUMINISTRADA",
+        element.SCAL_INT_FECHA_INICIO,
+        element.SCAL_INT_HORA_INICIO,
+        element.SCAL_INT_FECHA_FIN,
+        element.SCAL_INT_HORA_FIN,
+        element.SCAL_INT_DURACION,
+        element.SCAL_INT_DURACION_HORAS,
+        element.SCAL_FMIK,
+        element.SCAL_TTIK,
+        element.SCAL_OBSERVACIONES
+      ];
+      datosExcel.push(dato);
+    }
+    this.excelService.downloadExcelCal060('Cal060.xlsx',"Cal060",datosExcel); 
   }
 
   goBack(){
